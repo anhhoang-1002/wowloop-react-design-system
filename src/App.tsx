@@ -6,7 +6,6 @@ import { WowloopNavItem } from './components/Nav/WowloopNavItem';
 import { Button } from './components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from './components/ui/card';
 import { Input } from './components/ui/input';
-import { Badge } from './components/ui/badge';
 import {
   Dialog,
   DialogContent,
@@ -14,9 +13,8 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-  DialogTrigger,
 } from './components/ui/dialog';
-import { MessageSquare, LayoutGrid, Layers, Sparkles } from 'lucide-react';
+import { MessageSquare, LayoutGrid, Sparkles } from 'lucide-react';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<'saas' | 'librechat'>('saas');
@@ -69,16 +67,16 @@ export function App() {
 
           {/* Component Showcase */}
           <section id="component-showcase" className="max-w-5xl mx-auto px-4 my-12">
-            <h2 className="text-3xl font-bold text-black text-center mb-2">LibreChat Component Primitives</h2>
+            <h2 className="text-3xl font-bold text-black text-center mb-2">Shadcn UI Component Primitives</h2>
             <p className="text-muted text-center mb-8">
-              Built using Tailwind CSS + Radix UI primitives located in <code>src/components/ui/</code>
+              Standardized Shadcn UI components located in <code>src/components/ui/</code>
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Buttons */}
               <Card variant="blue-shadow">
                 <CardHeader>
-                  <CardTitle>Shadcn / CVA Button Variants</CardTitle>
+                  <CardTitle>Shadcn UI Button Variants</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex flex-wrap gap-3">
@@ -95,13 +93,13 @@ export function App() {
               {/* Dialog Modal */}
               <Card variant="blue-shadow">
                 <CardHeader>
-                  <CardTitle>Radix UI Dialog & Inputs</CardTitle>
+                  <CardTitle>Shadcn UI Dialog & Inputs</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <Input floatingLabel="Company Name" placeholder="Acme Inc." requiredStar />
                   <Input floatingLabel="Monthly Revenue" placeholder="$50,000" />
                   <Button variant="primaryGradient" className="w-full" onClick={() => setIsDialogOpen(true)}>
-                    Test Radix Dialog Modal
+                    Test Dialog Modal
                   </Button>
                 </CardContent>
               </Card>
@@ -151,7 +149,7 @@ export function App() {
         </main>
       )}
 
-      {/* Radix Dialog Modal */}
+      {/* Dialog Modal */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>

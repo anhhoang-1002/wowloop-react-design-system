@@ -9,21 +9,21 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[linear-gradient(90deg,#009959_0%,#52CC85_100%)] text-white shadow-btn-green text-shadow hover:opacity-90 font-extrabold active:scale-95",
+          "bg-[linear-gradient(90deg,#009959_0%,#52CC85_100%)] !text-white shadow-btn-green hover:opacity-90 font-extrabold active:scale-95",
         primaryGradient:
-          "bg-[linear-gradient(90deg,#009959_0%,#52CC85_100%)] text-white shadow-btn-green text-shadow hover:opacity-90 font-extrabold",
+          "bg-[linear-gradient(90deg,#009959_0%,#52CC85_100%)] !text-white shadow-btn-green hover:opacity-90 font-extrabold",
         secondaryGradient:
-          "bg-[linear-gradient(90deg,#FF3C3A_0%,#FF7A1D_100%)] text-white shadow-solid-offset font-extrabold hover:opacity-95",
+          "bg-[linear-gradient(90deg,#FF3C3A_0%,#FF7A1D_100%)] !text-white shadow-solid-offset font-extrabold hover:opacity-95",
         deepBlue:
-          "bg-[linear-gradient(90deg,#122DBD_0%,#465FF1_100%)] text-white shadow-md hover:bg-secondary-hover",
+          "bg-[linear-gradient(90deg,#122DBD_0%,#465FF1_100%)] !text-white shadow-md hover:bg-secondary-hover font-extrabold",
         solidGreen:
-          "bg-primary-vibrant text-white hover:bg-primary-dark",
+          "bg-primary-vibrant !text-white hover:bg-primary-dark font-extrabold",
         outline:
-          "border-2 border-secondary text-secondary bg-transparent hover:bg-secondary-bg",
+          "border-2 border-secondary text-secondary bg-transparent hover:bg-secondary-bg font-bold",
         ghost:
-          "bg-transparent text-foreground hover:bg-black/5",
+          "bg-transparent text-foreground hover:bg-black/5 font-bold",
         destructive:
-          "bg-danger text-white hover:bg-danger/90",
+          "bg-danger !text-white hover:bg-danger/90 font-extrabold",
       },
       size: {
         default: "h-11 px-6 py-2 text-base",
@@ -64,7 +64,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {loading && (
           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
         )}
-        {children}
+        <span className="relative z-10">{children}</span>
       </Comp>
     );
   }
