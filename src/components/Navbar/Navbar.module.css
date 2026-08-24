@@ -1,0 +1,85 @@
+.header {
+  width: 100%;
+  height: 80px;
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--shadow-nav);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logoText {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--color-text-main);
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logoHighlight {
+  color: var(--color-deep-blue);
+}
+
+.logoTag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-primary-green-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-left: 1px solid var(--color-border-default);
+  padding-left: 12px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem a {
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color var(--transition-fast);
+}
+
+.navItem a:hover {
+  color: var(--color-primary-green);
+}
+
+.navItemActive a {
+  color: var(--color-deep-blue);
+  font-weight: var(--font-weight-bold);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

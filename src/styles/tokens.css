@@ -1,0 +1,152 @@
+/* Wowloop SaaS Design System Tokens - Derived from Wowsuite.ai */
+
+:root {
+  /* Color Palette - Primary & Brand */
+  --color-primary-green: #34D18A;
+  --color-primary-green-dark: #29AF5C;
+  --color-primary-green-light: #52CC85;
+  --color-primary-green-vibrant: #18C778;
+  --color-primary-green-hover: #32B179;
+
+  --color-deep-blue: #122DBD;
+  --color-deep-blue-hover: #0E2499;
+  --color-accent-blue: #0050C5;
+  --color-accent-blue-light: #465FF1;
+  --color-accent-blue-soft: #B4CDFF;
+  --color-accent-blue-bg: #E3EEFF;
+  
+  --color-orange-start: #FF3C3A;
+  --color-orange-end: #FF7A1D;
+  --color-orange-shadow: #FFDCC4;
+
+  /* Surface & Background Colors */
+  --color-bg-canvas: #F1F7FF;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-subtle: #F8FAFC;
+  --color-bg-dark: #283037;
+  --color-bg-dark-hover: #364048;
+
+  /* Typography / Neutral Text */
+  --color-text-main: #000000;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9B9B9B;
+  --color-text-subtle: #A6A9AC;
+  --color-text-inverse: #FFFFFF;
+
+  /* Borders & Dividers */
+  --color-border-default: #DFE6F1;
+  --color-border-subtle: #CACACA;
+  --color-border-blue-tint: rgba(70, 95, 241, 0.4);
+  --color-border-yellow-modal: #FAE500;
+  --color-border-blue-modal: #0084FF;
+
+  /* Status Colors */
+  --color-success: #18C778;
+  --color-success-bg: #E6F8F0;
+  --color-warning: #FFC20D;
+  --color-warning-bg: #FFFBEB;
+  --color-danger: #CC4B37;
+  --color-danger-bg: #F9ECEA;
+
+  /* Primary Gradients */
+  --gradient-primary-btn: linear-gradient(90deg, #009959 0%, #52CC85 100%);
+  --gradient-secondary-btn: linear-gradient(90deg, #FF3C3A 0%, #FF7A1D 100%);
+  --gradient-deep-blue-btn: linear-gradient(90deg, #122DBD 0%, #465FF1 100%);
+  --gradient-blue-divider: linear-gradient(90deg, transparent 0%, #8ABBEA 50.4%, transparent 100%);
+  --gradient-hero-bg: linear-gradient(90deg, transparent 0%, rgba(0, 105, 191, 0.12) 100%);
+
+  /* Border Radii Tokens */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 15px;
+  --radius-pill: 52px;
+  --radius-full: 9999px;
+
+  /* Border Width Tokens */
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 3px;
+  --border-width-accent: 4px;
+
+  /* Box Shadows */
+  --shadow-light: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  --shadow-nav: 0 0 4px 0 rgba(0, 0, 0, 0.11);
+  --shadow-input: 0 4px 8px 0 rgba(70, 95, 241, 0.10);
+  --shadow-card-blue: 0 4px 20px 0 rgba(0, 80, 197, 0.20);
+  --shadow-pill: 0 4px 4px 0 rgba(0, 105, 191, 0.15);
+  --shadow-btn-green: 0 2px 4px 0 rgba(0, 0, 0, 0.28);
+  --shadow-solid-offset: 4px 4px 0 0 #FFDCC4;
+
+  /* Typography System */
+  --font-primary: 'Montserrat', Helvetica, Arial, sans-serif;
+  --font-display: 'Montserrat', Helvetica, Arial, sans-serif;
+
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 15px;
+  --font-size-md: 18px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 36px;
+  --font-size-3xl: 45px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  --line-height-tight: 1.15;
+  --line-height-normal: 1.5;
+  --line-height-heading: 1.22;
+
+  /* Transitions & Animations */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.25s ease-in-out;
+  --transition-slow: 0.4s ease-in-out;
+}
+
+/* Global Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keyframe Animations */
+@keyframes fadeDownPop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 20px 0 rgba(0, 80, 197, 0.20);
+  }
+  50% {
+    box-shadow: 0 4px 28px 0 rgba(0, 80, 197, 0.35);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

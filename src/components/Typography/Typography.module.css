@@ -1,0 +1,83 @@
+.h1 {
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-main);
+  margin: 0 0 16px 0;
+}
+
+.h2 {
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-main);
+  margin: 0 0 14px 0;
+}
+
+.h3 {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-deep-blue);
+  margin: 0 0 12px 0;
+}
+
+.h4 {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 10px 0;
+}
+
+.text {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin: 0 0 12px 0;
+}
+
+.textMuted {
+  color: var(--color-text-muted);
+}
+
+.textBlue {
+  color: var(--color-deep-blue);
+}
+
+.textGreen {
+  color: var(--color-primary-green-dark);
+}
+
+.highlight {
+  color: var(--color-deep-blue);
+  font-weight: var(--font-weight-bold);
+  display: inline;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badgeBlue {
+  background-color: var(--color-accent-blue-bg);
+  color: var(--color-deep-blue);
+}
+
+.badgeGreen {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.badgeOrange {
+  background-color: #FFF4EC;
+  color: #FF7A1D;
+}

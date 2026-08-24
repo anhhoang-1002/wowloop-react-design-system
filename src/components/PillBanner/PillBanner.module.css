@@ -1,0 +1,64 @@
+.pillBanner {
+  min-height: 70px;
+  max-width: 600px;
+  width: 100%;
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--shadow-pill);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  margin: 0 auto;
+  border: var(--border-width-thin) solid rgba(18, 45, 189, 0.08);
+  transition: all var(--transition-normal);
+}
+
+.pillBanner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 105, 191, 0.22);
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-deep-blue);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.statusActive {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.statusPending {
+  background-color: #FFF8E6;
+  color: #D97706;
+}
+
+.statusInactive {
+  background-color: #F3F4F6;
+  color: #6B7280;
+}
