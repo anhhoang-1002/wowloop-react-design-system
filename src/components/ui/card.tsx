@@ -16,7 +16,7 @@ const Card = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "transition-all duration-200",
+        "transition-all duration-200 overflow-hidden",
         variantStyles[variant],
         className
       )}
@@ -28,11 +28,15 @@ Card.displayName = "Card";
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & { hasDivider?: boolean }
+>(({ className, hasDivider = true, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6 border-b border-border/50", className)}
+    className={cn(
+      "flex flex-col space-y-1.5 px-6 py-4.5",
+      hasDivider && "border-b border-border/60",
+      className
+    )}
     {...props}
   />
 ));
@@ -44,7 +48,7 @@ const CardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={cn("text-xl font-semibold leading-none tracking-tight text-secondary", className)}
+    className={cn("text-xl font-semibold leading-tight text-secondary", className)}
     {...props}
   />
 ));
@@ -56,7 +60,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-sm text-muted-foreground mt-1", className)}
     {...props}
   />
 ));
@@ -66,7 +70,7 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+  <div ref={ref} className={cn("p-6 pt-5 space-y-4", className)} {...props} />
 ));
 CardContent.displayName = "CardContent";
 
@@ -76,7 +80,7 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center p-6 pt-0 border-t border-border/50 mt-4", className)}
+    className={cn("flex items-center px-6 py-4 border-t border-border/60 bg-slate-50/50", className)}
     {...props}
   />
 ));
