@@ -25,12 +25,12 @@ export const WowloopHero: React.FC<WowloopHeroProps> = ({ onBookCall, onExplore 
         Derived directly from <b>wowsuite.ai</b> aesthetics.
       </p>
 
-      <div className="flex flex-wrap gap-4 justify-center">
+      <div className="flex flex-wrap gap-4 justify-center items-center">
         <Button variant="primaryGradient" size="lg" pill onClick={onBookCall}>
-          BOOK A STRATEGY CALL <ArrowRight size={18} />
+          BOOK A STRATEGY CALL <ArrowRight size={18} className="shrink-0" />
         </Button>
         <Button variant="deepBlue" size="lg" pill onClick={onExplore}>
-          EXPLORE COMPONENTS <Layers size={18} />
+          EXPLORE COMPONENTS <Layers size={18} className="shrink-0" />
         </Button>
       </div>
     </section>

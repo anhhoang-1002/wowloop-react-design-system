@@ -12,23 +12,25 @@ export const WowloopMetrics: React.FC = () => {
 
   return (
     <section className="max-w-5xl mx-auto my-12 px-4">
-      <h3 className="text-2xl font-semibold text-secondary mb-6">Platform Metrics (SaaS Preview)</h3>
+      <h3 className="text-2xl font-bold text-secondary mb-6">Platform Metrics (SaaS Preview)</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {metrics.map((m, idx) => (
           <Card key={idx} variant="blue-shadow" className="hover:-translate-y-1 transition-transform">
-            <CardHeader className="flex flex-row items-center justify-between pb-2 border-none">
-              <CardTitle className="text-xs font-bold text-muted uppercase tracking-wider">{m.title}</CardTitle>
-              <div className="w-10 h-10 rounded-md bg-secondary-bg text-secondary flex items-center justify-center">
+            <CardHeader hasDivider={false} className="flex flex-row items-start justify-between gap-4 p-5 pb-2 border-none">
+              <CardTitle className="text-xs font-bold text-muted uppercase tracking-wider leading-relaxed flex-1 pr-2">
+                {m.title}
+              </CardTitle>
+              <div className="w-10 h-10 rounded-lg bg-secondary-bg text-secondary flex items-center justify-center shrink-0 shadow-sm">
                 {m.icon}
               </div>
             </CardHeader>
-            <CardContent className="pt-0">
-              <div className="text-3xl font-black text-secondary leading-none my-2">{m.value}</div>
-              <div className="flex items-center gap-1 text-xs font-semibold">
-                <span className={m.isPositive ? 'text-primary-vibrant' : 'text-danger'}>
+            <CardContent className="px-5 pb-5 pt-1 space-y-2">
+              <div className="text-3xl font-black text-secondary leading-tight">{m.value}</div>
+              <div className="flex items-center gap-1.5 text-xs font-semibold">
+                <span className={m.isPositive ? 'text-primary-vibrant font-bold' : 'text-danger font-bold'}>
                   {m.isPositive ? '↑' : '↓'} {m.change}
                 </span>
-                <span className="text-muted">vs last month</span>
+                <span className="text-muted font-normal">vs last month</span>
               </div>
             </CardContent>
           </Card>
