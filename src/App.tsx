@@ -93,11 +93,11 @@ export function App() {
               {/* Dialog Modal */}
               <Card variant="blue-shadow">
                 <CardHeader>
-                  <CardTitle>Shadcn UI Dialog & Inputs</CardTitle>
+                  <CardTitle>Shadcn UI Dialog & Form Inputs</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <Input floatingLabel="Company Name" placeholder="Acme Inc." requiredStar />
-                  <Input floatingLabel="Monthly Revenue" placeholder="$50,000" />
+                  <Input label="Company Name" placeholder="Acme Inc." requiredStar />
+                  <Input label="Monthly Revenue" placeholder="$50,000" />
                   <Button variant="primaryGradient" className="w-full" onClick={() => setIsDialogOpen(true)}>
                     Test Dialog Modal
                   </Button>
@@ -160,9 +160,9 @@ export function App() {
           </DialogHeader>
 
           <form className="space-y-3 mt-4" onSubmit={(e) => { e.preventDefault(); setIsDialogOpen(false); alert('Submitted!'); }}>
-            <Input floatingLabel="Company Name" requiredStar placeholder="Acme Brands" />
-            <Input floatingLabel="Company Website" requiredStar placeholder="https://example.com" />
-            <Input floatingLabel="Monthly Revenue (USD)" requiredStar placeholder="$100,000" />
+            <Input label="Company Name" requiredStar placeholder="Acme Brands" />
+            <Input label="Company Website" requiredStar placeholder="https://example.com" />
+            <Input label="Monthly Revenue (USD)" requiredStar placeholder="$100,000" />
             <DialogFooter>
               <Button type="submit" variant="primaryGradient" pill className="w-full">
                 Submit Strategy Request
