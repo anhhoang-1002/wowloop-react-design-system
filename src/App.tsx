@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { WowloopHero } from './components/Wowloop/WowloopHero';
 import { WowloopMetrics } from './components/Wowloop/WowloopMetrics';
-import { WowloopSidePanel } from './components/SidePanel/WowloopSidePanel';
-import { WowloopNavItem } from './components/Nav/WowloopNavItem';
+import { LibreChatPage } from './components/Chat/LibreChatPage';
 import { Button } from './components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from './components/ui/card';
 import { Input } from './components/ui/input';
@@ -14,45 +13,48 @@ import {
   DialogDescription,
   DialogFooter,
 } from './components/ui/dialog';
-import { MessageSquare, LayoutGrid, Sparkles } from 'lucide-react';
+import { MessageSquare, LayoutGrid } from 'lucide-react';
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'saas' | 'librechat'>('saas');
+  const [activeTab, setActiveTab] = useState<'saas' | 'librechat'>('librechat');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-canvas">
-      {/* Top Bar Switcher */}
-      <header className="bg-white border-b border-border sticky top-0 z-50 px-6 py-3 flex items-center justify-between shadow-sm">
+      {/* Top Global Mode Bar */}
+      <header className="bg-white border-b border-border sticky top-0 z-50 px-6 py-2.5 flex items-center justify-between shadow-xs">
         <div className="flex items-center gap-3">
           <img src="/logo-wowsuite.svg" alt="WOW Suite Logo" className="h-8 w-auto" />
-          <span className="text-xs font-bold bg-secondary-bg text-secondary px-2.5 py-1 rounded-full border border-secondary/20">
+          <span className="text-xs font-bold bg-secondary-bg text-secondary px-2.5 py-1 rounded-full border border-secondary/20 hidden sm:inline">
             LibreChat Architecture Ready
           </span>
         </div>
 
         {/* View Mode Switcher */}
-        <div className="flex items-center bg-slate-100 p-1 rounded-lg">
-          <button
-            onClick={() => setActiveTab('saas')}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-bold transition-all ${
-              activeTab === 'saas' ? 'bg-white text-secondary shadow-sm' : 'text-slate-600 hover:text-black'
-            }`}
-          >
-            <LayoutGrid size={14} /> SaaS Landing & Components
-          </button>
+        <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200/80">
           <button
             onClick={() => setActiveTab('librechat')}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-bold transition-all ${
-              activeTab === 'librechat' ? 'bg-white text-secondary shadow-sm' : 'text-slate-600 hover:text-black'
+            className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              activeTab === 'librechat' ? 'bg-white text-secondary shadow-xs' : 'text-slate-600 hover:text-black'
             }`}
           >
-            <MessageSquare size={14} /> LibreChat SidePanel Preview
+            <MessageSquare size={15} /> LibreChat Full Chat UI
+          </button>
+          <button
+            onClick={() => setActiveTab('saas')}
+            className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              activeTab === 'saas' ? 'bg-white text-secondary shadow-xs' : 'text-slate-600 hover:text-black'
+            }`}
+          >
+            <LayoutGrid size={15} /> Wowsuite SaaS Landing & Design Tokens
           </button>
         </div>
       </header>
 
-      {/* Mode 1: SaaS Landing Page & Design System */}
+      {/* Mode 1: Full Authentic LibreChat Chat Page UI */}
+      {activeTab === 'librechat' && <LibreChatPage />}
+
+      {/* Mode 2: Wowsuite SaaS Landing Page & Design Tokens */}
       {activeTab === 'saas' && (
         <main className="pb-16">
           <WowloopHero
@@ -105,47 +107,6 @@ export function App() {
               </Card>
             </div>
           </section>
-        </main>
-      )}
-
-      {/* Mode 2: LibreChat Layout Embedding Demo */}
-      {activeTab === 'librechat' && (
-        <main className="max-w-6xl mx-auto my-8 px-4">
-          <div className="bg-white rounded-xl border border-border overflow-hidden shadow-2xl flex min-h-[600px]">
-            {/* LibreChat Mock Sidebar */}
-            <aside className="w-64 border-r border-border bg-slate-50 p-4 space-y-4 flex flex-col justify-between">
-              <div>
-                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-2">
-                  LibreChat Navigation
-                </div>
-                <div className="space-y-1">
-                  <button className="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-200">
-                    <MessageSquare size={16} /> New Chat
-                  </button>
-                  <WowloopNavItem isActive={true} />
-                </div>
-              </div>
-              <div className="text-xs text-slate-400 p-2 border-t border-slate-200">
-                LibreChat Core v0.7.x
-              </div>
-            </aside>
-
-            {/* LibreChat Main Area Mock */}
-            <div className="flex-1 flex">
-              <div className="flex-1 p-6 bg-slate-100 flex flex-col items-center justify-center text-center">
-                <Sparkles className="h-12 w-12 text-secondary mb-4" />
-                <h3 className="text-xl font-bold text-black mb-2">LibreChat Chat Area</h3>
-                <p className="text-sm text-slate-500 max-w-md">
-                  This represents your standard LibreChat conversation window. Wowloop components live safely in <code>src/components/Wowloop/</code> and <code>src/components/SidePanel/</code> without modifying chat logic.
-                </p>
-              </div>
-
-              {/* Wowloop SidePanel Plug-in */}
-              <div className="w-80 border-l border-border bg-canvas overflow-y-auto">
-                <WowloopSidePanel />
-              </div>
-            </div>
-          </div>
         </main>
       )}
 
