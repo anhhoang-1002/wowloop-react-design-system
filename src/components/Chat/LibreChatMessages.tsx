@@ -32,7 +32,7 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
         >
           {/* Assistant Avatar */}
           {msg.sender === 'assistant' && (
-            <div className="w-8 h-8 rounded-xl bg-secondary-bg text-secondary flex items-center justify-center shrink-0 border border-secondary/20 shadow-xs">
+            <div className="w-8 h-8 rounded-xl bg-secondary-bg dark:bg-blue-950/80 text-secondary dark:text-blue-400 flex items-center justify-center shrink-0 border border-secondary/20 dark:border-blue-800/40 shadow-xs">
               <Sparkles size={16} />
             </div>
           )}
@@ -43,7 +43,7 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
               className={`p-4 rounded-2xl text-sm leading-relaxed ${
                 msg.sender === 'user'
                   ? 'bg-gradient-to-r from-[#009959] to-[#52CC85] text-white font-medium rounded-tr-none shadow-md'
-                  : 'bg-white border border-slate-200 text-slate-900 rounded-tl-none shadow-xs'
+                  : 'bg-surface dark:bg-slate-800 border border-border dark:border-slate-700 text-foreground dark:text-slate-100 rounded-tl-none shadow-xs'
               }`}
             >
               <p className="whitespace-pre-wrap">{msg.text}</p>
@@ -51,9 +51,9 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
 
             {/* Embedded Interactive Widget (if AI generated a widget) */}
             {msg.sender === 'assistant' && msg.widget === 'metrics' && (
-              <Card variant="blue-shadow" className="mt-3">
-                <CardHeader className="py-3 px-4 flex flex-row items-center justify-between border-b border-slate-100">
-                  <CardTitle className="text-xs font-bold text-secondary uppercase tracking-wider">
+              <Card variant="input-shadow" className="mt-3">
+                <CardHeader className="py-3 px-4 flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-700">
+                  <CardTitle className="text-xs font-bold text-secondary dark:text-blue-400 uppercase tracking-wider">
                     Live MRR & Retention Summary
                   </CardTitle>
                   <span className="text-[10px] bg-primary-vibrant/10 text-primary-vibrant font-extrabold px-2 py-0.5 rounded-full">
@@ -63,12 +63,12 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
                 <CardContent className="p-4 grid grid-cols-2 gap-4">
                   <div>
                     <div className="text-xs text-slate-400 font-semibold">Monthly Recurring Revenue</div>
-                    <div className="text-xl font-black text-secondary mt-0.5">$128,450</div>
+                    <div className="text-xl font-black text-secondary dark:text-blue-400 mt-0.5">$128,450</div>
                     <div className="text-[11px] text-primary-vibrant font-bold">↑ 14.2% vs last month</div>
                   </div>
                   <div>
                     <div className="text-xs text-slate-400 font-semibold">Active Retention Rate</div>
-                    <div className="text-xl font-black text-secondary mt-0.5">94.6%</div>
+                    <div className="text-xl font-black text-secondary dark:text-blue-400 mt-0.5">94.6%</div>
                     <div className="text-[11px] text-primary-vibrant font-bold">↑ 2.1% vs last month</div>
                   </div>
                 </CardContent>
@@ -77,21 +77,21 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
 
             {/* Assistant Action Bar */}
             {msg.sender === 'assistant' && (
-              <div className="flex items-center gap-2 text-slate-400 text-xs pt-1">
+              <div className="flex items-center gap-2 text-slate-400 dark:text-slate-500 text-xs pt-1">
                 <button
                   onClick={() => handleCopy(msg.id, msg.text)}
-                  className="hover:text-slate-600 p-1 rounded hover:bg-slate-100 transition-colors flex items-center gap-1"
+                  className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1"
                 >
                   {copiedId === msg.id ? <Check size={14} className="text-primary-vibrant" /> : <Copy size={14} />}
                   <span>{copiedId === msg.id ? 'Copied' : 'Copy'}</span>
                 </button>
-                <button className="hover:text-slate-600 p-1 rounded hover:bg-slate-100 transition-colors">
+                <button className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                   <ThumbsUp size={14} />
                 </button>
-                <button className="hover:text-slate-600 p-1 rounded hover:bg-slate-100 transition-colors">
+                <button className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                   <ThumbsDown size={14} />
                 </button>
-                <button className="hover:text-slate-600 p-1 rounded hover:bg-slate-100 transition-colors flex items-center gap-1 ml-2">
+                <button className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 ml-2">
                   <RotateCw size={14} />
                   <span>Regenerate</span>
                 </button>
@@ -101,7 +101,7 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
 
           {/* User Avatar */}
           {msg.sender === 'user' && (
-            <div className="w-8 h-8 rounded-full bg-secondary text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-xs">
+            <div className="w-8 h-8 rounded-full bg-secondary dark:bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-xs">
               WA
             </div>
           )}

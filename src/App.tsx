@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { ThemeSwitcher } from './components/ThemeSwitcher';
 import { WowloopHero } from './components/Wowloop/WowloopHero';
 import { WowloopMetrics } from './components/Wowloop/WowloopMetrics';
 import { LibreChatPage } from './components/Chat/LibreChatPage';
@@ -15,39 +17,47 @@ import {
 } from './components/ui/dialog';
 import { MessageSquare, LayoutGrid } from 'lucide-react';
 
-export function App() {
+export function AppContent() {
   const [activeTab, setActiveTab] = useState<'saas' | 'librechat'>('librechat');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-canvas">
+    <div className="min-h-screen bg-canvas dark:bg-slate-950 text-foreground dark:text-slate-100 transition-colors duration-200">
       {/* Top Global Mode Bar */}
-      <header className="bg-white border-b border-border sticky top-0 z-50 px-6 py-2.5 flex items-center justify-between shadow-xs">
+      <header className="bg-surface dark:bg-slate-900 border-b border-border dark:border-slate-800 sticky top-0 z-50 px-6 py-2.5 flex items-center justify-between shadow-xs transition-colors">
         <div className="flex items-center gap-3">
           <img src="/logo-wowsuite.svg" alt="WOW Suite Logo" className="h-8 w-auto" />
-          <span className="text-xs font-bold bg-secondary-bg text-secondary px-2.5 py-1 rounded-full border border-secondary/20 hidden sm:inline">
+          <span className="text-xs font-bold bg-secondary-bg dark:bg-blue-950/80 text-secondary dark:text-blue-400 px-2.5 py-1 rounded-full border border-secondary/20 dark:border-blue-800/40 hidden sm:inline">
             LibreChat Architecture Ready
           </span>
         </div>
 
-        {/* View Mode Switcher */}
-        <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200/80">
-          <button
-            onClick={() => setActiveTab('librechat')}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              activeTab === 'librechat' ? 'bg-white text-secondary shadow-xs' : 'text-slate-600 hover:text-black'
-            }`}
-          >
-            <MessageSquare size={15} /> LibreChat Full Chat UI
-          </button>
-          <button
-            onClick={() => setActiveTab('saas')}
-            className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              activeTab === 'saas' ? 'bg-white text-secondary shadow-xs' : 'text-slate-600 hover:text-black'
-            }`}
-          >
-            <LayoutGrid size={15} /> Wowsuite SaaS Landing & Design Tokens
-          </button>
+        {/* View Mode Switcher & Theme Switcher */}
+        <div className="flex items-center gap-3">
+          <ThemeSwitcher />
+
+          <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200/80 dark:border-slate-700">
+            <button
+              onClick={() => setActiveTab('librechat')}
+              className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                activeTab === 'librechat'
+                  ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white'
+              }`}
+            >
+              <MessageSquare size={15} /> LibreChat Full Chat UI
+            </button>
+            <button
+              onClick={() => setActiveTab('saas')}
+              className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                activeTab === 'saas'
+                  ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white'
+              }`}
+            >
+              <LayoutGrid size={15} /> Wowsuite SaaS Landing & Design Tokens
+            </button>
+          </div>
         </div>
       </header>
 
@@ -69,14 +79,14 @@ export function App() {
 
           {/* Component Showcase */}
           <section id="component-showcase" className="max-w-5xl mx-auto px-4 my-12">
-            <h2 className="text-3xl font-bold text-black text-center mb-2">Shadcn UI Component Primitives</h2>
-            <p className="text-muted text-center mb-8">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 text-center mb-2">Shadcn UI Component Primitives</h2>
+            <p className="text-muted dark:text-slate-400 text-center mb-8">
               Standardized Shadcn UI components located in <code>src/components/ui/</code>
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Buttons */}
-              <Card variant="blue-shadow">
+              <Card variant="input-shadow">
                 <CardHeader>
                   <CardTitle>Shadcn UI Button Variants</CardTitle>
                 </CardHeader>
@@ -93,7 +103,7 @@ export function App() {
               </Card>
 
               {/* Dialog Modal */}
-              <Card variant="blue-shadow">
+              <Card variant="input-shadow">
                 <CardHeader>
                   <CardTitle>Shadcn UI Dialog & Form Inputs</CardTitle>
                 </CardHeader>
@@ -133,6 +143,14 @@ export function App() {
         </DialogContent>
       </Dialog>
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

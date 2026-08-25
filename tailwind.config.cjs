@@ -15,11 +15,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "#DFE6F1",
-        input: "#CACACA",
-        ring: "#122DBD",
-        background: "#F1F7FF",
-        foreground: "#111827",
+        border: "var(--color-border-default)",
+        input: "var(--color-border-subtle)",
+        ring: "var(--color-interactive-primary)",
+        background: "var(--color-surface-base)",
+        foreground: "var(--color-text-primary)",
         primary: {
           DEFAULT: "#34D18A",
           foreground: "#FFFFFF",
@@ -28,12 +28,12 @@ module.exports = {
           vibrant: "#18C778",
         },
         secondary: {
-          DEFAULT: "#122DBD",
+          DEFAULT: "var(--color-interactive-primary)",
           foreground: "#FFFFFF",
-          hover: "#0E2499",
+          hover: "var(--color-interactive-primary-hover)",
           light: "#465FF1",
           soft: "#B4CDFF",
-          bg: "#E3EEFF",
+          bg: "var(--color-border-accent)",
         },
         accent: {
           orangeStart: "#FF3C3A",
@@ -41,11 +41,11 @@ module.exports = {
           orangeShadow: "#FFDCC4",
         },
         muted: {
-          DEFAULT: "#9B9B9B",
-          foreground: "#6B7280",
+          DEFAULT: "var(--color-text-muted)",
+          foreground: "var(--color-text-secondary)",
         },
-        canvas: "#F1F7FF",
-        surface: "#FFFFFF",
+        canvas: "var(--color-surface-canvas)",
+        surface: "var(--color-surface-raised)",
         danger: {
           DEFAULT: "#CC4B37",
           bg: "#F9ECEA",
@@ -59,11 +59,10 @@ module.exports = {
         pill: "52px",
       },
       boxShadow: {
-        'card-blue': '0 4px 20px 0 rgba(0, 80, 197, 0.20)',
-        'input-shadow': '0 4px 8px 0 rgba(70, 95, 241, 0.10)',
+        'card-blue': 'var(--shadow-card)',
+        'input-shadow': 'var(--shadow-card)',
         'pill-shadow': '0 4px 4px 0 rgba(0, 105, 191, 0.15)',
         'btn-green': '0 2px 4px 0 rgba(0, 0, 0, 0.28)',
-        'solid-offset': '4px 4px 0 0 #FFDCC4',
       },
     },
   },

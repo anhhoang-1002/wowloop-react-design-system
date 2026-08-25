@@ -2,48 +2,101 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tier 1: Primitive Tokens (Global Static Values) */
+:root {
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --gray-900: #0F172A;
+  --gray-950: #090D16;
+
+  --brand-green-500: #34D18A;
+  --brand-green-600: #29AF5C;
+  --brand-green-400: #52CC85;
+  --brand-green-300: #18C778;
+
+  --brand-blue-900: #122DBD;
+  --brand-blue-700: #0050C5;
+  --brand-blue-500: #465FF1;
+  --brand-blue-300: #8ABBEA;
+  --brand-blue-100: #E3EEFF;
+
+  --brand-orange-500: #FF7A1D;
+  --brand-orange-600: #FF3C3A;
+
+  --font-primary: 'Montserrat', Helvetica, Arial, sans-serif;
+}
+
+/* Tier 2: Semantic Tokens - Light Theme (Default) */
+:root {
+  --color-surface-base: var(--gray-50);
+  --color-surface-canvas: #F1F7FF;
+  --color-surface-raised: #FFFFFF;
+  --color-surface-overlay: #FFFFFF;
+  --color-surface-subtle: #F8FAFC;
+
+  --color-text-primary: #111827;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94A3B8;
+  --color-text-inverse: #FFFFFF;
+
+  --color-border-default: #DFE6F1;
+  --color-border-subtle: #E2E8F0;
+  --color-border-accent: rgba(18, 45, 189, 0.2);
+
+  --color-interactive-primary: #122DBD;
+  --color-interactive-primary-hover: #0E2499;
+
+  --shadow-card: 0 4px 12px 0 rgba(70, 95, 241, 0.10);
+  --shadow-blue-glow: 0 4px 20px 0 rgba(0, 80, 197, 0.18);
+}
+
+/* Tier 2: Semantic Tokens - Dark Theme Overrides (.dark) */
+.dark {
+  /* Layered Surfaces (Elevation): As surface raises, luminance increases to convey depth */
+  --color-surface-base: var(--gray-950);
+  --color-surface-canvas: #0F172A;
+  --color-surface-raised: #1E293B;   /* Elevated Cards & Panels */
+  --color-surface-overlay: #334155;  /* Modals & Popups */
+  --color-surface-subtle: #182234;
+
+  /* Off-White Text to prevent excessive contrast/glare */
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+  --color-text-inverse: #0F172A;
+
+  /* Borders for dark mode */
+  --color-border-default: #334155;
+  --color-border-subtle: #1E293B;
+  --color-border-accent: rgba(96, 165, 250, 0.3);
+
+  /* Desaturated/Lighter primary for high visibility on dark backgrounds */
+  --color-interactive-primary: #60A5FA;
+  --color-interactive-primary-hover: #93C5FD;
+
+  /* Depth in dark mode relies on lightness, reduced heavy drop shadows */
+  --shadow-card: 0 4px 12px 0 rgba(0, 0, 0, 0.4);
+  --shadow-blue-glow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
 @layer utilities {
   .text-shadow {
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
   }
 }
 
-:root {
-  --color-primary-green: #34D18A;
-  --color-primary-green-dark: #29AF5C;
-  --color-primary-green-light: #52CC85;
-  --color-primary-green-vibrant: #18C778;
-  --color-primary-green-hover: #32B179;
-
-  --color-deep-blue: #122DBD;
-  --color-deep-blue-hover: #0E2499;
-  --color-accent-blue: #0050C5;
-  --color-accent-blue-light: #465FF1;
-  --color-accent-blue-soft: #B4CDFF;
-  --color-accent-blue-bg: #E3EEFF;
-  
-  --color-orange-start: #FF3C3A;
-  --color-orange-end: #FF7A1D;
-  --color-orange-shadow: #FFDCC4;
-
-  --color-bg-canvas: #F1F7FF;
-  --color-bg-surface: #FFFFFF;
-  --color-bg-subtle: #F8FAFC;
-
-  --color-text-main: #000000;
-  --color-text-primary: #111827;
-  --color-text-muted: #9B9B9B;
-
-  --color-border-default: #DFE6F1;
-  --color-border-subtle: #CACACA;
-
-  --font-primary: 'Montserrat', Helvetica, Arial, sans-serif;
-}
-
 body {
   margin: 0;
   font-family: var(--font-primary);
-  background-color: var(--color-bg-canvas);
-  color: var(--color-text-main);
+  background-color: var(--color-surface-canvas);
+  color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
 }

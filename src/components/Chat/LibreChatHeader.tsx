@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PanelLeft, PanelRight, ChevronDown, Sparkles, Share2, Bookmark } from 'lucide-react';
 import { Button } from '../ui/button';
+import { ThemeSwitcher } from '../ThemeSwitcher';
 
 export interface LibreChatHeaderProps {
   isLeftNavOpen: boolean;
@@ -25,12 +26,12 @@ export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
   ];
 
   return (
-    <header className="h-14 border-b border-border bg-white px-4 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+    <header className="h-14 border-b border-border bg-surface dark:bg-slate-900 px-4 flex items-center justify-between sticky top-0 z-30 shadow-xs transition-colors">
       <div className="flex items-center gap-3">
         {/* Toggle Left Sidebar */}
         <button
           onClick={onToggleLeftNav}
-          className="p-1.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors"
+          className="p-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           title={isLeftNavOpen ? 'Hide Sidebar' : 'Show Sidebar'}
         >
           <PanelLeft size={18} />
@@ -40,16 +41,16 @@ export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
         <div className="relative">
           <button
             onClick={() => setIsModelDropdownOpen(!isModelDropdownOpen)}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-slate-100 text-slate-800 font-bold text-sm transition-colors border border-slate-200/80 shadow-xs"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 font-bold text-sm transition-colors border border-slate-200/80 dark:border-slate-700 shadow-xs"
           >
-            <Sparkles size={16} className="text-secondary" />
+            <Sparkles size={16} className="text-secondary dark:text-blue-400" />
             <span>{selectedModel}</span>
             <ChevronDown size={14} className="text-slate-400" />
           </button>
 
           {isModelDropdownOpen && (
-            <div className="absolute left-0 top-full mt-1.5 w-80 bg-white border border-border rounded-xl shadow-xl p-1.5 z-50 animate-in fade-in-0 zoom-in-95">
-              <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5">
+            <div className="absolute left-0 top-full mt-1.5 w-80 bg-surface dark:bg-slate-800 border border-border dark:border-slate-700 rounded-xl shadow-xl p-1.5 z-50 animate-in fade-in-0 zoom-in-95">
+              <div className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider px-3 py-1.5">
                 Select Model
               </div>
               {models.map((m, idx) => (
@@ -60,7 +61,9 @@ export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
                     setIsModelDropdownOpen(false);
                   }}
                   className={`w-full text-left p-2.5 rounded-lg transition-colors flex flex-col gap-0.5 ${
-                    selectedModel === m.name ? 'bg-secondary-bg text-secondary' : 'hover:bg-slate-50 text-slate-800'
+                    selectedModel === m.name
+                      ? 'bg-secondary-bg dark:bg-blue-950/60 text-secondary dark:text-blue-400'
+                      : 'hover:bg-slate-50 dark:hover:bg-slate-700/50 text-slate-800 dark:text-slate-200'
                   }`}
                 >
                   <div className="flex items-center justify-between text-xs font-bold">
@@ -77,12 +80,15 @@ export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
         </div>
       </div>
 
-      {/* Right Header Actions */}
+      {/* Right Header Actions & Theme Switcher */}
       <div className="flex items-center gap-2">
-        <button className="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors" title="Bookmark">
+        {/* Theme Switcher Component */}
+        <ThemeSwitcher className="mr-2" />
+
+        <button className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Bookmark">
           <Bookmark size={17} />
         </button>
-        <button className="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors" title="Share Conversation">
+        <button className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Share Conversation">
           <Share2 size={17} />
         </button>
 
