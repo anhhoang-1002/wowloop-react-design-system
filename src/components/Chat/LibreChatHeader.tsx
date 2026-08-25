@@ -26,7 +26,7 @@ export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
   ];
 
   return (
-    <header className="h-14 border-b border-border bg-surface dark:bg-slate-900 px-4 flex items-center justify-between sticky top-0 z-30 shadow-xs transition-colors">
+    <header className="h-14 border-b border-border dark:border-slate-800 bg-surface dark:bg-slate-900 px-4 flex items-center justify-between sticky top-0 z-30 shadow-xs transition-colors">
       <div className="flex items-center gap-3">
         {/* Toggle Left Sidebar */}
         <button
@@ -49,32 +49,38 @@ export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
           </button>
 
           {isModelDropdownOpen && (
-            <div className="absolute left-0 top-full mt-1.5 w-80 bg-surface dark:bg-slate-800 border border-border dark:border-slate-700 rounded-xl shadow-xl p-1.5 z-50 animate-in fade-in-0 zoom-in-95">
-              <div className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider px-3 py-1.5">
+            <div className="absolute left-0 top-full mt-1.5 w-80 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl p-2 z-50 animate-in fade-in-0 zoom-in-95">
+              <div className="text-[11px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-wider px-3 py-1.5">
                 Select Model
               </div>
-              {models.map((m, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => {
-                    setSelectedModel(m.name);
-                    setIsModelDropdownOpen(false);
-                  }}
-                  className={`w-full text-left p-2.5 rounded-lg transition-colors flex flex-col gap-0.5 ${
-                    selectedModel === m.name
-                      ? 'bg-secondary-bg dark:bg-blue-950/60 text-secondary dark:text-blue-400'
-                      : 'hover:bg-slate-50 dark:hover:bg-slate-700/50 text-slate-800 dark:text-slate-200'
-                  }`}
-                >
-                  <div className="flex items-center justify-between text-xs font-bold">
-                    <span>{m.name}</span>
-                    <span className="text-[10px] bg-primary-vibrant/10 text-primary-vibrant font-extrabold px-1.5 py-0.5 rounded-md">
-                      {m.badge}
+              <div className="space-y-1">
+                {models.map((m, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setSelectedModel(m.name);
+                      setIsModelDropdownOpen(false);
+                    }}
+                    className={`w-full text-left p-3 rounded-xl transition-all flex flex-col gap-1 border ${
+                      selectedModel === m.name
+                        ? 'bg-[#F0F5FF] dark:bg-slate-700/80 border-secondary/40 dark:border-blue-500/50 shadow-xs'
+                        : 'bg-transparent border-transparent hover:bg-slate-50 dark:hover:bg-slate-700/40'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-xs font-bold">
+                      <span className={selectedModel === m.name ? 'text-secondary dark:text-blue-300 font-bold' : 'text-slate-900 dark:text-slate-100'}>
+                        {m.name}
+                      </span>
+                      <span className="text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-extrabold px-2 py-0.5 rounded-md">
+                        {m.badge}
+                      </span>
+                    </div>
+                    <span className={selectedModel === m.name ? 'text-slate-600 dark:text-slate-300 text-[11px]' : 'text-slate-500 dark:text-slate-400 text-[11px]'}>
+                      {m.desc}
                     </span>
-                  </div>
-                  <span className="text-[11px] text-muted-foreground">{m.desc}</span>
-                </button>
-              ))}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
