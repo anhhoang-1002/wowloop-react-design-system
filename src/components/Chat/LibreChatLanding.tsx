@@ -37,7 +37,7 @@ export const LibreChatLanding: React.FC<LibreChatLandingProps> = ({ onSelectProm
   return (
     <div className="flex-1 flex flex-col items-center justify-center p-6 max-w-4xl mx-auto w-full select-none">
       {/* Brand Icon Header */}
-      <div className="w-16 h-16 rounded-2xl bg-secondary-bg dark:bg-blue-950/80 text-secondary dark:text-blue-400 flex items-center justify-center mb-6 shadow-md border border-secondary/20 dark:border-blue-800/40 animate-in zoom-in-95 duration-300">
+      <div className="w-16 h-16 rounded-2xl bg-secondary-bg dark:bg-blue-950/80 text-secondary dark:text-blue-400 flex items-center justify-center mb-6 shadow-xs border border-secondary/20 dark:border-blue-800/40 animate-in zoom-in-95 duration-300">
         <Sparkles size={32} />
       </div>
 
@@ -48,14 +48,14 @@ export const LibreChatLanding: React.FC<LibreChatLandingProps> = ({ onSelectProm
         Wowloop AI powers recurring revenue, retention workflows, and customer lifetime value.
       </p>
 
-      {/* Starter Cards Grid (Lighter Elevated Cards in Dark Mode) */}
+      {/* Starter Cards Grid (100% Unified Panel Card Shadow & Border Style) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
         {promptCards.map((card, idx) => (
           <Card
             key={idx}
             variant="input-shadow"
             onClick={() => onSelectPrompt(card.prompt)}
-            className="cursor-pointer bg-white dark:bg-[#1E293B] border border-slate-200/80 dark:border-slate-700/80 hover:border-secondary/40 dark:hover:border-blue-400/50 hover:-translate-y-1 transition-all p-5 flex items-start gap-4 group shadow-md"
+            className="cursor-pointer hover:border-secondary/60 dark:hover:border-blue-400/60 hover:-translate-y-1 transition-all p-5 flex items-start gap-4 group"
           >
             <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 flex items-center justify-center shrink-0 group-hover:bg-secondary-bg dark:group-hover:bg-blue-950/60 transition-colors">
               {card.icon}

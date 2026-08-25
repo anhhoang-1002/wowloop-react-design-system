@@ -24,8 +24,8 @@ export const LibreChatInput: React.FC<LibreChatInputProps> = ({ onSendMessage, d
 
   return (
     <div className="w-full max-w-3xl mx-auto px-4 pb-4 pt-2">
-      {/* Floating Input Box (Lighter Elevated Surface in Dark Mode) */}
-      <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-slate-200/90 dark:border-slate-700/80 shadow-xl p-3 transition-all focus-within:border-secondary dark:focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-secondary/20">
+      {/* Floating Input Box (Unified Panel Shadow & Border Style) */}
+      <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-secondary/30 dark:border-slate-700/80 shadow-input-shadow p-3 transition-all focus-within:border-secondary dark:focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-secondary/20">
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
