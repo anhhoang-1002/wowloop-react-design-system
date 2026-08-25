@@ -49,27 +49,27 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
               <p className="whitespace-pre-wrap">{msg.text}</p>
             </div>
 
-            {/* Embedded Interactive Widget (if AI generated a widget) */}
+            {/* Embedded Interactive Widget (Equal, Symmetrical 24px / 20px Card Padding) */}
             {msg.sender === 'assistant' && msg.widget === 'metrics' && (
               <Card variant="input-shadow" className="mt-3">
-                <CardHeader className="py-3 px-4 flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-700">
+                <CardHeader className="px-6 py-4.5 flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-700/80">
                   <CardTitle className="text-xs font-bold text-secondary dark:text-blue-400 uppercase tracking-wider">
                     Live MRR & Retention Summary
                   </CardTitle>
-                  <span className="text-[10px] bg-primary-vibrant/10 text-primary-vibrant font-extrabold px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] bg-primary-vibrant/10 text-primary-vibrant font-extrabold px-2.5 py-1 rounded-full">
                     VERIFIED
                   </span>
                 </CardHeader>
-                <CardContent className="p-4 grid grid-cols-2 gap-4">
+                <CardContent className="px-6 pt-5 pb-6 grid grid-cols-2 gap-6">
                   <div>
-                    <div className="text-xs text-slate-400 font-semibold">Monthly Recurring Revenue</div>
-                    <div className="text-xl font-black text-secondary dark:text-blue-400 mt-0.5">$128,450</div>
-                    <div className="text-[11px] text-primary-vibrant font-bold">↑ 14.2% vs last month</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 font-semibold mb-1">Monthly Recurring Revenue</div>
+                    <div className="text-2xl font-black text-secondary dark:text-blue-400 leading-tight">$128,450</div>
+                    <div className="text-[11px] text-primary-vibrant font-bold mt-1">↑ 14.2% vs last month</div>
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-semibold">Active Retention Rate</div>
-                    <div className="text-xl font-black text-secondary dark:text-blue-400 mt-0.5">94.6%</div>
-                    <div className="text-[11px] text-primary-vibrant font-bold">↑ 2.1% vs last month</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 font-semibold mb-1">Active Retention Rate</div>
+                    <div className="text-2xl font-black text-secondary dark:text-blue-400 leading-tight">94.6%</div>
+                    <div className="text-[11px] text-primary-vibrant font-bold mt-1">↑ 2.1% vs last month</div>
                   </div>
                 </CardContent>
               </Card>

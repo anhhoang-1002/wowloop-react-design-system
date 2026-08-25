@@ -18,7 +18,7 @@ export const WowloopSidePanel: React.FC = () => {
         <Badge variant="green">ACTIVE</Badge>
       </div>
 
-      {/* SidePanel Sub-Tabs (Identical to Top Mode Switcher Style) */}
+      {/* SidePanel Sub-Tabs */}
       <div className="grid grid-cols-3 gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs font-bold select-none">
         <button
           onClick={() => setActiveTab('analytics')}
@@ -56,12 +56,12 @@ export const WowloopSidePanel: React.FC = () => {
       {activeTab === 'analytics' && (
         <div className="space-y-4 animate-in fade-in-0 duration-200">
           <Card>
-            <CardHeader className="pb-3">
+            <CardHeader className="px-5 py-4 flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-700/80">
               <CardTitle className="text-xs font-bold text-secondary dark:text-blue-400 flex items-center gap-2">
                 <Repeat size={16} /> Recurring Revenue Program
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3.5">
+            <CardContent className="px-5 pt-4.5 pb-5 space-y-3.5">
               <div className="flex justify-between items-center text-xs">
                 <span className="text-muted dark:text-slate-400 font-medium">Active Subscriptions</span>
                 <span className="font-bold text-secondary dark:text-blue-400 text-sm">3,420</span>
@@ -86,12 +86,12 @@ export const WowloopSidePanel: React.FC = () => {
       {activeTab === 'workflows' && (
         <div className="space-y-4 animate-in fade-in-0 duration-200">
           <Card>
-            <CardHeader className="pb-3">
+            <CardHeader className="px-5 py-4 flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-700/80">
               <CardTitle className="text-xs font-bold text-secondary dark:text-blue-400 flex items-center gap-2">
                 <Zap size={16} className="text-primary-vibrant" /> Win-Back Automations
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="px-5 pt-4.5 pb-5 space-y-3.5">
               <p className="text-xs text-muted dark:text-slate-400 leading-relaxed">
                 Automatically trigger win-back sequences and custom retention offers when a user initiates cancellation.
               </p>
@@ -107,12 +107,12 @@ export const WowloopSidePanel: React.FC = () => {
       {activeTab === 'rules' && (
         <div className="space-y-4 animate-in fade-in-0 duration-200">
           <Card>
-            <CardHeader className="pb-3">
+            <CardHeader className="px-5 py-4 flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-700/80">
               <CardTitle className="text-xs font-bold text-secondary dark:text-blue-400 flex items-center gap-2">
                 <ShieldCheck size={16} className="text-secondary dark:text-blue-400" /> Wowsuite Program Standards
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2.5 text-xs text-slate-700 dark:text-slate-300">
+            <CardContent className="px-5 pt-4.5 pb-5 space-y-3">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-primary-vibrant shrink-0" />
                 <span className="font-bold">Clear Benefits</span>: Defined customer rewards
