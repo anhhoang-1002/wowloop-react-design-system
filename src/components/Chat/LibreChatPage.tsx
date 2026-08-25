@@ -43,7 +43,7 @@ export const LibreChatPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-canvas">
+    <div className="flex flex-col min-h-screen bg-canvas dark:bg-[#0B0F19]">
       {/* LibreChat Top Header */}
       <LibreChatHeader
         isLeftNavOpen={isLeftNavOpen}
@@ -60,8 +60,8 @@ export const LibreChatPage: React.FC = () => {
           onNewChat={handleNewChat}
         />
 
-        {/* Center Chat View Area */}
-        <main className="flex-1 flex flex-col justify-between overflow-y-auto bg-slate-50/50 relative">
+        {/* Center Chat View Area (Deep Dark Backdrop in Dark Mode) */}
+        <main className="flex-1 flex flex-col justify-between overflow-y-auto bg-slate-50/50 dark:bg-[#0B0F19] relative transition-colors">
           {messages.length === 0 ? (
             <LibreChatLanding onSelectPrompt={handleSendMessage} />
           ) : (
@@ -74,7 +74,7 @@ export const LibreChatPage: React.FC = () => {
 
         {/* Right Wowloop SaaS SidePanel */}
         {isRightPanelOpen && (
-          <aside className="w-80 border-l border-border bg-canvas overflow-y-auto shrink-0 sticky top-14 h-[calc(100vh-3.5rem)]">
+          <aside className="w-80 border-l border-border dark:border-slate-800 bg-canvas dark:bg-slate-900 overflow-y-auto shrink-0 sticky top-14 h-[calc(100vh-3.5rem)]">
             <WowloopSidePanel />
           </aside>
         )}

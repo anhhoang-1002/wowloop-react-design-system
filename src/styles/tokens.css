@@ -14,7 +14,7 @@
   --gray-700: #334155;
   --gray-800: #1E293B;
   --gray-900: #0F172A;
-  --gray-950: #090D16;
+  --gray-950: #0B0F19;
 
   --brand-green-500: #34D18A;
   --brand-green-600: #29AF5C;
@@ -43,7 +43,7 @@
 
   --color-text-primary: #111827;
   --color-text-secondary: #475569;
-  --color-text-muted: #94A3B8;
+  --color-text-muted: #64748B;
   --color-text-inverse: #FFFFFF;
 
   --color-border-default: #DFE6F1;
@@ -59,31 +59,31 @@
 
 /* Tier 2: Semantic Tokens - Dark Theme Overrides (.dark) */
 .dark {
-  /* Layered Surfaces (Elevation): As surface raises, luminance increases to convey depth */
-  --color-surface-base: var(--gray-950);
-  --color-surface-canvas: #0F172A;
-  --color-surface-raised: #1E293B;   /* Elevated Cards & Panels */
-  --color-surface-overlay: #334155;  /* Modals & Popups */
-  --color-surface-subtle: #182234;
+  /* Layered Surfaces (Elevation): Deep dark canvas background, lighter raised cards */
+  --color-surface-base: #0B0F19;     /* Deep dark canvas backdrop */
+  --color-surface-canvas: #0B0F19;   /* Main Chat Center Canvas Backdrop */
+  --color-surface-raised: #1E293B;   /* Lighter Elevated Cards, Input Box, Bubbles */
+  --color-surface-overlay: #2A364F;  /* Modals & Dropdowns */
+  --color-surface-subtle: #131A29;
 
   /* Off-White Text to prevent excessive contrast/glare */
   --color-text-primary: #F8FAFC;
-  --color-text-secondary: #CBD5E1;
+  --color-text-secondary: #E2E8F0;
   --color-text-muted: #94A3B8;
-  --color-text-inverse: #0F172A;
+  --color-text-inverse: #0B0F19;
 
   /* Borders for dark mode */
   --color-border-default: #334155;
   --color-border-subtle: #1E293B;
   --color-border-accent: rgba(96, 165, 250, 0.3);
 
-  /* Desaturated/Lighter primary for high visibility on dark backgrounds */
+  /* Lighter primary for high visibility on dark backgrounds */
   --color-interactive-primary: #60A5FA;
   --color-interactive-primary-hover: #93C5FD;
 
-  /* Depth in dark mode relies on lightness, reduced heavy drop shadows */
-  --shadow-card: 0 4px 12px 0 rgba(0, 0, 0, 0.4);
-  --shadow-blue-glow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+  /* Crisp subtle shadows for elevated dark cards */
+  --shadow-card: 0 4px 16px 0 rgba(0, 0, 0, 0.5);
+  --shadow-blue-glow: 0 4px 20px 0 rgba(0, 0, 0, 0.6);
 }
 
 @layer utilities {

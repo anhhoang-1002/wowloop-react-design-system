@@ -24,8 +24,8 @@ export const LibreChatInput: React.FC<LibreChatInputProps> = ({ onSendMessage, d
 
   return (
     <div className="w-full max-w-3xl mx-auto px-4 pb-4 pt-2">
-      {/* Floating Input Box */}
-      <div className="bg-surface dark:bg-slate-800 rounded-2xl border border-slate-200/90 dark:border-slate-700 shadow-lg p-3 transition-all focus-within:border-secondary focus-within:ring-2 focus-within:ring-secondary/20">
+      {/* Floating Input Box (Lighter Elevated Surface in Dark Mode) */}
+      <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-slate-200/90 dark:border-slate-700/80 shadow-xl p-3 transition-all focus-within:border-secondary dark:focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-secondary/20">
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -33,27 +33,27 @@ export const LibreChatInput: React.FC<LibreChatInputProps> = ({ onSendMessage, d
           placeholder="Ask Wowloop AI or enter a subscription command..."
           rows={2}
           disabled={disabled}
-          className="w-full resize-none border-none outline-none text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 bg-transparent px-1"
+          className="w-full resize-none border-none outline-none text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-400 bg-transparent px-1"
         />
 
         <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-700/60 mt-1">
           {/* Tool Buttons */}
           <div className="flex items-center gap-1">
             <button
-              className="p-1.5 rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+              className="p-1.5 rounded-lg text-slate-400 dark:text-slate-300 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               title="Attach File"
             >
               <Paperclip size={18} />
             </button>
             <button
-              className="p-1.5 rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors flex items-center gap-1 text-xs font-semibold"
+              className="p-1.5 rounded-lg text-slate-400 dark:text-slate-300 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 text-xs font-semibold"
               title="MCP Tools & Prompts"
             >
               <Sparkles size={16} className="text-secondary dark:text-blue-400" />
-              <span className="text-slate-600 dark:text-slate-300 hidden sm:inline">MCP Prompts</span>
+              <span className="text-slate-600 dark:text-slate-200 hidden sm:inline">MCP Prompts</span>
             </button>
             <button
-              className="p-1.5 rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+              className="p-1.5 rounded-lg text-slate-400 dark:text-slate-300 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               title="Voice Input"
             >
               <Mic size={18} />
@@ -76,7 +76,7 @@ export const LibreChatInput: React.FC<LibreChatInputProps> = ({ onSendMessage, d
       </div>
 
       {/* Footer Disclaimer */}
-      <p className="text-[11px] text-center text-slate-400 dark:text-slate-500 mt-2">
+      <p className="text-[11px] text-center text-slate-400 dark:text-slate-400 mt-2">
         Wowloop AI may produce inaccurate information about subscriptions or analytics. Verify important metrics.
       </p>
     </div>
