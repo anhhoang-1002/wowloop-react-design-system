@@ -49,7 +49,7 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
               <p className="whitespace-pre-wrap">{msg.text}</p>
             </div>
 
-            {/* Embedded Interactive Widget (Exact 100% Horizontal Alignment) */}
+            {/* Embedded Interactive Widget (Canceled space-y-5 to ensure 100% level alignment) */}
             {msg.sender === 'assistant' && msg.widget === 'metrics' && (
               <Card variant="input-shadow" className="mt-3">
                 <CardHeader className="py-3 px-4 flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-700">
@@ -60,7 +60,7 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
                     VERIFIED
                   </span>
                 </CardHeader>
-                <CardContent className="p-4 grid grid-cols-2 gap-4 items-start">
+                <CardContent className="p-4 grid grid-cols-2 gap-4 items-start space-y-0">
                   <div>
                     <div className="text-xs text-slate-500 dark:text-slate-400 font-semibold mb-1 leading-snug">
                       Monthly Recurring Revenue
