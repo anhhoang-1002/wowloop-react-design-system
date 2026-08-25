@@ -26,7 +26,8 @@ export function AppContent() {
       {/* Top Global Mode Bar */}
       <header className="bg-surface dark:bg-slate-900 border-b border-border dark:border-slate-800 sticky top-0 z-50 px-6 py-2.5 flex items-center justify-between shadow-xs transition-colors">
         <div className="flex items-center gap-3">
-          <img src="/logo-wowsuite.svg" alt="WOW Suite Logo" className="h-8 w-auto" />
+          <img src="/logo-wowsuite.svg" alt="WOW Suite Logo" className="h-8 w-auto block dark:hidden" />
+          <img src="/logo-white-wowsuite.svg" alt="WOW Suite Logo" className="h-8 w-auto hidden dark:block" />
           <span className="text-xs font-bold bg-secondary-bg dark:bg-blue-950/80 text-secondary dark:text-blue-400 px-2.5 py-1 rounded-full border border-secondary/20 dark:border-blue-800/40 hidden sm:inline">
             LibreChat Architecture Ready
           </span>
