@@ -16,13 +16,13 @@ export const StatCard: React.FC<StatCardProps> = ({
   icon,
 }) => {
   return (
-    <div className="bg-white rounded-[15px] p-5 shadow-card-blue border border-secondary/10 flex flex-col justify-between gap-3">
+    <div className="bg-white rounded-[15px] p-5 shadow-input-shadow border border-secondary/30 flex flex-col justify-between gap-3">
       <div className="flex items-start justify-between gap-4">
         <span className="text-xs font-bold text-muted uppercase tracking-wider leading-relaxed flex-1 pr-2">
           {title}
         </span>
         {icon && (
-          <div className="w-10 h-10 rounded-lg bg-secondary-bg text-secondary flex items-center justify-center shrink-0 shadow-sm">
+          <div className="w-10 h-10 rounded-lg bg-secondary-bg text-secondary flex items-center justify-center shrink-0 shadow-xs">
             {icon}
           </div>
         )}

@@ -3,13 +3,14 @@ import { cn } from "../../lib/utils";
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { variant?: "blue-shadow" | "light" | "input-shadow" | "pill" }
->(({ className, variant = "blue-shadow", ...props }, ref) => {
+  React.HTMLAttributes<HTMLDivElement> & { variant?: "input-shadow" | "blue-shadow" | "light" | "pill" }
+>(({ className, variant = "input-shadow", ...props }, ref) => {
   const variantStyles = {
-    "blue-shadow": "bg-white rounded-[15px] shadow-card-blue border border-secondary/10",
-    light: "bg-white rounded-[15px] shadow-sm border border-border",
-    "input-shadow": "bg-white rounded-[10px] shadow-input-shadow border border-secondary/30",
-    pill: "bg-white rounded-[52px] shadow-pill-shadow border border-secondary/10",
+    // Standard Card Style (Unified Rules Tab Card Shadow & Border)
+    "input-shadow": "bg-white rounded-[15px] shadow-input-shadow border border-secondary/30",
+    "blue-shadow": "bg-white rounded-[15px] shadow-input-shadow border border-secondary/30",
+    light: "bg-white rounded-[15px] shadow-input-shadow border border-secondary/30",
+    pill: "bg-white rounded-[52px] shadow-pill-shadow border border-secondary/20",
   };
 
   return (

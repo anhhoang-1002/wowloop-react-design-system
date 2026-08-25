@@ -18,12 +18,14 @@ export const WowloopSidePanel: React.FC = () => {
         <Badge variant="green">ACTIVE</Badge>
       </div>
 
-      {/* SidePanel Sub-Tabs */}
+      {/* SidePanel Sub-Tabs (Unified Tab Styling) */}
       <div className="grid grid-cols-3 gap-1 bg-slate-200/70 p-1 rounded-xl text-xs font-bold select-none">
         <button
           onClick={() => setActiveTab('analytics')}
           className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1 ${
-            activeTab === 'analytics' ? 'bg-white text-secondary shadow-xs' : 'text-slate-600 hover:text-black'
+            activeTab === 'analytics'
+              ? 'bg-white text-secondary border-2 border-secondary font-bold shadow-xs'
+              : 'text-slate-600 hover:text-secondary hover:bg-slate-200/60 font-semibold'
           }`}
         >
           <BarChart3 size={13} /> Analytics
@@ -31,7 +33,9 @@ export const WowloopSidePanel: React.FC = () => {
         <button
           onClick={() => setActiveTab('workflows')}
           className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1 ${
-            activeTab === 'workflows' ? 'bg-white text-secondary shadow-xs' : 'text-slate-600 hover:text-black'
+            activeTab === 'workflows'
+              ? 'bg-white text-secondary border-2 border-secondary font-bold shadow-xs'
+              : 'text-slate-600 hover:text-secondary hover:bg-slate-200/60 font-semibold'
           }`}
         >
           <Zap size={13} /> Workflows
@@ -39,7 +43,9 @@ export const WowloopSidePanel: React.FC = () => {
         <button
           onClick={() => setActiveTab('rules')}
           className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1 ${
-            activeTab === 'rules' ? 'bg-white text-secondary shadow-xs' : 'text-slate-600 hover:text-black'
+            activeTab === 'rules'
+              ? 'bg-white text-secondary border-2 border-secondary font-bold shadow-xs'
+              : 'text-slate-600 hover:text-secondary hover:bg-slate-200/60 font-semibold'
           }`}
         >
           <Settings2 size={13} /> Rules
@@ -49,7 +55,7 @@ export const WowloopSidePanel: React.FC = () => {
       {/* Tab 1: MRR Analytics */}
       {activeTab === 'analytics' && (
         <div className="space-y-4 animate-in fade-in-0 duration-200">
-          <Card variant="blue-shadow">
+          <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-xs font-bold text-secondary flex items-center gap-2">
                 <Repeat size={16} /> Recurring Revenue Program
@@ -79,7 +85,7 @@ export const WowloopSidePanel: React.FC = () => {
       {/* Tab 2: Workflows */}
       {activeTab === 'workflows' && (
         <div className="space-y-4 animate-in fade-in-0 duration-200">
-          <Card variant="light">
+          <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-xs font-bold text-secondary flex items-center gap-2">
                 <Zap size={16} className="text-primary-vibrant" /> Win-Back Automations
@@ -100,7 +106,7 @@ export const WowloopSidePanel: React.FC = () => {
       {/* Tab 3: Program Rules */}
       {activeTab === 'rules' && (
         <div className="space-y-4 animate-in fade-in-0 duration-200">
-          <Card variant="input-shadow">
+          <Card>
             <CardHeader className="pb-3">
               <CardTitle className="text-xs font-bold text-secondary flex items-center gap-2">
                 <ShieldCheck size={16} className="text-secondary" /> Wowsuite Program Standards
@@ -108,15 +114,15 @@ export const WowloopSidePanel: React.FC = () => {
             </CardHeader>
             <CardContent className="space-y-2.5 text-xs text-slate-700">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-primary-vibrant" />
+                <span className="w-2.5 h-2.5 rounded-full bg-primary-vibrant shrink-0" />
                 <span className="font-bold">Clear Benefits</span>: Defined customer rewards
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-secondary" />
+                <span className="w-2.5 h-2.5 rounded-full bg-secondary shrink-0" />
                 <span className="font-bold">Clear Rules</span>: Strict billing cycle terms
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent-orangeEnd" />
+                <span className="w-2.5 h-2.5 rounded-full bg-accent-orangeEnd shrink-0" />
                 <span className="font-bold">Clear Status</span>: Real-time user lifecycle tracking
               </div>
             </CardContent>
