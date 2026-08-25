@@ -18,37 +18,37 @@ export const WowloopSidePanel: React.FC = () => {
         <Badge variant="green">ACTIVE</Badge>
       </div>
 
-      {/* SidePanel Sub-Tabs */}
-      <div className="grid grid-cols-3 gap-1 bg-slate-200/70 dark:bg-slate-800 p-1 rounded-xl text-xs font-bold select-none">
+      {/* SidePanel Sub-Tabs (Identical to Top Mode Switcher Style) */}
+      <div className="grid grid-cols-3 gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs font-bold select-none">
         <button
           onClick={() => setActiveTab('analytics')}
-          className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1 ${
+          className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
             activeTab === 'analytics'
-              ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 border-2 border-secondary dark:border-blue-400 font-bold shadow-xs'
-              : 'text-slate-600 dark:text-slate-300 hover:text-secondary dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-700/50 font-semibold'
+              ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs font-bold'
+              : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-bold'
           }`}
         >
-          <BarChart3 size={13} /> Analytics
+          <BarChart3 size={14} /> Analytics
         </button>
         <button
           onClick={() => setActiveTab('workflows')}
-          className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1 ${
+          className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
             activeTab === 'workflows'
-              ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 border-2 border-secondary dark:border-blue-400 font-bold shadow-xs'
-              : 'text-slate-600 dark:text-slate-300 hover:text-secondary dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-700/50 font-semibold'
+              ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs font-bold'
+              : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-bold'
           }`}
         >
-          <Zap size={13} /> Workflows
+          <Zap size={14} /> Workflows
         </button>
         <button
           onClick={() => setActiveTab('rules')}
-          className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1 ${
+          className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
             activeTab === 'rules'
-              ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 border-2 border-secondary dark:border-blue-400 font-bold shadow-xs'
-              : 'text-slate-600 dark:text-slate-300 hover:text-secondary dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-700/50 font-semibold'
+              ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs font-bold'
+              : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-bold'
           }`}
         >
-          <Settings2 size={13} /> Rules
+          <Settings2 size={14} /> Rules
         </button>
       </div>
 
