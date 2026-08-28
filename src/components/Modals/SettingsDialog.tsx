@@ -73,13 +73,13 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
               onClick={() => setActiveTab('wowloop')}
               className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold transition-colors ${
                 activeTab === 'wowloop'
-                  ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-xs'
+                  ? 'bg-white dark:bg-slate-800 text-secondary dark:text-blue-400 shadow-xs'
                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'
               }`}
             >
               <ShieldCheck
                 size={15}
-                className={activeTab === 'wowloop' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-400'}
+                className={activeTab === 'wowloop' ? 'text-secondary dark:text-blue-400' : 'text-slate-600 dark:text-slate-400'}
               />
               Wowloop SaaS
             </button>
