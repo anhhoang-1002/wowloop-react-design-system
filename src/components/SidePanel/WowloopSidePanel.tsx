@@ -8,7 +8,7 @@ export const WowloopSidePanel: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'analytics' | 'workflows' | 'rules'>('analytics');
 
   return (
-    <div className="w-full p-4 space-y-5 bg-canvas dark:bg-slate-900 min-h-full transition-colors">
+    <div className="w-full p-4 space-y-5 bg-slate-50 dark:bg-slate-900 min-h-full transition-colors">
       {/* SidePanel Header */}
       <div className="flex items-center justify-between border-b border-border dark:border-slate-800 pb-3">
         <div>
@@ -18,8 +18,8 @@ export const WowloopSidePanel: React.FC = () => {
         <Badge variant="green">ACTIVE</Badge>
       </div>
 
-      {/* SidePanel Sub-Tabs */}
-      <div className="grid grid-cols-3 gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs font-bold select-none">
+      {/* SidePanel Sub-Tabs (Identical to Top Mode Switcher & Left Nav Background) */}
+      <div className="grid grid-cols-3 gap-1 bg-slate-200/70 dark:bg-slate-800 p-1 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs font-bold select-none">
         <button
           onClick={() => setActiveTab('analytics')}
           className={`py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${

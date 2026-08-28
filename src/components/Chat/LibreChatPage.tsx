@@ -92,9 +92,9 @@ export const LibreChatPage: React.FC = () => {
           <LibreChatInput onSendMessage={handleSendMessage} />
         </main>
 
-        {/* Right Wowloop SaaS SidePanel */}
+        {/* Right Wowloop SaaS SidePanel (Matching Left Nav Background) */}
         {isRightPanelOpen && (
-          <aside className="w-80 border-l border-border dark:border-slate-800 bg-canvas dark:bg-slate-900 overflow-y-auto shrink-0 sticky top-14 h-[calc(100vh-3.5rem)]">
+          <aside className="w-80 border-l border-border dark:border-slate-800 bg-slate-50 dark:bg-slate-900 overflow-y-auto shrink-0 sticky top-14 h-[calc(100vh-3.5rem)]">
             <WowloopSidePanel />
           </aside>
         )}

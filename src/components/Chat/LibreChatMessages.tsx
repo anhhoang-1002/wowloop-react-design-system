@@ -34,39 +34,39 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
       {messages.map((msg) => (
         <div
           key={msg.id}
-          className={`flex gap-4 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+          className={`flex gap-4 items-start ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
         >
-          {/* Assistant Avatar */}
+          {/* Assistant Avatar (Top-aligned at 0.5 margin) */}
           {msg.sender === 'assistant' && (
-            <div className="w-8 h-8 rounded-xl bg-secondary-bg dark:bg-blue-950/80 text-secondary dark:text-blue-400 flex items-center justify-center shrink-0 border border-secondary/20 dark:border-blue-800/40 shadow-xs">
+            <div className="w-8 h-8 rounded-xl bg-secondary-bg dark:bg-blue-950/80 text-secondary dark:text-blue-400 flex items-center justify-center shrink-0 border border-secondary/20 dark:border-blue-800/40 shadow-xs mt-0.5">
               <Sparkles size={16} />
             </div>
           )}
 
           {/* Message Content Container */}
-          <div className={`max-w-2xl space-y-2 ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
+          <div className={`max-w-2xl flex-1 space-y-2 ${msg.sender === 'user' ? 'flex flex-col items-end' : 'items-start'}`}>
             {/* Thinking Accordion */}
             {msg.sender === 'assistant' && msg.thinkingText && (
               <ThinkingProcessAccordion thinkingText={msg.thinkingText} />
             )}
 
-            {/* Message Bubble */}
-            <div
-              className={`p-4 rounded-2xl text-sm leading-relaxed ${
-                msg.sender === 'user'
-                  ? 'bg-gradient-to-r from-[#009959] to-[#52CC85] text-white font-medium rounded-tr-none shadow-md'
-                  : 'bg-surface dark:bg-slate-800 border border-border dark:border-slate-700 text-foreground dark:text-slate-100 rounded-tl-none shadow-xs'
-              }`}
-            >
-              <p className="whitespace-pre-wrap">{msg.text}</p>
-            </div>
+            {/* Message Text Rendering: User gets green gradient box; AI text has no white box/border */}
+            {msg.sender === 'user' ? (
+              <div className="p-4 rounded-2xl text-sm leading-relaxed bg-gradient-to-r from-[#009959] to-[#52CC85] text-white font-medium rounded-tr-none shadow-md">
+                <p className="whitespace-pre-wrap">{msg.text}</p>
+              </div>
+            ) : (
+              <div className="text-sm leading-relaxed text-slate-900 dark:text-slate-100 font-normal pt-1 px-0.5">
+                <p className="whitespace-pre-wrap">{msg.text}</p>
+              </div>
+            )}
 
             {/* Embedded Code Block */}
             {msg.codeSnippet && (
               <CodeBlock language={msg.codeSnippet.language} code={msg.codeSnippet.code} />
             )}
 
-            {/* Embedded Interactive Widget */}
+            {/* Embedded Interactive Widget (Card) */}
             {msg.sender === 'assistant' && msg.widget === 'metrics' && (
               <Card variant="input-shadow" className="mt-3">
                 <CardHeader className="py-3 px-4 flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-700">
@@ -143,7 +143,7 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
 
           {/* User Avatar */}
           {msg.sender === 'user' && (
-            <div className="w-8 h-8 rounded-full bg-secondary dark:bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-xs">
+            <div className="w-8 h-8 rounded-full bg-secondary dark:bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-xs mt-0.5">
               WA
             </div>
           )}
