@@ -9,6 +9,7 @@ import { Select, SelectOption } from '../ui/select';
 import { MultiSelect, MultiSelectOption } from '../ui/multiselect';
 import { Switch } from '../ui/switch';
 import { Checkbox } from '../ui/checkbox';
+import { NotificationDropdown } from '../ui/notification-dropdown';
 import { Accordion } from '../ui/accordion';
 import { Badge } from '../ui/badge';
 import { CodeBlock } from '../Chat/CodeBlock';
@@ -18,7 +19,7 @@ import { AttachmentList } from '../Chat/AttachmentList';
 import { WowloopNavItem } from '../Nav/WowloopNavItem';
 import { SettingsDialog } from '../Modals/SettingsDialog';
 import { AgentCreatorDialog } from '../Modals/AgentCreatorDialog';
-import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal, ToggleLeft } from 'lucide-react';
+import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal, ToggleLeft, Bell } from 'lucide-react';
 
 export const DesignLibraryPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -72,6 +73,7 @@ export const DesignLibraryPage: React.FC = () => {
     { id: 'slider', name: 'Slider (Range Track)', category: 'fields' },
     { id: 'switch-toggle', name: 'Switch Toggle', category: 'fields' },
     { id: 'checkbox', name: 'Checkbox Control', category: 'fields' },
+    { id: 'notification-dropdown', name: 'Notification Popover (2 Tabs)', category: 'primitives' },
     { id: 'accordion', name: 'Accordion (Collapsible)', category: 'primitives' },
     { id: 'cards', name: 'Card Surfaces', category: 'primitives' },
     { id: 'badges', name: 'Status Badges', category: 'primitives' },
@@ -182,7 +184,7 @@ export const DesignLibraryPage: React.FC = () => {
             Component Documentation & Installation Guide
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed max-w-2xl">
-            Universal Core UI Primitives, Form Fields, Selects, Sliders, LibreChat AI stream components, Antigravity dialog modals, and Wowloop SaaS design tokens.
+            Universal Core UI Primitives, Form Fields, Selects, Sliders, Notification Popovers (2-Tab), LibreChat AI stream components, Antigravity dialog modals, and Wowloop SaaS design tokens.
           </p>
         </div>
 
@@ -192,7 +194,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Installation & Quickstart Guide"
           description="How to install and import @wowsuite/design-system in any new React / Next.js / Vite company project."
           category="Package Setup"
-          codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, Input, Textarea, Select, Slider, Switch, Dialog, Accordion, ThemeProvider } from '@wowsuite/design-system';`}
+          codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, Input, Textarea, Select, NotificationDropdown, Slider, Switch, Dialog, Accordion, ThemeProvider } from '@wowsuite/design-system';`}
         >
           <div className="space-y-4 max-w-2xl text-xs leading-relaxed">
             <div className="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono flex items-center justify-between border border-slate-700">
@@ -234,7 +236,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 2: Standard Form Input (Dedicated Section) */}
+        {/* Component 2: Standard Form Input */}
         <ComponentDocSection
           id="input-standard"
           title="Standard Form Input (Label Above)"
@@ -247,7 +249,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 3: Floating Label Input (Dedicated Section) */}
+        {/* Component 3: Floating Label Input */}
         <ComponentDocSection
           id="input-floating"
           title="Floating Label Input"
@@ -336,7 +338,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 8: Switch Toggle (Dedicated Section) */}
+        {/* Component 8: Switch Toggle */}
         <ComponentDocSection
           id="switch-toggle"
           title="Switch Toggle Control"
@@ -360,7 +362,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 9: Checkbox (Dedicated Section) */}
+        {/* Component 9: Checkbox */}
         <ComponentDocSection
           id="checkbox"
           title="Checkbox Control"
@@ -384,7 +386,23 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 10: Accordion */}
+        {/* Component 10: Notification Dropdown (NEW) */}
+        <ComponentDocSection
+          id="notification-dropdown"
+          title="Notification Dropdown Popover (2-Tab Layout)"
+          description="Bell icon trigger button displaying unread count badge, opening a 2-tab dropdown menu ('All Activity' & 'Archived')."
+          category="UI Primitives"
+          codeSnippet={`import { NotificationDropdown } from '@wowsuite/design-system';\n\n<NotificationDropdown />`}
+        >
+          <div className="flex items-center gap-4 py-2">
+            <NotificationDropdown />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+              ← Click the bell icon button to open the 2-tab notification popover!
+            </span>
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 11: Accordion */}
         <ComponentDocSection
           id="accordion"
           title="Accordion (Collapsible List)"
@@ -397,7 +415,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 11: Cards */}
+        {/* Component 12: Cards */}
         <ComponentDocSection
           id="cards"
           title="Card Surfaces & Shadow Elevation"
@@ -419,7 +437,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 12: Status Badges */}
+        {/* Component 13: Status Badges */}
         <ComponentDocSection
           id="badges"
           title="Status Badges"
@@ -436,7 +454,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 13: Alert Banners */}
+        {/* Component 14: Alert Banners */}
         <ComponentDocSection
           id="alerts"
           title="Alert & Notification Banners"
@@ -462,7 +480,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 14: CodeBlock Container */}
+        {/* Component 15: CodeBlock Container */}
         <ComponentDocSection
           id="codeblock"
           title="Code Block Container"
@@ -476,7 +494,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 15: Thinking Accordion */}
+        {/* Component 16: Thinking Accordion */}
         <ComponentDocSection
           id="thinking"
           title="AI Thinking Process Accordion"
@@ -487,7 +505,7 @@ export const DesignLibraryPage: React.FC = () => {
           <ThinkingProcessAccordion thinkingText="1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics." />
         </ComponentDocSection>
 
-        {/* Component 16: Version Switcher */}
+        {/* Component 17: Version Switcher */}
         <ComponentDocSection
           id="version-switcher"
           title="Message Version Switcher"
@@ -498,7 +516,7 @@ export const DesignLibraryPage: React.FC = () => {
           <MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />
         </ComponentDocSection>
 
-        {/* Component 17: Attachment List */}
+        {/* Component 18: Attachment List */}
         <ComponentDocSection
           id="attachments"
           title="File Attachment Chips"
@@ -512,7 +530,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 18: Settings Dialog */}
+        {/* Component 19: Settings Dialog */}
         <ComponentDocSection
           id="settings-modal"
           title="Settings Dialog (Antigravity Style)"
@@ -528,7 +546,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 19: Agent Creator Dialog */}
+        {/* Component 20: Agent Creator Dialog */}
         <ComponentDocSection
           id="agent-creator"
           title="Agent Creator Dialog"
@@ -544,7 +562,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 20: Wowloop SaaS Nav Item */}
+        {/* Component 21: Wowloop SaaS Nav Item */}
         <ComponentDocSection
           id="wowloop-nav"
           title="Wowloop SaaS Sidebar Item"
@@ -557,7 +575,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 21: Design Tokens & Palette */}
+        {/* Component 22: Design Tokens & Palette */}
         <ComponentDocSection
           id="tokens-palette"
           title="Design Tokens & Color Palette"

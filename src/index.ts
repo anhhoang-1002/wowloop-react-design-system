@@ -35,6 +35,9 @@ export type { SwitchProps } from './components/ui/switch';
 export { Checkbox } from './components/ui/checkbox';
 export type { CheckboxProps } from './components/ui/checkbox';
 
+export { NotificationDropdown } from './components/ui/notification-dropdown';
+export type { NotificationDropdownProps, NotificationItem } from './components/ui/notification-dropdown';
+
 export { Badge } from './components/ui/badge';
 export type { BadgeProps } from './components/ui/badge';
 
