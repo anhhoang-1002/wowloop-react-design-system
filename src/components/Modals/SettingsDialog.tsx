@@ -47,7 +47,7 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'
               }`}
             >
-              <Sliders size={15} /> General
+              <Sliders size={15} className={activeTab === 'general' ? 'text-secondary dark:text-blue-400' : 'text-slate-600 dark:text-slate-400'} /> General
             </button>
             <button
               onClick={() => setActiveTab('chat')}
@@ -57,7 +57,7 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'
               }`}
             >
-              <Zap size={15} /> Chat & Speech
+              <Zap size={15} className={activeTab === 'chat' ? 'text-secondary dark:text-blue-400' : 'text-slate-600 dark:text-slate-400'} /> Chat & Speech
             </button>
             <button
               onClick={() => setActiveTab('account')}
@@ -67,17 +67,21 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'
               }`}
             >
-              <User size={15} /> Account
+              <User size={15} className={activeTab === 'account' ? 'text-secondary dark:text-blue-400' : 'text-slate-600 dark:text-slate-400'} /> Account
             </button>
             <button
               onClick={() => setActiveTab('wowloop')}
               className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold transition-colors ${
                 activeTab === 'wowloop'
-                  ? 'bg-white dark:bg-slate-800 text-secondary dark:text-blue-400 shadow-xs'
+                  ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-xs'
                   : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'
               }`}
             >
-              <ShieldCheck size={15} className="text-emerald-500" /> Wowloop SaaS
+              <ShieldCheck
+                size={15}
+                className={activeTab === 'wowloop' ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-600 dark:text-slate-400'}
+              />
+              Wowloop SaaS
             </button>
           </div>
 
@@ -153,7 +157,7 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
               </div>
             )}
 
-            {/* Account Settings (Clean White Card Container with Subtle Border) */}
+            {/* Account Settings */}
             {activeTab === 'account' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-xs">
