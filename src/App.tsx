@@ -4,6 +4,7 @@ import { ThemeSwitcher } from './components/ThemeSwitcher';
 import { WowloopHero } from './components/Wowloop/WowloopHero';
 import { WowloopMetrics } from './components/Wowloop/WowloopMetrics';
 import { LibreChatPage } from './components/Chat/LibreChatPage';
+import { DesignLibraryPage } from './components/DesignLibrary/DesignLibraryPage';
 import { Button } from './components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from './components/ui/card';
 import { Input } from './components/ui/input';
@@ -15,10 +16,10 @@ import {
   DialogDescription,
   DialogFooter,
 } from './components/ui/dialog';
-import { MessageSquare, LayoutGrid } from 'lucide-react';
+import { MessageSquare, LayoutGrid, BookOpen } from 'lucide-react';
 
 export function AppContent() {
-  const [activeTab, setActiveTab] = useState<'saas' | 'librechat'>('librechat');
+  const [activeTab, setActiveTab] = useState<'librechat' | 'saas' | 'library'>('librechat');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
@@ -33,14 +34,14 @@ export function AppContent() {
           </span>
         </div>
 
-        {/* View Mode Switcher & Theme Switcher */}
+        {/* View Mode Switcher & Theme Switcher (3 Tabs) */}
         <div className="flex items-center gap-3">
           <ThemeSwitcher />
 
           <div className="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200/80 dark:border-slate-700">
             <button
               onClick={() => setActiveTab('librechat')}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 activeTab === 'librechat'
                   ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs'
                   : 'text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white'
@@ -50,13 +51,23 @@ export function AppContent() {
             </button>
             <button
               onClick={() => setActiveTab('saas')}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 activeTab === 'saas'
                   ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs'
                   : 'text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white'
               }`}
             >
-              <LayoutGrid size={15} /> Wowsuite SaaS Landing & Design Tokens
+              <LayoutGrid size={15} /> Wowsuite SaaS Landing
+            </button>
+            <button
+              onClick={() => setActiveTab('library')}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                activeTab === 'library'
+                  ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white'
+              }`}
+            >
+              <BookOpen size={15} /> Design Library
             </button>
           </div>
         </div>
@@ -98,61 +109,65 @@ export function AppContent() {
                     <Button variant="deepBlue">Deep Blue</Button>
                     <Button variant="solidGreen">Solid Green</Button>
                     <Button variant="outline">Outline</Button>
-                    <Button variant="ghost">Ghost</Button>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Dialog Modal */}
+              {/* Form Input */}
               <Card variant="input-shadow">
                 <CardHeader>
-                  <CardTitle>Shadcn UI Dialog & Form Inputs</CardTitle>
+                  <CardTitle>Shadcn UI Form Inputs</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <Input label="Company Name" placeholder="Acme Inc." requiredStar />
-                  <Input label="Monthly Revenue" placeholder="$50,000" />
-                  <Button variant="primaryGradient" className="w-full" onClick={() => setIsDialogOpen(true)}>
-                    Test Dialog Modal
-                  </Button>
+                  <Input floatingLabel="Monthly Revenue" placeholder="$50,000" />
                 </CardContent>
               </Card>
+            </div>
+
+            {/* Modal Trigger Demo */}
+            <div className="text-center mt-12">
+              <Button variant="primaryGradient" size="lg" pill onClick={() => setIsDialogOpen(true)}>
+                Test Dialog Modal Component
+              </Button>
             </div>
           </section>
         </main>
       )}
 
-      {/* Dialog Modal */}
+      {/* Mode 3: Dedicated Design System Library Tab */}
+      {activeTab === 'library' && <DesignLibraryPage />}
+
+      {/* Global Dialog Modal */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Book A Strategy Call</DialogTitle>
+            <DialogTitle>Shadcn UI Standard Dialog</DialogTitle>
             <DialogDescription>
-              Please enter your business details below to reserve your call.
+              This dialog uses Radix UI primitives styled with Wowsuite tokens and Tailwind CSS.
             </DialogDescription>
           </DialogHeader>
-
-          <form className="space-y-3 mt-4" onSubmit={(e) => { e.preventDefault(); setIsDialogOpen(false); alert('Submitted!'); }}>
-            <Input label="Company Name" requiredStar placeholder="Acme Brands" />
-            <Input label="Company Website" requiredStar placeholder="https://example.com" />
-            <Input label="Monthly Revenue (USD)" requiredStar placeholder="$100,000" />
-            <DialogFooter>
-              <Button type="submit" variant="primaryGradient" pill className="w-full">
-                Submit Strategy Request
-              </Button>
-            </DialogFooter>
-          </form>
+          <div className="py-4 space-y-3">
+            <Input label="Your Email" placeholder="user@wowsuite.ai" />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="primaryGradient" pill onClick={() => setIsDialogOpen(false)}>
+              Confirm Action
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
   );
 }
 
-export function App() {
+export default function App() {
   return (
     <ThemeProvider>
       <AppContent />
     </ThemeProvider>
   );
 }
-
-export default App;
