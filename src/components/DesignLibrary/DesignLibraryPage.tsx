@@ -3,6 +3,8 @@ import { ComponentDocSection } from './ComponentDocSection';
 import { Button } from '../ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
+import { Accordion } from '../ui/accordion';
 import { Badge } from '../ui/badge';
 import { CodeBlock } from '../Chat/CodeBlock';
 import { ThinkingProcessAccordion } from '../Chat/ThinkingProcessAccordion';
@@ -11,7 +13,7 @@ import { AttachmentList } from '../Chat/AttachmentList';
 import { WowloopNavItem } from '../Nav/WowloopNavItem';
 import { SettingsDialog } from '../Modals/SettingsDialog';
 import { AgentCreatorDialog } from '../Modals/AgentCreatorDialog';
-import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot } from 'lucide-react';
+import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, FileText, HelpCircle, CheckCircle2, AlertTriangle, Info } from 'lucide-react';
 
 export const DesignLibraryPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,8 +34,11 @@ export const DesignLibraryPage: React.FC = () => {
   const componentsIndex = [
     { id: 'buttons', name: 'Button Variants', category: 'primitives' },
     { id: 'inputs', name: 'Form Inputs', category: 'primitives' },
+    { id: 'textarea', name: 'Textarea (Text Box)', category: 'primitives' },
+    { id: 'accordion', name: 'Accordion (Collapsible)', category: 'primitives' },
     { id: 'cards', name: 'Card Surfaces', category: 'primitives' },
     { id: 'badges', name: 'Status Badges', category: 'primitives' },
+    { id: 'alerts', name: 'Alert Banners', category: 'primitives' },
     { id: 'codeblock', name: 'Code Block Container', category: 'chat' },
     { id: 'thinking', name: 'Thinking Accordion', category: 'chat' },
     { id: 'version-switcher', name: 'Version Switcher', category: 'chat' },
@@ -56,6 +61,12 @@ export const DesignLibraryPage: React.FC = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const faqItems = [
+    { id: '1', title: 'What is Wowloop SaaS Integration?', content: 'Wowloop is a recurring revenue and retention management system built on top of LibreChat.' },
+    { id: '2', title: 'How do automated win-back workflows work?', content: 'When a customer cancels their subscription, Wowloop triggers automated win-back offer sequences and retention campaigns via webhooks.' },
+    { id: '3', title: 'Is the design system dark-mode compatible?', content: 'Yes, 100% of UI components react dynamically to theme tokens defined in tokens.css.' },
+  ];
 
   return (
     <div className="flex min-h-[calc(100vh-3.5rem)] bg-canvas dark:bg-[#0B0F19] text-foreground dark:text-slate-100 transition-colors">
@@ -155,21 +166,56 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 2: Form Inputs */}
+        {/* Component 2: Form Inputs (Fixed Layout) */}
         <ComponentDocSection
           id="inputs"
-          title="Form Inputs & Textarea"
+          title="Form Inputs (Standard & Floating Labels)"
           description="Form inputs featuring clean normal state (shadow-none) and smooth focus-visible shadow activation."
           category="UI Primitives"
-          codeSnippet={`import { Input } from './components/ui/input';\n\n<Input label="Company Name" placeholder="Acme Inc." requiredStar />\n<Input floatingLabel="Monthly Revenue" placeholder="$50,000" />`}
+          codeSnippet={`import { Input } from './components/ui/input';\n\n<Input label="Company Name" placeholder="Acme Inc." requiredStar />\n<Input floatingLabel="Monthly Revenue" />`}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
-            <Input label="Company Name" placeholder="Acme Inc." requiredStar />
-            <Input floatingLabel="Monthly Revenue" placeholder="$50,000" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl items-end">
+            <div>
+              <Input label="Company Name" placeholder="Acme Inc." requiredStar />
+            </div>
+            <div>
+              <Input floatingLabel="Monthly Revenue" />
+            </div>
           </div>
         </ComponentDocSection>
 
-        {/* Component 3: Cards */}
+        {/* Component 3: Textarea */}
+        <ComponentDocSection
+          id="textarea"
+          title="Textarea (Text Box Container)"
+          description="Multiline text box container with label, helper text, and focus shadow elevation."
+          category="UI Primitives"
+          codeSnippet={`import { Textarea } from './components/ui/textarea';\n\n<Textarea label="System Instructions" placeholder="Describe instructions..." helperText="Max 1,000 characters." />`}
+        >
+          <div className="max-w-xl">
+            <Textarea
+              label="System Instructions (Prompt)"
+              placeholder="You are an AI specialized in customer retention, subscription funnels, and MRR metrics..."
+              helperText="Describe custom instructions for your AI agent."
+              rows={3}
+            />
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 4: Accordion */}
+        <ComponentDocSection
+          id="accordion"
+          title="Accordion (Collapsible List)"
+          description="Expandable accordion component for FAQs, specs, and program rules."
+          category="UI Primitives"
+          codeSnippet={`import { Accordion } from './components/ui/accordion';\n\n<Accordion items={[{ id: '1', title: 'What is Wowloop?', content: 'Details...' }]} defaultOpenId="1" />`}
+        >
+          <div className="max-w-xl">
+            <Accordion items={faqItems} defaultOpenId="1" />
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 5: Cards */}
         <ComponentDocSection
           id="cards"
           title="Card Surfaces & Shadow Elevation"
@@ -191,7 +237,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 4: Status Badges */}
+        {/* Component 6: Status Badges */}
         <ComponentDocSection
           id="badges"
           title="Status Badges"
@@ -208,7 +254,33 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 5: CodeBlock Container */}
+        {/* Component 7: Alert Banners */}
+        <ComponentDocSection
+          id="alerts"
+          title="Alert & Notification Banners"
+          description="Contextual alert banners for info, success, and warning status notifications."
+          category="UI Primitives"
+          codeSnippet={`<div className="p-3.5 rounded-xl bg-emerald-50 text-emerald-700">Success Alert</div>`}
+        >
+          <div className="space-y-3 max-w-xl text-xs">
+            <div className="flex items-center gap-2.5 p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 font-semibold">
+              <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
+              <span>Retention campaign successfully deployed to 3,420 subscribers.</span>
+            </div>
+
+            <div className="flex items-center gap-2.5 p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 font-semibold">
+              <AlertTriangle size={16} className="text-amber-600 shrink-0" />
+              <span>Webhook endpoint response latency higher than 200ms.</span>
+            </div>
+
+            <div className="flex items-center gap-2.5 p-3.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300 font-semibold">
+              <Info size={16} className="text-blue-600 shrink-0" />
+              <span>LibreChat v0.7.5 system updates available for synchronization.</span>
+            </div>
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 8: CodeBlock Container */}
         <ComponentDocSection
           id="codeblock"
           title="Code Block Container"
@@ -222,7 +294,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 6: Thinking Accordion */}
+        {/* Component 9: Thinking Accordion */}
         <ComponentDocSection
           id="thinking"
           title="AI Thinking Process Accordion"
@@ -233,7 +305,7 @@ export const DesignLibraryPage: React.FC = () => {
           <ThinkingProcessAccordion thinkingText="1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics." />
         </ComponentDocSection>
 
-        {/* Component 7: Version Switcher */}
+        {/* Component 10: Version Switcher */}
         <ComponentDocSection
           id="version-switcher"
           title="Message Version Switcher"
@@ -244,7 +316,7 @@ export const DesignLibraryPage: React.FC = () => {
           <MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />
         </ComponentDocSection>
 
-        {/* Component 8: Attachment List */}
+        {/* Component 11: Attachment List */}
         <ComponentDocSection
           id="attachments"
           title="File Attachment Chips"
@@ -258,7 +330,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 9: Settings Dialog */}
+        {/* Component 12: Settings Dialog */}
         <ComponentDocSection
           id="settings-modal"
           title="Settings Dialog (Antigravity Style)"
@@ -274,7 +346,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 10: Agent Creator Dialog */}
+        {/* Component 13: Agent Creator Dialog */}
         <ComponentDocSection
           id="agent-creator"
           title="Agent Creator Dialog"
@@ -290,7 +362,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 11: Wowloop SaaS Nav Item */}
+        {/* Component 14: Wowloop SaaS Nav Item */}
         <ComponentDocSection
           id="wowloop-nav"
           title="Wowloop SaaS Sidebar Item"
@@ -303,7 +375,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 12: Design Tokens & Palette */}
+        {/* Component 15: Design Tokens & Palette */}
         <ComponentDocSection
           id="tokens-palette"
           title="Design Tokens & Color Palette"
