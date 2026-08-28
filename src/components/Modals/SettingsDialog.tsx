@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent } from '../ui/dialog';
 import { Input } from '../ui/input';
-import { Sliders, User, ShieldCheck, Moon, Sun, Monitor, Zap, X } from 'lucide-react';
+import { Sliders, User, ShieldCheck, Moon, Sun, Monitor, Zap } from 'lucide-react';
 import { useThemeContext } from '../../contexts/ThemeContext';
 
 export interface SettingsDialogProps {
@@ -21,8 +21,8 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl p-0 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl h-[520px] flex flex-row">
-        {/* Full-Height Left Sidebar (Spans top to bottom with zero gap) */}
+      <DialogContent className="max-w-3xl p-0 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl h-[520px] flex flex-row border-t-0">
+        {/* Full-Height Left Sidebar */}
         <div className="w-56 bg-slate-50 dark:bg-slate-950/80 p-4 border-r border-slate-200/80 dark:border-slate-800 flex flex-col justify-between shrink-0 select-none">
           <div className="space-y-4">
             <div className="text-[11px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-wider px-2 pt-1">
@@ -76,7 +76,7 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
             </div>
           </div>
 
-          {/* Left Sidebar Bottom Profile Snippet (Antigravity Style) */}
+          {/* Left Sidebar Bottom Profile Snippet */}
           <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800 flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-full bg-secondary dark:bg-blue-600 text-white font-extrabold text-[11px] flex items-center justify-center shrink-0">
               WA
@@ -88,7 +88,7 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
           </div>
         </div>
 
-        {/* Main Content Area (Spans top to bottom without footer gap) */}
+        {/* Main Content Area */}
         <div className="flex-1 flex flex-col justify-between relative bg-white dark:bg-slate-900">
           {/* Top Header inside Right Content Panel */}
           <div className="px-8 pt-6 pb-4 flex items-start justify-between border-b border-slate-100 dark:border-slate-800/80">
@@ -106,15 +106,6 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
                 {activeTab === 'wowloop' && 'Manage recurring revenue webhooks and retention automation triggers.'}
               </p>
             </div>
-
-            {/* Top-Right Close Button (Antigravity Style) */}
-            <button
-              onClick={() => onOpenChange(false)}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              title="Close Settings"
-            >
-              <X size={18} />
-            </button>
           </div>
 
           {/* Scrollable Content Body */}
@@ -227,12 +218,6 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
                 </div>
               </div>
             )}
-          </div>
-
-          {/* Minimal Footer Line with Version Tag (No Confirm Button) */}
-          <div className="px-8 py-3 border-t border-slate-100 dark:border-slate-800/80 text-[11px] text-slate-400 flex justify-between items-center">
-            <span>LibreChat v0.7.5 • Wowloop System v1.2</span>
-            <span className="text-slate-400 font-medium">Settings auto-saved</span>
           </div>
         </div>
       </DialogContent>
