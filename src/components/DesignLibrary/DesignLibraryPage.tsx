@@ -13,7 +13,7 @@ import { AttachmentList } from '../Chat/AttachmentList';
 import { WowloopNavItem } from '../Nav/WowloopNavItem';
 import { SettingsDialog } from '../Modals/SettingsDialog';
 import { AgentCreatorDialog } from '../Modals/AgentCreatorDialog';
-import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, FileText, HelpCircle, CheckCircle2, AlertTriangle, Info } from 'lucide-react';
+import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal } from 'lucide-react';
 
 export const DesignLibraryPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -24,6 +24,7 @@ export const DesignLibraryPage: React.FC = () => {
 
   const categories = [
     { id: 'all', name: 'All Components', icon: <Layers size={14} /> },
+    { id: 'setup', name: 'Installation & Setup', icon: <Download size={14} /> },
     { id: 'primitives', name: 'UI Primitives', icon: <Sliders size={14} /> },
     { id: 'chat', name: 'Chat Engine', icon: <MessageSquare size={14} /> },
     { id: 'modals', name: 'Modals & Dialogs', icon: <Bot size={14} /> },
@@ -32,6 +33,7 @@ export const DesignLibraryPage: React.FC = () => {
   ];
 
   const componentsIndex = [
+    { id: 'install-guide', name: 'Installation & Quickstart', category: 'setup' },
     { id: 'buttons', name: 'Button Variants', category: 'primitives' },
     { id: 'inputs', name: 'Form Inputs', category: 'primitives' },
     { id: 'textarea', name: 'Textarea (Text Box)', category: 'primitives' },
@@ -138,16 +140,47 @@ export const DesignLibraryPage: React.FC = () => {
           <div className="flex items-center gap-2 mb-2">
             <Sparkles size={20} className="text-secondary dark:text-blue-400" />
             <span className="text-xs font-extrabold text-secondary dark:text-blue-400 uppercase tracking-wider">
-              Wowloop Design System v1.2
+              @wowsuite/design-system v1.0.0
             </span>
           </div>
           <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">
-            Component Documentation & Live Catalog
+            Component Documentation & Installation Guide
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed max-w-2xl">
-            Explore and inspect standardized UI Primitives, LibreChat AI stream components, Antigravity dialog modals, and Wowloop SaaS design tokens.
+            Universal Core UI Primitives, LibreChat AI stream components, Antigravity dialog modals, and Wowloop SaaS design tokens ready for company projects.
           </p>
         </div>
+
+        {/* Component 0: Installation & Setup Guide */}
+        <ComponentDocSection
+          id="install-guide"
+          title="Installation & Quickstart Guide"
+          description="How to install and import @wowsuite/design-system in any new React / Next.js / Vite company project."
+          category="Package Setup"
+          codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, Input, Textarea, Dialog, Accordion, ThemeProvider } from '@wowsuite/design-system';`}
+        >
+          <div className="space-y-4 max-w-2xl text-xs leading-relaxed">
+            <div className="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono flex items-center justify-between border border-slate-700">
+              <span className="flex items-center gap-2">
+                <Terminal size={16} className="text-emerald-400 shrink-0" />
+                <span>npm install @wowsuite/design-system</span>
+              </span>
+              <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-extrabold">NPM</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div className="p-3.5 rounded-xl bg-surface dark:bg-slate-800 border border-border dark:border-slate-700">
+                <div className="font-extrabold text-secondary dark:text-blue-400 text-xs mb-1">1. Import CSS Styles</div>
+                <p className="text-slate-500 dark:text-slate-400 text-[11px]">Add <code>import '@wowsuite/design-system/dist/style.css'</code> at your root file.</p>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-surface dark:bg-slate-800 border border-border dark:border-slate-700">
+                <div className="font-extrabold text-secondary dark:text-blue-400 text-xs mb-1">2. Enable Theme Provider</div>
+                <p className="text-slate-500 dark:text-slate-400 text-[11px]">Wrap root app with <code>&lt;ThemeProvider&gt;</code> for dark mode reactivity.</p>
+              </div>
+            </div>
+          </div>
+        </ComponentDocSection>
 
         {/* Component 1: Buttons */}
         <ComponentDocSection
@@ -155,7 +188,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Button Variants & Actions"
           description="Standardized interactive buttons with gradient fills, solid states, outline variants, and pill radius options."
           category="UI Primitives"
-          codeSnippet={`import { Button } from './components/ui/button';\n\n<Button variant="primaryGradient" pill>Primary Gradient</Button>\n<Button variant="secondaryGradient" pill>Secondary Orange</Button>\n<Button variant="deepBlue">Deep Blue</Button>\n<Button variant="solidGreen">Solid Green</Button>\n<Button variant="outline">Outline</Button>`}
+          codeSnippet={`import { Button } from '@wowsuite/design-system';\n\n<Button variant="primaryGradient" pill>Primary Gradient</Button>\n<Button variant="secondaryGradient" pill>Secondary Orange</Button>\n<Button variant="deepBlue">Deep Blue</Button>\n<Button variant="solidGreen">Solid Green</Button>\n<Button variant="outline">Outline</Button>`}
         >
           <div className="flex flex-wrap items-center gap-3">
             <Button variant="primaryGradient" pill>Primary Gradient</Button>
@@ -166,13 +199,13 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 2: Form Inputs (Fixed Layout) */}
+        {/* Component 2: Form Inputs */}
         <ComponentDocSection
           id="inputs"
           title="Form Inputs (Standard & Floating Labels)"
           description="Form inputs featuring clean normal state (shadow-none) and smooth focus-visible shadow activation."
           category="UI Primitives"
-          codeSnippet={`import { Input } from './components/ui/input';\n\n<Input label="Company Name" placeholder="Acme Inc." requiredStar />\n<Input floatingLabel="Monthly Revenue" />`}
+          codeSnippet={`import { Input } from '@wowsuite/design-system';\n\n<Input label="Company Name" placeholder="Acme Inc." requiredStar />\n<Input floatingLabel="Monthly Revenue" />`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl items-end">
             <div>
@@ -190,7 +223,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Textarea (Text Box Container)"
           description="Multiline text box container with label, helper text, and focus shadow elevation."
           category="UI Primitives"
-          codeSnippet={`import { Textarea } from './components/ui/textarea';\n\n<Textarea label="System Instructions" placeholder="Describe instructions..." helperText="Max 1,000 characters." />`}
+          codeSnippet={`import { Textarea } from '@wowsuite/design-system';\n\n<Textarea label="System Instructions" placeholder="Describe instructions..." helperText="Max 1,000 characters." />`}
         >
           <div className="max-w-xl">
             <Textarea
@@ -208,7 +241,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Accordion (Collapsible List)"
           description="Expandable accordion component for FAQs, specs, and program rules."
           category="UI Primitives"
-          codeSnippet={`import { Accordion } from './components/ui/accordion';\n\n<Accordion items={[{ id: '1', title: 'What is Wowloop?', content: 'Details...' }]} defaultOpenId="1" />`}
+          codeSnippet={`import { Accordion } from '@wowsuite/design-system';\n\n<Accordion items={[{ id: '1', title: 'What is Wowloop?', content: 'Details...' }]} defaultOpenId="1" />`}
         >
           <div className="max-w-xl">
             <Accordion items={faqItems} defaultOpenId="1" />
@@ -221,7 +254,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Card Surfaces & Shadow Elevation"
           description="Elevated card containers with subtle borders and symmetrical padding."
           category="UI Primitives"
-          codeSnippet={`import { Card, CardHeader, CardTitle, CardContent } from './components/ui/card';\n\n<Card variant="input-shadow">\n  <CardHeader><CardTitle>SaaS Retention Card</CardTitle></CardHeader>\n  <CardContent><p>Symmetrical 24px horizontal padding</p></CardContent>\n</Card>`}
+          codeSnippet={`import { Card, CardHeader, CardTitle, CardContent } from '@wowsuite/design-system';\n\n<Card variant="input-shadow">\n  <CardHeader><CardTitle>SaaS Retention Card</CardTitle></CardHeader>\n  <CardContent><p>Symmetrical 24px horizontal padding</p></CardContent>\n</Card>`}
         >
           <div className="max-w-md">
             <Card variant="input-shadow">
@@ -243,7 +276,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Status Badges"
           description="Capsule badges for indicating system status, subscriptions, and verified badges."
           category="UI Primitives"
-          codeSnippet={`import { Badge } from './components/ui/badge';\n\n<Badge variant="green">ACTIVE</Badge>\n<Badge variant="blue">VERIFIED</Badge>`}
+          codeSnippet={`import { Badge } from '@wowsuite/design-system';\n\n<Badge variant="green">ACTIVE</Badge>\n<Badge variant="blue">VERIFIED</Badge>`}
         >
           <div className="flex flex-wrap items-center gap-3">
             <Badge variant="green">ACTIVE</Badge>
@@ -286,7 +319,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Code Block Container"
           description="Syntax highlighted code container with language tag badge and copy button."
           category="Chat Engine"
-          codeSnippet={`import { CodeBlock } from './components/Chat/CodeBlock';\n\n<CodeBlock language="typescript" code="const wowloop = new WowloopSdk();" />`}
+          codeSnippet={`import { CodeBlock } from '@wowsuite/design-system';\n\n<CodeBlock language="typescript" code="const wowloop = new WowloopSdk();" />`}
         >
           <CodeBlock
             language="typescript"
@@ -300,7 +333,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="AI Thinking Process Accordion"
           description="Collapsible accordion for AI reasoning tokens with pulse icon."
           category="Chat Engine"
-          codeSnippet={`import { ThinkingProcessAccordion } from './components/Chat/ThinkingProcessAccordion';\n\n<ThinkingProcessAccordion thinkingText="1. Querying DB\\n2. Verifying metrics..." />`}
+          codeSnippet={`import { ThinkingProcessAccordion } from '@wowsuite/design-system';\n\n<ThinkingProcessAccordion thinkingText="1. Querying DB\\n2. Verifying metrics..." />`}
         >
           <ThinkingProcessAccordion thinkingText="1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics." />
         </ComponentDocSection>
@@ -311,7 +344,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Message Version Switcher"
           description="Pagination control (1/3 < >) for cycling through prompt or AI response versions."
           category="Chat Engine"
-          codeSnippet={`import { MessageVersionSwitcher } from './components/Chat/MessageVersionSwitcher';\n\n<MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />`}
+          codeSnippet={`import { MessageVersionSwitcher } from '@wowsuite/design-system';\n\n<MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />`}
         >
           <MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />
         </ComponentDocSection>
@@ -322,7 +355,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="File Attachment Chips"
           description="Preview chips for uploaded image thumbnails and PDF documents."
           category="Chat Engine"
-          codeSnippet={`import { AttachmentList } from './components/Chat/AttachmentList';\n\n<AttachmentList files={[{ id: '1', name: 'MRR_Report.pdf', size: '240 KB', type: 'file' }]} onRemoveFile={() => {}} />`}
+          codeSnippet={`import { AttachmentList } from '@wowsuite/design-system';\n\n<AttachmentList files={[{ id: '1', name: 'MRR_Report.pdf', size: '240 KB', type: 'file' }]} onRemoveFile={() => {}} />`}
         >
           <AttachmentList
             files={[{ id: '1', name: 'MRR_Report_Q3.pdf', size: '240 KB', type: 'file' }]}
@@ -336,7 +369,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Settings Dialog (Antigravity Style)"
           description="Full-height sidebar settings modal with auto-saved controls and top-right close button."
           category="Modals & Dialogs"
-          codeSnippet={`import { SettingsDialog } from './components/Modals/SettingsDialog';\n\n<Button onClick={() => setIsSettingsOpen(true)}>Open Settings Modal</Button>`}
+          codeSnippet={`import { SettingsDialog } from '@wowsuite/design-system';\n\n<Button onClick={() => setIsSettingsOpen(true)}>Open Settings Modal</Button>`}
         >
           <div>
             <Button variant="deepBlue" onClick={() => setIsSettingsOpen(true)}>
@@ -352,7 +385,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Agent Creator Dialog"
           description="Form modal to construct custom AI Assistants with system prompts and tool toggles."
           category="Modals & Dialogs"
-          codeSnippet={`import { AgentCreatorDialog } from './components/Modals/AgentCreatorDialog';\n\n<Button onClick={() => setIsAgentCreatorOpen(true)}>Open Agent Creator Modal</Button>`}
+          codeSnippet={`import { AgentCreatorDialog } from '@wowsuite/design-system';\n\n<Button onClick={() => setIsAgentCreatorOpen(true)}>Open Agent Creator Modal</Button>`}
         >
           <div>
             <Button variant="secondaryGradient" pill onClick={() => setIsAgentCreatorOpen(true)}>
@@ -368,7 +401,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Wowloop SaaS Sidebar Item"
           description="Clean white card container with subtle border matching Wow Admin account card."
           category="Wowloop SaaS"
-          codeSnippet={`import { WowloopNavItem } from './components/Nav/WowloopNavItem';\n\n<WowloopNavItem isActive={true} />`}
+          codeSnippet={`import { WowloopNavItem } from '@wowsuite/design-system';\n\n<WowloopNavItem isActive={true} />`}
         >
           <div className="max-w-xs">
             <WowloopNavItem isActive={true} />
