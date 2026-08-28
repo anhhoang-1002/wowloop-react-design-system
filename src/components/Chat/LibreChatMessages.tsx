@@ -36,7 +36,7 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
           key={msg.id}
           className={`flex gap-3 items-start ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
         >
-          {/* Assistant Avatar (Aligned 100% level at top) */}
+          {/* Assistant Avatar */}
           {msg.sender === 'assistant' && (
             <div className="w-8 h-8 rounded-xl bg-secondary-bg dark:bg-blue-950/80 text-secondary dark:text-blue-400 flex items-center justify-center shrink-0 border border-secondary/20 dark:border-blue-800/40 shadow-xs mt-0">
               <Sparkles size={16} />
@@ -50,9 +50,9 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
               <ThinkingProcessAccordion thinkingText={msg.thinkingText} />
             )}
 
-            {/* Message Text Rendering */}
+            {/* Message Text Rendering: User has clean white box with dark text; AI text has no white box/border */}
             {msg.sender === 'user' ? (
-              <div className="p-4 rounded-2xl text-sm leading-relaxed bg-gradient-to-r from-[#009959] to-[#52CC85] text-white font-medium rounded-tr-none shadow-md">
+              <div className="p-4 rounded-2xl text-sm leading-relaxed bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-900 dark:text-slate-100 font-medium rounded-tr-none shadow-xs">
                 <p className="whitespace-pre-wrap">{msg.text}</p>
               </div>
             ) : (
