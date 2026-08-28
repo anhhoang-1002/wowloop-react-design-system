@@ -7,6 +7,7 @@ export interface LibreChatNavProps {
   onNewChat: () => void;
   activeChatId?: string;
   onSelectChat?: (id: string) => void;
+  onOpenSettings?: () => void;
 }
 
 export const LibreChatNav: React.FC<LibreChatNavProps> = ({
@@ -14,6 +15,7 @@ export const LibreChatNav: React.FC<LibreChatNavProps> = ({
   onNewChat,
   activeChatId = 'chat-1',
   onSelectChat,
+  onOpenSettings,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -90,7 +92,10 @@ export const LibreChatNav: React.FC<LibreChatNavProps> = ({
 
       {/* Bottom Profile Footer */}
       <div className="p-3 border-t border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-900/90 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
+        <div
+          onClick={onOpenSettings}
+          className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity"
+        >
           <div className="w-8 h-8 rounded-full bg-secondary dark:bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shadow-xs">
             WA
           </div>
@@ -99,7 +104,11 @@ export const LibreChatNav: React.FC<LibreChatNavProps> = ({
             <span className="text-[10px] text-slate-500 dark:text-slate-400">PRO Plan Active</span>
           </div>
         </div>
-        <button className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" title="Settings">
+        <button
+          onClick={onOpenSettings}
+          className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+          title="Settings"
+        >
           <Settings size={16} />
         </button>
       </div>

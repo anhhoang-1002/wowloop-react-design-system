@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PanelLeft, PanelRight, ChevronDown, Sparkles, Share2, Bookmark } from 'lucide-react';
+import { PanelLeft, PanelRight, ChevronDown, Sparkles, Share2, Bookmark, Settings, Plus } from 'lucide-react';
 import { Button } from '../ui/button';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 
@@ -8,6 +8,8 @@ export interface LibreChatHeaderProps {
   onToggleLeftNav: () => void;
   isRightPanelOpen: boolean;
   onToggleRightPanel: () => void;
+  onOpenSettings?: () => void;
+  onOpenAgentCreator?: () => void;
 }
 
 export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
@@ -15,6 +17,8 @@ export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
   onToggleLeftNav,
   isRightPanelOpen,
   onToggleRightPanel,
+  onOpenSettings,
+  onOpenAgentCreator,
 }) => {
   const [selectedModel, setSelectedModel] = useState('Wowloop AI (GPT-4o)');
   const [isModelDropdownOpen, setIsModelDropdownOpen] = useState(false);
@@ -50,9 +54,21 @@ export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
 
           {isModelDropdownOpen && (
             <div className="absolute left-0 top-full mt-1.5 w-80 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl p-2 z-50 animate-in fade-in-0 zoom-in-95">
-              <div className="text-[11px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-wider px-3 py-1.5">
-                Select Model
+              <div className="flex items-center justify-between px-3 py-1.5">
+                <span className="text-[11px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-wider">
+                  Select Model
+                </span>
+                <button
+                  onClick={() => {
+                    setIsModelDropdownOpen(false);
+                    if (onOpenAgentCreator) onOpenAgentCreator();
+                  }}
+                  className="text-[10px] text-secondary dark:text-blue-400 font-bold flex items-center gap-1 hover:underline"
+                >
+                  <Plus size={12} /> New Agent
+                </button>
               </div>
+
               <div className="space-y-1">
                 {models.map((m, idx) => (
                   <button
@@ -89,11 +105,16 @@ export const LibreChatHeader: React.FC<LibreChatHeaderProps> = ({
       {/* Right Header Actions & Theme Switcher */}
       <div className="flex items-center gap-2">
         {/* Theme Switcher Component */}
-        <ThemeSwitcher className="mr-2" />
+        <ThemeSwitcher className="mr-1" />
 
-        <button className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Bookmark">
-          <Bookmark size={17} />
+        <button
+          onClick={onOpenSettings}
+          className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          title="Settings"
+        >
+          <Settings size={17} />
         </button>
+
         <button className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Share Conversation">
           <Share2 size={17} />
         </button>

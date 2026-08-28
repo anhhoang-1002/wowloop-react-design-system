@@ -1,6 +1,9 @@
 import React from 'react';
 import { Sparkles, Copy, ThumbsUp, ThumbsDown, RotateCw, Check } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
+import { MessageVersionSwitcher } from './MessageVersionSwitcher';
+import { CodeBlock } from './CodeBlock';
+import { ThinkingProcessAccordion } from './ThinkingProcessAccordion';
 
 export interface ChatMessage {
   id: string;
@@ -8,6 +11,9 @@ export interface ChatMessage {
   text: string;
   timestamp: string;
   widget?: 'metrics' | 'program';
+  thinkingText?: string;
+  codeSnippet?: { language: string; code: string };
+  versionInfo?: { current: number; total: number };
 }
 
 export interface LibreChatMessagesProps {
@@ -38,7 +44,13 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
           )}
 
           {/* Message Content Container */}
-          <div className={`max-w-2xl space-y-3 ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
+          <div className={`max-w-2xl space-y-2 ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
+            {/* Thinking Accordion */}
+            {msg.sender === 'assistant' && msg.thinkingText && (
+              <ThinkingProcessAccordion thinkingText={msg.thinkingText} />
+            )}
+
+            {/* Message Bubble */}
             <div
               className={`p-4 rounded-2xl text-sm leading-relaxed ${
                 msg.sender === 'user'
@@ -49,7 +61,12 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
               <p className="whitespace-pre-wrap">{msg.text}</p>
             </div>
 
-            {/* Embedded Interactive Widget (Canceled space-y-5 to ensure 100% level alignment) */}
+            {/* Embedded Code Block */}
+            {msg.codeSnippet && (
+              <CodeBlock language={msg.codeSnippet.language} code={msg.codeSnippet.code} />
+            )}
+
+            {/* Embedded Interactive Widget */}
             {msg.sender === 'assistant' && msg.widget === 'metrics' && (
               <Card variant="input-shadow" className="mt-3">
                 <CardHeader className="py-3 px-4 flex flex-row items-center justify-between border-b border-slate-100 dark:border-slate-700">
@@ -88,26 +105,38 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
               </Card>
             )}
 
-            {/* Assistant Action Bar */}
+            {/* Assistant Action Bar & Version Switcher */}
             {msg.sender === 'assistant' && (
-              <div className="flex items-center gap-2 text-slate-400 dark:text-slate-500 text-xs pt-1">
-                <button
-                  onClick={() => handleCopy(msg.id, msg.text)}
-                  className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1"
-                >
-                  {copiedId === msg.id ? <Check size={14} className="text-primary-vibrant" /> : <Copy size={14} />}
-                  <span>{copiedId === msg.id ? 'Copied' : 'Copy'}</span>
-                </button>
-                <button className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                  <ThumbsUp size={14} />
-                </button>
-                <button className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                  <ThumbsDown size={14} />
-                </button>
-                <button className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 ml-2">
-                  <RotateCw size={14} />
-                  <span>Regenerate</span>
-                </button>
+              <div className="flex items-center justify-between text-slate-400 dark:text-slate-500 text-xs pt-1 w-full">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleCopy(msg.id, msg.text)}
+                    className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1"
+                  >
+                    {copiedId === msg.id ? <Check size={14} className="text-primary-vibrant" /> : <Copy size={14} />}
+                    <span>{copiedId === msg.id ? 'Copied' : 'Copy'}</span>
+                  </button>
+                  <button className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <ThumbsUp size={14} />
+                  </button>
+                  <button className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <ThumbsDown size={14} />
+                  </button>
+                  <button className="hover:text-slate-600 dark:hover:text-slate-300 p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 ml-2">
+                    <RotateCw size={14} />
+                    <span>Regenerate</span>
+                  </button>
+                </div>
+
+                {/* Version Switcher */}
+                {msg.versionInfo && (
+                  <MessageVersionSwitcher
+                    currentVersion={msg.versionInfo.current}
+                    totalVersions={msg.versionInfo.total}
+                    onPrevious={() => {}}
+                    onNext={() => {}}
+                  />
+                )}
               </div>
             )}
           </div>
