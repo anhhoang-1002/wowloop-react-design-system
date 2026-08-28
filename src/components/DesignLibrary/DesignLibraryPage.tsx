@@ -4,6 +4,11 @@ import { Button } from '../ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
+import { Slider } from '../ui/slider';
+import { Select, SelectOption } from '../ui/select';
+import { MultiSelect, MultiSelectOption } from '../ui/multiselect';
+import { Switch } from '../ui/switch';
+import { Checkbox } from '../ui/checkbox';
 import { Accordion } from '../ui/accordion';
 import { Badge } from '../ui/badge';
 import { CodeBlock } from '../Chat/CodeBlock';
@@ -13,7 +18,7 @@ import { AttachmentList } from '../Chat/AttachmentList';
 import { WowloopNavItem } from '../Nav/WowloopNavItem';
 import { SettingsDialog } from '../Modals/SettingsDialog';
 import { AgentCreatorDialog } from '../Modals/AgentCreatorDialog';
-import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal } from 'lucide-react';
+import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal, ToggleLeft } from 'lucide-react';
 
 export const DesignLibraryPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,10 +27,32 @@ export const DesignLibraryPage: React.FC = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isAgentCreatorOpen, setIsAgentCreatorOpen] = useState(false);
 
+  // Form State Previews
+  const [temperature, setTemperature] = useState(0.7);
+  const [selectedModel, setSelectedModel] = useState('gpt-4o');
+  const [selectedTools, setSelectedTools] = useState(['web-search', 'retention']);
+  const [isAutoScroll, setIsAutoScroll] = useState(true);
+  const [isSendOnEnter, setIsSendOnEnter] = useState(true);
+
+  const modelOptions: SelectOption[] = [
+    { label: 'Wowloop AI (GPT-4o)', value: 'gpt-4o' },
+    { label: 'Claude 3.5 Sonnet', value: 'claude-3.5' },
+    { label: 'DeepSeek-R1 Reasoning', value: 'deepseek-r1' },
+    { label: 'Gemini 1.5 Pro', value: 'gemini-1.5' },
+  ];
+
+  const toolOptions: MultiSelectOption[] = [
+    { label: 'Web Search', value: 'web-search' },
+    { label: 'Retention Tools', value: 'retention' },
+    { label: 'Code Interpreter', value: 'code-interpreter' },
+    { label: 'Shopify SDK', value: 'shopify-sdk' },
+  ];
+
   const categories = [
     { id: 'all', name: 'All Components', icon: <Layers size={14} /> },
     { id: 'setup', name: 'Installation & Setup', icon: <Download size={14} /> },
     { id: 'primitives', name: 'UI Primitives', icon: <Sliders size={14} /> },
+    { id: 'fields', name: 'Form Fields & Selects', icon: <ToggleLeft size={14} /> },
     { id: 'chat', name: 'Chat Engine', icon: <MessageSquare size={14} /> },
     { id: 'modals', name: 'Modals & Dialogs', icon: <Bot size={14} /> },
     { id: 'wowloop', name: 'Wowloop SaaS', icon: <ShieldCheck size={14} /> },
@@ -35,8 +62,12 @@ export const DesignLibraryPage: React.FC = () => {
   const componentsIndex = [
     { id: 'install-guide', name: 'Installation & Quickstart', category: 'setup' },
     { id: 'buttons', name: 'Button Variants', category: 'primitives' },
-    { id: 'inputs', name: 'Form Inputs', category: 'primitives' },
-    { id: 'textarea', name: 'Textarea (Text Box)', category: 'primitives' },
+    { id: 'inputs', name: 'Form Inputs', category: 'fields' },
+    { id: 'textarea', name: 'Textarea (Text Box)', category: 'fields' },
+    { id: 'select-dropdown', name: 'Select Dropdown (Searchable)', category: 'fields' },
+    { id: 'multiselect', name: 'MultiSelect (Tag Chips)', category: 'fields' },
+    { id: 'slider', name: 'Slider (Range Track)', category: 'fields' },
+    { id: 'switch-toggle', name: 'Switch & Checkboxes', category: 'fields' },
     { id: 'accordion', name: 'Accordion (Collapsible)', category: 'primitives' },
     { id: 'cards', name: 'Card Surfaces', category: 'primitives' },
     { id: 'badges', name: 'Status Badges', category: 'primitives' },
@@ -147,7 +178,7 @@ export const DesignLibraryPage: React.FC = () => {
             Component Documentation & Installation Guide
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed max-w-2xl">
-            Universal Core UI Primitives, LibreChat AI stream components, Antigravity dialog modals, and Wowloop SaaS design tokens ready for company projects.
+            Universal Core UI Primitives, Form Fields, Selects, Sliders, LibreChat AI stream components, Antigravity dialog modals, and Wowloop SaaS design tokens.
           </p>
         </div>
 
@@ -157,7 +188,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Installation & Quickstart Guide"
           description="How to install and import @wowsuite/design-system in any new React / Next.js / Vite company project."
           category="Package Setup"
-          codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, Input, Textarea, Dialog, Accordion, ThemeProvider } from '@wowsuite/design-system';`}
+          codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, Input, Textarea, Select, Slider, Switch, Dialog, Accordion, ThemeProvider } from '@wowsuite/design-system';`}
         >
           <div className="space-y-4 max-w-2xl text-xs leading-relaxed">
             <div className="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono flex items-center justify-between border border-slate-700">
@@ -204,7 +235,7 @@ export const DesignLibraryPage: React.FC = () => {
           id="inputs"
           title="Form Inputs (Standard & Floating Labels)"
           description="Form inputs featuring clean normal state (shadow-none) and smooth focus-visible shadow activation."
-          category="UI Primitives"
+          category="Form Fields & Selects"
           codeSnippet={`import { Input } from '@wowsuite/design-system';\n\n<Input label="Company Name" placeholder="Acme Inc." requiredStar />\n<Input floatingLabel="Monthly Revenue" />`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl items-end">
@@ -222,7 +253,7 @@ export const DesignLibraryPage: React.FC = () => {
           id="textarea"
           title="Textarea (Text Box Container)"
           description="Multiline text box container with label, helper text, and focus shadow elevation."
-          category="UI Primitives"
+          category="Form Fields & Selects"
           codeSnippet={`import { Textarea } from '@wowsuite/design-system';\n\n<Textarea label="System Instructions" placeholder="Describe instructions..." helperText="Max 1,000 characters." />`}
         >
           <div className="max-w-xl">
@@ -235,7 +266,101 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 4: Accordion */}
+        {/* Component 4: Select Dropdown */}
+        <ComponentDocSection
+          id="select-dropdown"
+          title="Select Dropdown (Searchable Single Select)"
+          description="Single select dropdown with search filter, clear button, and checkmark option indicators."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Select } from '@wowsuite/design-system';\n\n<Select label="Model Engine" options={[{ label: 'GPT-4o', value: 'gpt-4o' }]} value={model} onChange={setModel} />`}
+        >
+          <div className="max-w-md">
+            <Select
+              label="Model Engine"
+              placeholder="Select an AI model..."
+              options={modelOptions}
+              value={selectedModel}
+              onChange={setSelectedModel}
+            />
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 5: MultiSelect */}
+        <ComponentDocSection
+          id="multiselect"
+          title="MultiSelect (Searchable & Tag Chips)"
+          description="Multi-select dropdown rendering removable tag chips and live search filtering."
+          category="Form Fields & Selects"
+          codeSnippet={`import { MultiSelect } from '@wowsuite/design-system';\n\n<MultiSelect label="Active Tools" options={toolOptions} values={selectedTools} onChange={setSelectedTools} />`}
+        >
+          <div className="max-w-md">
+            <MultiSelect
+              label="Active Tools & Capabilities"
+              placeholder="Select capabilities..."
+              options={toolOptions}
+              values={selectedTools}
+              onChange={setSelectedTools}
+            />
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 6: Slider */}
+        <ComponentDocSection
+          id="slider"
+          title="Slider (Range Track & Value Badge)"
+          description="Custom range slider control with dynamic track fill gradient and monospace value badge."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Slider } from '@wowsuite/design-system';\n\n<Slider label="Model Temperature" min={0} max={1} step={0.1} value={temperature} onChange={setTemperature} />`}
+        >
+          <div className="max-w-md">
+            <Slider
+              label="Model Temperature (Creativity)"
+              min={0}
+              max={1}
+              step={0.1}
+              value={temperature}
+              onChange={setTemperature}
+            />
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 7: Switch & Checkbox */}
+        <ComponentDocSection
+          id="switch-toggle"
+          title="Switch Toggle & Checkboxes"
+          description="Interactive switches and custom checkmark checkboxes for setting preferences."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Switch, Checkbox } from '@wowsuite/design-system';\n\n<Switch label="Auto-Scroll to Bottom" checked={autoScroll} onChange={setAutoScroll} />\n<Checkbox label="Enable Web Search" checked={webSearch} onChange={setWebSearch} />`}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+            <Switch
+              label="Auto-Scroll to Bottom"
+              description="Automatically scroll down on stream"
+              checked={isAutoScroll}
+              onChange={setIsAutoScroll}
+            />
+            <Switch
+              label="Send on Enter"
+              description="Press Enter to send message"
+              checked={isSendOnEnter}
+              onChange={setIsSendOnEnter}
+            />
+            <Checkbox
+              label="Enable Web Search Tool"
+              description="Allow AI to search live web data"
+              checked={true}
+              onChange={() => {}}
+            />
+            <Checkbox
+              label="Enable Retention Workflows"
+              description="Automate churn offers"
+              checked={true}
+              onChange={() => {}}
+            />
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 8: Accordion */}
         <ComponentDocSection
           id="accordion"
           title="Accordion (Collapsible List)"
@@ -248,7 +373,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 5: Cards */}
+        {/* Component 9: Cards */}
         <ComponentDocSection
           id="cards"
           title="Card Surfaces & Shadow Elevation"
@@ -270,7 +395,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 6: Status Badges */}
+        {/* Component 10: Status Badges */}
         <ComponentDocSection
           id="badges"
           title="Status Badges"
@@ -287,7 +412,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 7: Alert Banners */}
+        {/* Component 11: Alert Banners */}
         <ComponentDocSection
           id="alerts"
           title="Alert & Notification Banners"
@@ -313,7 +438,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 8: CodeBlock Container */}
+        {/* Component 12: CodeBlock Container */}
         <ComponentDocSection
           id="codeblock"
           title="Code Block Container"
@@ -327,7 +452,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 9: Thinking Accordion */}
+        {/* Component 13: Thinking Accordion */}
         <ComponentDocSection
           id="thinking"
           title="AI Thinking Process Accordion"
@@ -338,7 +463,7 @@ export const DesignLibraryPage: React.FC = () => {
           <ThinkingProcessAccordion thinkingText="1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics." />
         </ComponentDocSection>
 
-        {/* Component 10: Version Switcher */}
+        {/* Component 14: Version Switcher */}
         <ComponentDocSection
           id="version-switcher"
           title="Message Version Switcher"
@@ -349,7 +474,7 @@ export const DesignLibraryPage: React.FC = () => {
           <MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />
         </ComponentDocSection>
 
-        {/* Component 11: Attachment List */}
+        {/* Component 15: Attachment List */}
         <ComponentDocSection
           id="attachments"
           title="File Attachment Chips"
@@ -363,7 +488,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 12: Settings Dialog */}
+        {/* Component 16: Settings Dialog */}
         <ComponentDocSection
           id="settings-modal"
           title="Settings Dialog (Antigravity Style)"
@@ -379,7 +504,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 13: Agent Creator Dialog */}
+        {/* Component 17: Agent Creator Dialog */}
         <ComponentDocSection
           id="agent-creator"
           title="Agent Creator Dialog"
@@ -395,7 +520,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 14: Wowloop SaaS Nav Item */}
+        {/* Component 18: Wowloop SaaS Nav Item */}
         <ComponentDocSection
           id="wowloop-nav"
           title="Wowloop SaaS Sidebar Item"
@@ -408,7 +533,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 15: Design Tokens & Palette */}
+        {/* Component 19: Design Tokens & Palette */}
         <ComponentDocSection
           id="tokens-palette"
           title="Design Tokens & Color Palette"

@@ -20,6 +20,21 @@ export type { InputProps } from './components/ui/input';
 export { Textarea } from './components/ui/textarea';
 export type { TextareaProps } from './components/ui/textarea';
 
+export { Slider } from './components/ui/slider';
+export type { SliderProps } from './components/ui/slider';
+
+export { Select } from './components/ui/select';
+export type { SelectProps, SelectOption } from './components/ui/select';
+
+export { MultiSelect } from './components/ui/multiselect';
+export type { MultiSelectProps, MultiSelectOption } from './components/ui/multiselect';
+
+export { Switch } from './components/ui/switch';
+export type { SwitchProps } from './components/ui/switch';
+
+export { Checkbox } from './components/ui/checkbox';
+export type { CheckboxProps } from './components/ui/checkbox';
+
 export { Badge } from './components/ui/badge';
 export type { BadgeProps } from './components/ui/badge';
 
