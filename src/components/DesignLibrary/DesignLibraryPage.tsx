@@ -33,6 +33,8 @@ export const DesignLibraryPage: React.FC = () => {
   const [selectedTools, setSelectedTools] = useState(['web-search', 'retention']);
   const [isAutoScroll, setIsAutoScroll] = useState(true);
   const [isSendOnEnter, setIsSendOnEnter] = useState(true);
+  const [isWebSearch, setIsWebSearch] = useState(true);
+  const [isRetentionWorkflow, setIsRetentionWorkflow] = useState(true);
 
   const modelOptions: SelectOption[] = [
     { label: 'Wowloop AI (GPT-4o)', value: 'gpt-4o' },
@@ -62,12 +64,14 @@ export const DesignLibraryPage: React.FC = () => {
   const componentsIndex = [
     { id: 'install-guide', name: 'Installation & Quickstart', category: 'setup' },
     { id: 'buttons', name: 'Button Variants', category: 'primitives' },
-    { id: 'inputs', name: 'Form Inputs', category: 'fields' },
+    { id: 'input-standard', name: 'Standard Form Input', category: 'fields' },
+    { id: 'input-floating', name: 'Floating Label Input', category: 'fields' },
     { id: 'textarea', name: 'Textarea (Text Box)', category: 'fields' },
     { id: 'select-dropdown', name: 'Select Dropdown (Searchable)', category: 'fields' },
     { id: 'multiselect', name: 'MultiSelect (Tag Chips)', category: 'fields' },
     { id: 'slider', name: 'Slider (Range Track)', category: 'fields' },
-    { id: 'switch-toggle', name: 'Switch & Checkboxes', category: 'fields' },
+    { id: 'switch-toggle', name: 'Switch Toggle', category: 'fields' },
+    { id: 'checkbox', name: 'Checkbox Control', category: 'fields' },
     { id: 'accordion', name: 'Accordion (Collapsible)', category: 'primitives' },
     { id: 'cards', name: 'Card Surfaces', category: 'primitives' },
     { id: 'badges', name: 'Status Badges', category: 'primitives' },
@@ -230,25 +234,33 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 2: Form Inputs */}
+        {/* Component 2: Standard Form Input (Dedicated Section) */}
         <ComponentDocSection
-          id="inputs"
-          title="Form Inputs (Standard & Floating Labels)"
-          description="Form inputs featuring clean normal state (shadow-none) and smooth focus-visible shadow activation."
+          id="input-standard"
+          title="Standard Form Input (Label Above)"
+          description="Standard form input with uppercase label placed above the box, clean normal state (shadow-none) and focus shadow activation."
           category="Form Fields & Selects"
-          codeSnippet={`import { Input } from '@wowsuite/design-system';\n\n<Input label="Company Name" placeholder="Acme Inc." requiredStar />\n<Input floatingLabel="Monthly Revenue" />`}
+          codeSnippet={`import { Input } from '@wowsuite/design-system';\n\n<Input label="Company Name" placeholder="Acme Inc." requiredStar />`}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl items-end">
-            <div>
-              <Input label="Company Name" placeholder="Acme Inc." requiredStar />
-            </div>
-            <div>
-              <Input floatingLabel="Monthly Revenue" />
-            </div>
+          <div className="max-w-md">
+            <Input label="Company Name" placeholder="Acme Inc." requiredStar />
           </div>
         </ComponentDocSection>
 
-        {/* Component 3: Textarea */}
+        {/* Component 3: Floating Label Input (Dedicated Section) */}
+        <ComponentDocSection
+          id="input-floating"
+          title="Floating Label Input"
+          description="Modern floating label input where label transitions smoothly to top-left when focused or typed into."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Input } from '@wowsuite/design-system';\n\n<Input floatingLabel="Monthly Revenue" />`}
+        >
+          <div className="max-w-md">
+            <Input floatingLabel="Monthly Revenue" />
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 4: Textarea */}
         <ComponentDocSection
           id="textarea"
           title="Textarea (Text Box Container)"
@@ -266,7 +278,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 4: Select Dropdown */}
+        {/* Component 5: Select Dropdown */}
         <ComponentDocSection
           id="select-dropdown"
           title="Select Dropdown (Searchable Single Select)"
@@ -285,7 +297,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 5: MultiSelect */}
+        {/* Component 6: MultiSelect */}
         <ComponentDocSection
           id="multiselect"
           title="MultiSelect (Searchable & Tag Chips)"
@@ -304,7 +316,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 6: Slider */}
+        {/* Component 7: Slider */}
         <ComponentDocSection
           id="slider"
           title="Slider (Range Track & Value Badge)"
@@ -324,13 +336,13 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 7: Switch & Checkbox */}
+        {/* Component 8: Switch Toggle (Dedicated Section) */}
         <ComponentDocSection
           id="switch-toggle"
-          title="Switch Toggle & Checkboxes"
-          description="Interactive switches and custom checkmark checkboxes for setting preferences."
+          title="Switch Toggle Control"
+          description="Interactive sliding toggle switches with active/inactive states for toggling binary options."
           category="Form Fields & Selects"
-          codeSnippet={`import { Switch, Checkbox } from '@wowsuite/design-system';\n\n<Switch label="Auto-Scroll to Bottom" checked={autoScroll} onChange={setAutoScroll} />\n<Checkbox label="Enable Web Search" checked={webSearch} onChange={setWebSearch} />`}
+          codeSnippet={`import { Switch } from '@wowsuite/design-system';\n\n<Switch label="Auto-Scroll to Bottom" description="Automatically scroll down on stream" checked={autoScroll} onChange={setAutoScroll} />`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
             <Switch
@@ -345,22 +357,34 @@ export const DesignLibraryPage: React.FC = () => {
               checked={isSendOnEnter}
               onChange={setIsSendOnEnter}
             />
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 9: Checkbox (Dedicated Section) */}
+        <ComponentDocSection
+          id="checkbox"
+          title="Checkbox Control"
+          description="Custom checkmark checkboxes with title labels and descriptions for selecting options."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Checkbox } from '@wowsuite/design-system';\n\n<Checkbox label="Enable Web Search Tool" description="Allow AI to search live web data" checked={webSearch} onChange={setWebSearch} />`}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
             <Checkbox
               label="Enable Web Search Tool"
               description="Allow AI to search live web data"
-              checked={true}
-              onChange={() => {}}
+              checked={isWebSearch}
+              onChange={setIsWebSearch}
             />
             <Checkbox
               label="Enable Retention Workflows"
               description="Automate churn offers"
-              checked={true}
-              onChange={() => {}}
+              checked={isRetentionWorkflow}
+              onChange={setIsRetentionWorkflow}
             />
           </div>
         </ComponentDocSection>
 
-        {/* Component 8: Accordion */}
+        {/* Component 10: Accordion */}
         <ComponentDocSection
           id="accordion"
           title="Accordion (Collapsible List)"
@@ -373,7 +397,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 9: Cards */}
+        {/* Component 11: Cards */}
         <ComponentDocSection
           id="cards"
           title="Card Surfaces & Shadow Elevation"
@@ -395,7 +419,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 10: Status Badges */}
+        {/* Component 12: Status Badges */}
         <ComponentDocSection
           id="badges"
           title="Status Badges"
@@ -412,7 +436,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 11: Alert Banners */}
+        {/* Component 13: Alert Banners */}
         <ComponentDocSection
           id="alerts"
           title="Alert & Notification Banners"
@@ -438,7 +462,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 12: CodeBlock Container */}
+        {/* Component 14: CodeBlock Container */}
         <ComponentDocSection
           id="codeblock"
           title="Code Block Container"
@@ -452,7 +476,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 13: Thinking Accordion */}
+        {/* Component 15: Thinking Accordion */}
         <ComponentDocSection
           id="thinking"
           title="AI Thinking Process Accordion"
@@ -463,7 +487,7 @@ export const DesignLibraryPage: React.FC = () => {
           <ThinkingProcessAccordion thinkingText="1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics." />
         </ComponentDocSection>
 
-        {/* Component 14: Version Switcher */}
+        {/* Component 16: Version Switcher */}
         <ComponentDocSection
           id="version-switcher"
           title="Message Version Switcher"
@@ -474,7 +498,7 @@ export const DesignLibraryPage: React.FC = () => {
           <MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />
         </ComponentDocSection>
 
-        {/* Component 15: Attachment List */}
+        {/* Component 17: Attachment List */}
         <ComponentDocSection
           id="attachments"
           title="File Attachment Chips"
@@ -488,7 +512,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 16: Settings Dialog */}
+        {/* Component 18: Settings Dialog */}
         <ComponentDocSection
           id="settings-modal"
           title="Settings Dialog (Antigravity Style)"
@@ -504,7 +528,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 17: Agent Creator Dialog */}
+        {/* Component 19: Agent Creator Dialog */}
         <ComponentDocSection
           id="agent-creator"
           title="Agent Creator Dialog"
@@ -520,7 +544,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 18: Wowloop SaaS Nav Item */}
+        {/* Component 20: Wowloop SaaS Nav Item */}
         <ComponentDocSection
           id="wowloop-nav"
           title="Wowloop SaaS Sidebar Item"
@@ -533,7 +557,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 19: Design Tokens & Palette */}
+        {/* Component 21: Design Tokens & Palette */}
         <ComponentDocSection
           id="tokens-palette"
           title="Design Tokens & Color Palette"
