@@ -153,20 +153,26 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
               </div>
             )}
 
-            {/* Account Settings */}
+            {/* Account Settings (Unified with Wowloop SaaS Sidebar Style) */}
             {activeTab === 'account' && (
               <div className="space-y-4">
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700">
-                  <div className="w-12 h-12 rounded-full bg-secondary text-white font-extrabold text-base flex items-center justify-center shadow-xs">
-                    WA
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-secondary-bg dark:bg-blue-950/70 border border-secondary/20 dark:border-blue-800/40 shadow-xs">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-12 h-12 rounded-full bg-secondary dark:bg-blue-600 text-white font-extrabold text-base flex items-center justify-center shadow-xs">
+                      WA
+                    </div>
+                    <div>
+                      <div className="text-sm font-extrabold text-secondary dark:text-blue-300">
+                        Wow Admin
+                      </div>
+                      <div className="text-xs text-slate-600 dark:text-slate-300">
+                        wowadmin@wowsuite.ai
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-sm font-bold text-slate-900 dark:text-slate-100">Wow Admin</div>
-                    <div className="text-xs text-slate-500">wowadmin@wowsuite.ai</div>
-                    <span className="inline-block mt-1 text-[10px] bg-emerald-500/10 text-emerald-600 font-extrabold px-2 py-0.5 rounded-full">
-                      PRO SUBSCRIPTION ACTIVE
-                    </span>
-                  </div>
+                  <span className="text-xs bg-primary-vibrant text-white font-extrabold px-3 py-1 rounded-full shadow-2xs uppercase tracking-wider shrink-0">
+                    PRO ACTIVE
+                  </span>
                 </div>
               </div>
             )}
