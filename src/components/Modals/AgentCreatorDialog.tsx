@@ -73,7 +73,7 @@ export const AgentCreatorDialog: React.FC<AgentCreatorDialogProps> = ({
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
               placeholder="You are an AI specialized in customer retention, subscription funnels, and MRR metrics..."
-              className="w-full rounded-md border border-secondary/30 dark:border-slate-700 bg-surface dark:bg-slate-800 p-3 text-xs text-foreground dark:text-slate-100 outline-none focus:ring-2 focus:ring-secondary/50 resize-none"
+              className="w-full rounded-md border border-secondary/30 dark:border-slate-700 bg-surface dark:bg-slate-800 p-3 text-xs text-foreground dark:text-slate-100 shadow-none focus:shadow-input-shadow outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all resize-none"
             />
           </div>
 

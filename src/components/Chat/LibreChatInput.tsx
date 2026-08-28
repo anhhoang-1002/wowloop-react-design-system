@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paperclip, ArrowUp, Sparkles, Mic, Terminal } from 'lucide-react';
+import { Paperclip, ArrowUp, Mic, Terminal } from 'lucide-react';
 import { AttachmentList, FileAttachment } from './AttachmentList';
 import { CommandPopover, CommandItem } from './CommandPopover';
 
@@ -50,8 +50,8 @@ export const LibreChatInput: React.FC<LibreChatInputProps> = ({ onSendMessage, d
         onClose={() => setIsCommandPopoverOpen(false)}
       />
 
-      {/* Floating Input Box */}
-      <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-secondary/30 dark:border-slate-700/80 shadow-input-shadow transition-all focus-within:border-secondary dark:focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-secondary/20 overflow-hidden">
+      {/* Floating Input Box (Normal state: shadow-none, Focus state: shadow-input-shadow) */}
+      <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-secondary/30 dark:border-slate-700/80 shadow-none transition-all focus-within:shadow-input-shadow focus-within:border-secondary dark:focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-secondary/20 overflow-hidden">
         {/* Attachment Bar */}
         <AttachmentList
           files={attachments}
