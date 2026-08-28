@@ -153,25 +153,25 @@ export const SettingsDialog: React.FC<SettingsDialogProps> = ({ open, onOpenChan
               </div>
             )}
 
-            {/* Account Settings (Unified with Wowloop SaaS Sidebar Style) */}
+            {/* Account Settings (Clean White Card Container with Subtle Border) */}
             {activeTab === 'account' && (
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-secondary-bg dark:bg-blue-950/70 border border-secondary/20 dark:border-blue-800/40 shadow-xs">
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-xs">
                   <div className="flex items-center gap-3.5">
                     <div className="w-12 h-12 rounded-full bg-secondary dark:bg-blue-600 text-white font-extrabold text-base flex items-center justify-center shadow-xs">
                       WA
                     </div>
                     <div>
-                      <div className="text-sm font-extrabold text-secondary dark:text-blue-300">
+                      <div className="text-sm font-extrabold text-slate-900 dark:text-slate-100">
                         Wow Admin
                       </div>
-                      <div className="text-xs text-slate-600 dark:text-slate-300">
+                      <div className="text-xs text-slate-500 dark:text-slate-400">
                         wowadmin@wowsuite.ai
                       </div>
                     </div>
                   </div>
-                  <span className="text-xs bg-primary-vibrant text-white font-extrabold px-3 py-1 rounded-full shadow-2xs uppercase tracking-wider shrink-0">
-                    PRO ACTIVE
+                  <span className="text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shrink-0 border border-emerald-500/20">
+                    PRO SUBSCRIPTION ACTIVE
                   </span>
                 </div>
               </div>
