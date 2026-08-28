@@ -35,6 +35,12 @@ export type { SwitchProps } from './components/ui/switch';
 export { Checkbox } from './components/ui/checkbox';
 export type { CheckboxProps } from './components/ui/checkbox';
 
+export { HorizontalTabs } from './components/ui/horizontal-tabs';
+export type { HorizontalTabsProps, TabItem } from './components/ui/horizontal-tabs';
+
+export { VerticalTabs } from './components/ui/vertical-tabs';
+export type { VerticalTabsProps, VerticalTabItem } from './components/ui/vertical-tabs';
+
 export { NotificationDropdown } from './components/ui/notification-dropdown';
 export type { NotificationDropdownProps, NotificationItem } from './components/ui/notification-dropdown';
 

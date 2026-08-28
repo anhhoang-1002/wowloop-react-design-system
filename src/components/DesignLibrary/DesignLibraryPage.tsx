@@ -9,6 +9,8 @@ import { Select, SelectOption } from '../ui/select';
 import { MultiSelect, MultiSelectOption } from '../ui/multiselect';
 import { Switch } from '../ui/switch';
 import { Checkbox } from '../ui/checkbox';
+import { HorizontalTabs, TabItem } from '../ui/horizontal-tabs';
+import { VerticalTabs, VerticalTabItem } from '../ui/vertical-tabs';
 import { NotificationDropdown } from '../ui/notification-dropdown';
 import { Accordion } from '../ui/accordion';
 import { Badge } from '../ui/badge';
@@ -19,7 +21,7 @@ import { AttachmentList } from '../Chat/AttachmentList';
 import { WowloopNavItem } from '../Nav/WowloopNavItem';
 import { SettingsDialog } from '../Modals/SettingsDialog';
 import { AgentCreatorDialog } from '../Modals/AgentCreatorDialog';
-import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal, ToggleLeft, Bell } from 'lucide-react';
+import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal, ToggleLeft, SlidersHorizontal, LayoutList, User, Zap } from 'lucide-react';
 
 export const DesignLibraryPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,6 +38,24 @@ export const DesignLibraryPage: React.FC = () => {
   const [isSendOnEnter, setIsSendOnEnter] = useState(true);
   const [isWebSearch, setIsWebSearch] = useState(true);
   const [isRetentionWorkflow, setIsRetentionWorkflow] = useState(true);
+
+  // Tabs State Demo
+  const [horizontalTab, setHorizontalTab] = useState('overview');
+  const [horizontalTabUnderline, setHorizontalTabUnderline] = useState('overview');
+  const [verticalTab, setVerticalTab] = useState('general');
+
+  const horizontalTabItems: TabItem[] = [
+    { id: 'overview', label: 'Overview', icon: <Layers size={14} /> },
+    { id: 'analytics', label: 'Analytics', icon: <Sparkles size={14} />, badge: '3' },
+    { id: 'settings', label: 'Settings', icon: <Sliders size={14} /> },
+  ];
+
+  const verticalTabItems: VerticalTabItem[] = [
+    { id: 'general', label: 'General Preferences', description: 'Configure theme and default workspace settings.', icon: <Sliders size={15} /> },
+    { id: 'chat', label: 'Chat & Streaming', description: 'Auto-scroll, send on enter, and voice settings.', icon: <Zap size={15} /> },
+    { id: 'account', label: 'Account & Plan', description: 'Manage subscription status and billing email.', icon: <User size={15} />, badge: 'PRO' },
+    { id: 'wowloop', label: 'Wowloop SaaS Workflows', description: 'Manage retention webhooks and churn triggers.', icon: <ShieldCheck size={15} /> },
+  ];
 
   const modelOptions: SelectOption[] = [
     { label: 'Wowloop AI (GPT-4o)', value: 'gpt-4o' },
@@ -65,6 +85,8 @@ export const DesignLibraryPage: React.FC = () => {
   const componentsIndex = [
     { id: 'install-guide', name: 'Installation & Quickstart', category: 'setup' },
     { id: 'buttons', name: 'Button Variants', category: 'primitives' },
+    { id: 'horizontal-tabs-demo', name: 'Horizontal Tabs (Pills & Underline)', category: 'primitives' },
+    { id: 'vertical-tabs-demo', name: 'Vertical Tabs (Sidebar Navigation)', category: 'primitives' },
     { id: 'input-standard', name: 'Standard Form Input', category: 'fields' },
     { id: 'input-floating', name: 'Floating Label Input', category: 'fields' },
     { id: 'textarea', name: 'Textarea (Text Box)', category: 'fields' },
@@ -184,7 +206,7 @@ export const DesignLibraryPage: React.FC = () => {
             Component Documentation & Installation Guide
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed max-w-2xl">
-            Universal Core UI Primitives, Form Fields, Selects, Sliders, Notification Popovers (2-Tab), LibreChat AI stream components, Antigravity dialog modals, and Wowloop SaaS design tokens.
+            Universal Core UI Primitives, Horizontal & Vertical Tabs, Form Fields, Selects, Sliders, Notification Popovers (2-Tab), LibreChat AI stream components, and Wowloop SaaS design tokens.
           </p>
         </div>
 
@@ -194,7 +216,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Installation & Quickstart Guide"
           description="How to install and import @wowsuite/design-system in any new React / Next.js / Vite company project."
           category="Package Setup"
-          codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, Input, Textarea, Select, NotificationDropdown, Slider, Switch, Dialog, Accordion, ThemeProvider } from '@wowsuite/design-system';`}
+          codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, Input, Textarea, Select, HorizontalTabs, VerticalTabs, NotificationDropdown, Slider, Switch, Dialog, Accordion, ThemeProvider } from '@wowsuite/design-system';`}
         >
           <div className="space-y-4 max-w-2xl text-xs leading-relaxed">
             <div className="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono flex items-center justify-between border border-slate-700">
@@ -236,7 +258,41 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 2: Standard Form Input */}
+        {/* Component 2: Horizontal Tabs (NEW) */}
+        <ComponentDocSection
+          id="horizontal-tabs-demo"
+          title="Horizontal Tabs (Pills & Underline Variants)"
+          description="Horizontal tab bar supporting 'pills', 'segmented', and 'underline' visual variants."
+          category="UI Primitives"
+          codeSnippet={`import { HorizontalTabs } from '@wowsuite/design-system';\n\n<HorizontalTabs items={items} activeId={tab} onChange={setTab} variant="pills" />\n<HorizontalTabs items={items} activeId={tab} onChange={setTab} variant="underline" />`}
+        >
+          <div className="space-y-6">
+            <div>
+              <div className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Variant: Pills (Capsules)</div>
+              <HorizontalTabs items={horizontalTabItems} activeId={horizontalTab} onChange={setHorizontalTab} variant="pills" />
+            </div>
+
+            <div>
+              <div className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Variant: Underline</div>
+              <HorizontalTabs items={horizontalTabItems} activeId={horizontalTabUnderline} onChange={setHorizontalTabUnderline} variant="underline" />
+            </div>
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 3: Vertical Tabs (NEW) */}
+        <ComponentDocSection
+          id="vertical-tabs-demo"
+          title="Vertical Tabs (Sidebar & Settings Navigation)"
+          description="Vertical tab list ideal for sidebar navigation drawers, modal settings, and profile preference screens."
+          category="UI Primitives"
+          codeSnippet={`import { VerticalTabs } from '@wowsuite/design-system';\n\n<VerticalTabs items={verticalTabItems} activeId={activeTab} onChange={setActiveTab} />`}
+        >
+          <div className="max-w-md">
+            <VerticalTabs items={verticalTabItems} activeId={verticalTab} onChange={setVerticalTab} />
+          </div>
+        </ComponentDocSection>
+
+        {/* Component 4: Standard Form Input */}
         <ComponentDocSection
           id="input-standard"
           title="Standard Form Input (Label Above)"
@@ -249,7 +305,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 3: Floating Label Input */}
+        {/* Component 5: Floating Label Input */}
         <ComponentDocSection
           id="input-floating"
           title="Floating Label Input"
@@ -262,7 +318,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 4: Textarea */}
+        {/* Component 6: Textarea */}
         <ComponentDocSection
           id="textarea"
           title="Textarea (Text Box Container)"
@@ -280,7 +336,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 5: Select Dropdown */}
+        {/* Component 7: Select Dropdown */}
         <ComponentDocSection
           id="select-dropdown"
           title="Select Dropdown (Searchable Single Select)"
@@ -299,7 +355,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 6: MultiSelect */}
+        {/* Component 8: MultiSelect */}
         <ComponentDocSection
           id="multiselect"
           title="MultiSelect (Searchable & Tag Chips)"
@@ -318,7 +374,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 7: Slider */}
+        {/* Component 9: Slider */}
         <ComponentDocSection
           id="slider"
           title="Slider (Range Track & Value Badge)"
@@ -338,7 +394,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 8: Switch Toggle */}
+        {/* Component 10: Switch Toggle */}
         <ComponentDocSection
           id="switch-toggle"
           title="Switch Toggle Control"
@@ -362,7 +418,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 9: Checkbox */}
+        {/* Component 11: Checkbox */}
         <ComponentDocSection
           id="checkbox"
           title="Checkbox Control"
@@ -386,7 +442,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 10: Notification Dropdown (NEW) */}
+        {/* Component 12: Notification Dropdown */}
         <ComponentDocSection
           id="notification-dropdown"
           title="Notification Dropdown Popover (2-Tab Layout)"
@@ -402,7 +458,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 11: Accordion */}
+        {/* Component 13: Accordion */}
         <ComponentDocSection
           id="accordion"
           title="Accordion (Collapsible List)"
@@ -415,7 +471,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 12: Cards */}
+        {/* Component 14: Cards */}
         <ComponentDocSection
           id="cards"
           title="Card Surfaces & Shadow Elevation"
@@ -437,7 +493,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 13: Status Badges */}
+        {/* Component 15: Status Badges */}
         <ComponentDocSection
           id="badges"
           title="Status Badges"
@@ -454,7 +510,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 14: Alert Banners */}
+        {/* Component 16: Alert Banners */}
         <ComponentDocSection
           id="alerts"
           title="Alert & Notification Banners"
@@ -480,7 +536,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 15: CodeBlock Container */}
+        {/* Component 17: CodeBlock Container */}
         <ComponentDocSection
           id="codeblock"
           title="Code Block Container"
@@ -494,7 +550,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 16: Thinking Accordion */}
+        {/* Component 18: Thinking Accordion */}
         <ComponentDocSection
           id="thinking"
           title="AI Thinking Process Accordion"
@@ -505,7 +561,7 @@ export const DesignLibraryPage: React.FC = () => {
           <ThinkingProcessAccordion thinkingText="1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics." />
         </ComponentDocSection>
 
-        {/* Component 17: Version Switcher */}
+        {/* Component 19: Version Switcher */}
         <ComponentDocSection
           id="version-switcher"
           title="Message Version Switcher"
@@ -516,7 +572,7 @@ export const DesignLibraryPage: React.FC = () => {
           <MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />
         </ComponentDocSection>
 
-        {/* Component 18: Attachment List */}
+        {/* Component 20: Attachment List */}
         <ComponentDocSection
           id="attachments"
           title="File Attachment Chips"
@@ -530,7 +586,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 19: Settings Dialog */}
+        {/* Component 21: Settings Dialog */}
         <ComponentDocSection
           id="settings-modal"
           title="Settings Dialog (Antigravity Style)"
@@ -546,7 +602,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 20: Agent Creator Dialog */}
+        {/* Component 22: Agent Creator Dialog */}
         <ComponentDocSection
           id="agent-creator"
           title="Agent Creator Dialog"
@@ -562,7 +618,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 21: Wowloop SaaS Nav Item */}
+        {/* Component 23: Wowloop SaaS Nav Item */}
         <ComponentDocSection
           id="wowloop-nav"
           title="Wowloop SaaS Sidebar Item"
@@ -575,7 +631,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 22: Design Tokens & Palette */}
+        {/* Component 24: Design Tokens & Palette */}
         <ComponentDocSection
           id="tokens-palette"
           title="Design Tokens & Color Palette"
