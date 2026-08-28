@@ -37,7 +37,7 @@ export const LibreChatNav: React.FC<LibreChatNavProps> = ({
           className="flex items-center justify-between w-full px-3 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-bold text-sm shadow-xs hover:bg-slate-100 dark:hover:bg-slate-750 transition-all"
         >
           <span className="flex items-center gap-2">
-            <SquarePen size={17} className="text-secondary dark:text-blue-400" /> New Chat
+            <SquarePen size={17} className="text-secondary dark:text-blue-400 shrink-0" /> New Chat
           </span>
           <span className="text-[10px] bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-1.5 py-0.5 rounded font-mono">⌘K</span>
         </button>
@@ -67,23 +67,31 @@ export const LibreChatNav: React.FC<LibreChatNavProps> = ({
                 {sec.section}
               </div>
               <div className="space-y-0.5">
-                {sec.items.map((item) => (
-                  <div
-                    key={item.id}
-                    onClick={() => onSelectChat && onSelectChat(item.id)}
-                    className={`group flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
-                      activeChatId === item.id
-                        ? 'bg-white dark:bg-slate-800 text-secondary dark:text-blue-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
-                        : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2.5 truncate">
-                      <MessageSquare size={14} className={activeChatId === item.id ? 'text-secondary dark:text-blue-400' : 'text-slate-400 dark:text-slate-500'} />
-                      <span className="truncate">{item.title}</span>
+                {sec.items.map((item) => {
+                  const isActive = activeChatId === item.id;
+                  return (
+                    <div
+                      key={item.id}
+                      onClick={() => onSelectChat && onSelectChat(item.id)}
+                      className={`group flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
+                        isActive
+                          ? 'bg-white dark:bg-slate-800 text-secondary dark:text-blue-400 shadow-xs border border-slate-200/60 dark:border-slate-700'
+                          : 'text-slate-600 dark:text-slate-300 hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 truncate">
+                        <MessageSquare
+                          size={16}
+                          className={`shrink-0 ${
+                            isActive ? 'text-secondary dark:text-blue-400 stroke-[2]' : 'text-slate-400 dark:text-slate-500 stroke-[2]'
+                          }`}
+                        />
+                        <span className="truncate">{item.title}</span>
+                      </div>
+                      <MoreHorizontal size={14} className="text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                     </div>
-                    <MoreHorizontal size={14} className="text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ))}
