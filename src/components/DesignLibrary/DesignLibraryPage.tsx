@@ -175,7 +175,6 @@ export const DesignLibraryPage: React.FC = () => {
     { id: 'attachments', name: 'Attachment Chips', category: 'advanced' },
     { id: 'settings-modal', name: 'Settings Dialog', category: 'advanced' },
     { id: 'agent-creator', name: 'Agent Creator Dialog', category: 'advanced' },
-    { id: 'wowloop-nav', name: 'Wowloop SaaS Nav Item', category: 'advanced' },
   ];
 
   const filteredComponents = componentsIndex.filter((item) => {
@@ -742,18 +741,6 @@ export const DesignLibraryPage: React.FC = () => {
               Open Agent Creator Modal
             </Button>
             <AgentCreatorDialog open={isAgentCreatorOpen} onOpenChange={setIsAgentCreatorOpen} />
-          </div>
-        </ComponentDocSection>
-
-        <ComponentDocSection
-          id="wowloop-nav"
-          title="Wowloop SaaS Sidebar Item"
-          description="Clean white card container with subtle border matching Wow Admin account card."
-          category="Advanced Components"
-          codeSnippet={`import { WowloopNavItem } from '@wowsuite/design-system';\n\n<WowloopNavItem isActive={true} />`}
-        >
-          <div className="max-w-xs">
-            <WowloopNavItem isActive={true} />
           </div>
         </ComponentDocSection>
       </main>
