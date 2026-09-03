@@ -15,6 +15,8 @@ export interface NotificationDropdownProps {
   notifications?: NotificationItem[];
   archivedNotifications?: NotificationItem[];
   onMarkAllAsRead?: () => void;
+  showTabs?: boolean;
+  className?: string;
 }
 
 export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
@@ -63,6 +65,8 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
     },
   ],
   onMarkAllAsRead,
+  showTabs = true,
+  className,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'all' | 'archived'>('all');
@@ -89,7 +93,7 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
   }, []);
 
   return (
-    <div ref={dropdownRef} className="relative inline-block text-left select-none">
+    <div ref={dropdownRef} className={cn("relative inline-block text-left select-none", className)}>
       {/* Bell Icon Trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -98,13 +102,13 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
       >
         <Bell size={18} />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[10px] font-extrabold rounded-full flex items-center justify-center animate-pulse">
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white text-[10px] font-extrabold rounded-full flex items-center justify-center animate-pulse">
             {unreadCount}
           </span>
         )}
       </button>
 
-      {/* 2-Tab Dropdown Popover */}
+      {/* Dropdown Popover */}
       {isOpen && (
         <div className="absolute right-0 top-full mt-2 w-80 sm:w-96 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xl z-50 overflow-hidden animate-in fade-in-0 zoom-in-95">
           {/* Popover Header */}
@@ -128,40 +132,42 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
             )}
           </div>
 
-          {/* 2 Tabs Header Switcher */}
-          <div className="flex bg-slate-100/80 dark:bg-slate-800/50 p-1 border-b border-slate-200/60 dark:border-slate-800 text-xs font-bold">
-            <button
-              onClick={() => setActiveTab('all')}
-              className={`flex-1 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
-                activeTab === 'all'
-                  ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs font-extrabold'
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <span>All Activity</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
-                {notifications.length}
-              </span>
-            </button>
+          {/* Optional 2 Tabs Header Switcher */}
+          {showTabs && (
+            <div className="flex bg-slate-100/80 dark:bg-slate-800/50 p-1 border-b border-slate-200/60 dark:border-slate-800 text-xs font-bold">
+              <button
+                onClick={() => setActiveTab('all')}
+                className={`flex-1 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+                  activeTab === 'all'
+                    ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs font-extrabold'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <span>All Activity</span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                  {notifications.length}
+                </span>
+              </button>
 
-            <button
-              onClick={() => setActiveTab('archived')}
-              className={`flex-1 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
-                activeTab === 'archived'
-                  ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs font-extrabold'
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <span>Archived</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
-                {archived.length}
-              </span>
-            </button>
-          </div>
+              <button
+                onClick={() => setActiveTab('archived')}
+                className={`flex-1 py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 ${
+                  activeTab === 'archived'
+                    ? 'bg-white dark:bg-slate-700 text-secondary dark:text-blue-400 shadow-xs font-extrabold'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <span>Archived</span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                  {archived.length}
+                </span>
+              </button>
+            </div>
+          )}
 
           {/* Notification Items List */}
           <div className="max-h-72 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/80">
-            {activeTab === 'all' && (
+            {(!showTabs || activeTab === 'all') && (
               notifications.length === 0 ? (
                 <div className="p-8 text-center text-xs text-slate-400">No notifications</div>
               ) : (
@@ -199,7 +205,7 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({
               )
             )}
 
-            {activeTab === 'archived' && (
+            {showTabs && activeTab === 'archived' && (
               archived.length === 0 ? (
                 <div className="p-8 text-center text-xs text-slate-400">No archived notifications</div>
               ) : (

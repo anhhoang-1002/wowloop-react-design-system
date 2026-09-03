@@ -148,7 +148,7 @@ export const DesignLibraryPage: React.FC = () => {
     { id: 'buttons', name: 'Button Variants', category: 'primitives' },
     { id: 'horizontal-tabs-demo', name: 'Horizontal Tabs (Pills & Underline)', category: 'primitives' },
     { id: 'vertical-tabs-demo', name: 'Vertical Tabs (Sidebar Navigation)', category: 'primitives' },
-    { id: 'notification-dropdown', name: 'Notification Popover (2 Tabs)', category: 'primitives' },
+    { id: 'notification-dropdown', name: 'Notification Popover (Basic / No Tabs)', category: 'primitives' },
     { id: 'accordion', name: 'Accordion (Collapsible)', category: 'primitives' },
     { id: 'cards', name: 'Card Surfaces', category: 'primitives' },
     { id: 'badges', name: 'Status Badges', category: 'primitives' },
@@ -169,6 +169,7 @@ export const DesignLibraryPage: React.FC = () => {
     { id: 'advance-table-demo', name: 'Advance Table (Filter, Sort, Pagination)', category: 'advanced' },
     { id: 'kanban-board-demo', name: 'Kanban Board (Drag & Drop)', category: 'advanced' },
     { id: 'calendar-view-demo', name: 'Calendar View (Month & Week)', category: 'advanced' },
+    { id: 'notification-dropdown-tabs', name: 'Notification Dropdown (2-Tab Popover)', category: 'advanced' },
     { id: 'codeblock', name: 'Code Block Container', category: 'advanced' },
     { id: 'thinking', name: 'Thinking Accordion', category: 'advanced' },
     { id: 'version-switcher', name: 'Version Switcher', category: 'advanced' },
@@ -393,15 +394,15 @@ export const DesignLibraryPage: React.FC = () => {
 
         <ComponentDocSection
           id="notification-dropdown"
-          title="Notification Dropdown Popover (2-Tab Layout)"
-          description="Bell icon trigger button displaying unread count badge, opening a 2-tab dropdown menu ('All Activity' & 'Archived')."
+          title="Notification Popover (Basic / No Tabs)"
+          description="Clean bell trigger icon button opening a simple notification list popover dropdown without tab switchers."
           category="UI Primitives"
-          codeSnippet={`import { NotificationDropdown } from '@wowsuite/design-system';\n\n<NotificationDropdown />`}
+          codeSnippet={`import { NotificationDropdown } from '@wowsuite/design-system';\n\n<NotificationDropdown showTabs={false} />`}
         >
           <div className="flex items-center gap-4 py-2">
-            <NotificationDropdown />
+            <NotificationDropdown showTabs={false} />
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">
-              ← Click the bell icon button to open the 2-tab notification popover!
+              ← Click the bell icon button to open the basic notification popover!
             </span>
           </div>
         </ComponentDocSection>
@@ -666,6 +667,21 @@ export const DesignLibraryPage: React.FC = () => {
           codeSnippet={`import { CalendarView } from '@wowsuite/design-system';\n\n<CalendarView />`}
         >
           <CalendarView />
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="notification-dropdown-tabs"
+          title="Notification Dropdown Popover (Advanced 2-Tab Layout)"
+          description="Bell icon trigger button displaying unread count badge, opening an advanced 2-tab dropdown menu ('All Activity' & 'Archived')."
+          category="Advanced Components"
+          codeSnippet={`import { NotificationDropdown } from '@wowsuite/design-system';\n\n<NotificationDropdown showTabs={true} />`}
+        >
+          <div className="flex items-center gap-4 py-2">
+            <NotificationDropdown showTabs={true} />
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+              ← Click the bell icon button to open the 2-tab notification popover!
+            </span>
+          </div>
         </ComponentDocSection>
 
         <ComponentDocSection
