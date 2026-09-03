@@ -41,6 +41,12 @@ export type { SimpleTableProps, SimpleTableColumn } from './components/ui/simple
 export { AdvanceTable } from './components/ui/advance-table';
 export type { AdvanceTableProps, AdvanceTableColumn } from './components/ui/advance-table';
 
+export { KanbanBoard } from './components/ui/kanban-board';
+export type { KanbanBoardProps, KanbanItem, KanbanColumn } from './components/ui/kanban-board';
+
+export { CalendarView } from './components/ui/calendar-view';
+export type { CalendarViewProps, CalendarEvent } from './components/ui/calendar-view';
+
 export { HorizontalTabs } from './components/ui/horizontal-tabs';
 export type { HorizontalTabsProps, TabItem } from './components/ui/horizontal-tabs';
 
