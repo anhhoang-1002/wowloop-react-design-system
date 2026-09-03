@@ -693,12 +693,12 @@ export const DesignLibraryPage: React.FC = () => {
 
         <ComponentDocSection
           id="version-switcher"
-          title="Message Version Switcher"
-          description="Pagination control (1/3 < >) for cycling through prompt or AI response versions."
+          title="AI Message Card with Version Switcher"
+          description="Interactive AI response card container with integrated version pagination controls (< 1/3 >) for switching between response variations."
           category="Advanced Components"
-          codeSnippet={`import { MessageVersionSwitcher } from '@wowsuite/design-system';\n\n<MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />`}
+          codeSnippet={`import { MessageVersionSwitcher } from '@wowsuite/design-system';\n\n<MessageVersionSwitcher />`}
         >
-          <MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />
+          <MessageVersionSwitcher />
         </ComponentDocSection>
 
         <ComponentDocSection
