@@ -683,12 +683,12 @@ export const DesignLibraryPage: React.FC = () => {
 
         <ComponentDocSection
           id="thinking"
-          title="AI Thinking Process Accordion"
-          description="Collapsible accordion for AI reasoning tokens with pulse icon."
+          title="AI Process Grid Accordion"
+          description="Interactive step-by-step grid accordion for AI reasoning steps, duration metrics, verified badges, and raw logs view."
           category="Advanced Components"
-          codeSnippet={`import { ThinkingProcessAccordion } from '@wowsuite/design-system';\n\n<ThinkingProcessAccordion thinkingText="1. Querying DB\\n2. Verifying metrics..." />`}
+          codeSnippet={`import { ThinkingProcessAccordion } from '@wowsuite/design-system';\n\n<ThinkingProcessAccordion durationSeconds={2.4} />`}
         >
-          <ThinkingProcessAccordion thinkingText="1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics." />
+          <ThinkingProcessAccordion />
         </ComponentDocSection>
 
         <ComponentDocSection
