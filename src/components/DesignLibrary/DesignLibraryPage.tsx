@@ -25,7 +25,7 @@ import { AttachmentList } from '../Chat/AttachmentList';
 import { WowloopNavItem } from '../Nav/WowloopNavItem';
 import { SettingsDialog } from '../Modals/SettingsDialog';
 import { AgentCreatorDialog } from '../Modals/AgentCreatorDialog';
-import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal, ToggleLeft, Table as TableIcon, User, Zap, Columns, Calendar as CalendarIcon } from 'lucide-react';
+import { Search, Layers, Sparkles, Sliders, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal, ToggleLeft, User, Zap, Columns } from 'lucide-react';
 
 // Static Demo Data
 const horizontalTabItems: TabItem[] = [
@@ -131,25 +131,30 @@ export const DesignLibraryPage: React.FC = () => {
   const categories = [
     { id: 'all', name: 'All Components', icon: <Layers size={14} /> },
     { id: 'setup', name: 'Installation & Setup', icon: <Download size={14} /> },
-    { id: 'primitives', name: 'UI Primitives', icon: <Sliders size={14} /> },
-    { id: 'kanban_calendar', name: 'Kanban & Calendar', icon: <Columns size={14} /> },
-    { id: 'tables', name: 'Data Tables', icon: <TableIcon size={14} /> },
-    { id: 'fields', name: 'Form Fields & Selects', icon: <ToggleLeft size={14} /> },
-    { id: 'chat', name: 'Chat Engine', icon: <MessageSquare size={14} /> },
-    { id: 'modals', name: 'Modals & Dialogs', icon: <Bot size={14} /> },
-    { id: 'wowloop', name: 'Wowloop SaaS', icon: <ShieldCheck size={14} /> },
     { id: 'tokens', name: 'Tokens & Palette', icon: <Palette size={14} /> },
+    { id: 'primitives', name: 'UI Primitives', icon: <Sliders size={14} /> },
+    { id: 'fields', name: 'Form Fields & Selects', icon: <ToggleLeft size={14} /> },
+    { id: 'advanced', name: 'Advanced Components', icon: <Sparkles size={14} /> },
   ];
 
   const componentsIndex = [
+    // 1. Setup
     { id: 'install-guide', name: 'Installation & Quickstart', category: 'setup' },
+    
+    // 2. Tokens
+    { id: 'tokens-palette', name: 'Design Tokens & Palette', category: 'tokens' },
+
+    // 3. UI Primitives
     { id: 'buttons', name: 'Button Variants', category: 'primitives' },
-    { id: 'kanban-board-demo', name: 'Kanban Board (Drag & Drop)', category: 'kanban_calendar' },
-    { id: 'calendar-view-demo', name: 'Calendar View (Month & Week)', category: 'kanban_calendar' },
-    { id: 'simple-table-demo', name: 'Simple Table', category: 'tables' },
-    { id: 'advance-table-demo', name: 'Advance Table (Filter, Sort, Pagination)', category: 'tables' },
     { id: 'horizontal-tabs-demo', name: 'Horizontal Tabs (Pills & Underline)', category: 'primitives' },
     { id: 'vertical-tabs-demo', name: 'Vertical Tabs (Sidebar Navigation)', category: 'primitives' },
+    { id: 'notification-dropdown', name: 'Notification Popover (2 Tabs)', category: 'primitives' },
+    { id: 'accordion', name: 'Accordion (Collapsible)', category: 'primitives' },
+    { id: 'cards', name: 'Card Surfaces', category: 'primitives' },
+    { id: 'badges', name: 'Status Badges', category: 'primitives' },
+    { id: 'alerts', name: 'Alert Banners', category: 'primitives' },
+
+    // 4. Form Fields & Selects
     { id: 'input-standard', name: 'Standard Form Input', category: 'fields' },
     { id: 'input-floating', name: 'Floating Label Input', category: 'fields' },
     { id: 'textarea', name: 'Textarea (Text Box)', category: 'fields' },
@@ -158,19 +163,19 @@ export const DesignLibraryPage: React.FC = () => {
     { id: 'slider', name: 'Slider (Range Track)', category: 'fields' },
     { id: 'switch-toggle', name: 'Switch Toggle', category: 'fields' },
     { id: 'checkbox', name: 'Checkbox Control', category: 'fields' },
-    { id: 'notification-dropdown', name: 'Notification Popover (2 Tabs)', category: 'primitives' },
-    { id: 'accordion', name: 'Accordion (Collapsible)', category: 'primitives' },
-    { id: 'cards', name: 'Card Surfaces', category: 'primitives' },
-    { id: 'badges', name: 'Status Badges', category: 'primitives' },
-    { id: 'alerts', name: 'Alert Banners', category: 'primitives' },
-    { id: 'codeblock', name: 'Code Block Container', category: 'chat' },
-    { id: 'thinking', name: 'Thinking Accordion', category: 'chat' },
-    { id: 'version-switcher', name: 'Version Switcher', category: 'chat' },
-    { id: 'attachments', name: 'Attachment Chips', category: 'chat' },
-    { id: 'settings-modal', name: 'Settings Dialog', category: 'modals' },
-    { id: 'agent-creator', name: 'Agent Creator Dialog', category: 'modals' },
-    { id: 'wowloop-nav', name: 'Wowloop SaaS Nav Item', category: 'wowloop' },
-    { id: 'tokens-palette', name: 'Design Tokens & Palette', category: 'tokens' },
+
+    // 5. Advanced Components (Tables, Kanban, Calendar, Chat, Modals, SaaS)
+    { id: 'simple-table-demo', name: 'Simple Table', category: 'advanced' },
+    { id: 'advance-table-demo', name: 'Advance Table (Filter, Sort, Pagination)', category: 'advanced' },
+    { id: 'kanban-board-demo', name: 'Kanban Board (Drag & Drop)', category: 'advanced' },
+    { id: 'calendar-view-demo', name: 'Calendar View (Month & Week)', category: 'advanced' },
+    { id: 'codeblock', name: 'Code Block Container', category: 'advanced' },
+    { id: 'thinking', name: 'Thinking Accordion', category: 'advanced' },
+    { id: 'version-switcher', name: 'Version Switcher', category: 'advanced' },
+    { id: 'attachments', name: 'Attachment Chips', category: 'advanced' },
+    { id: 'settings-modal', name: 'Settings Dialog', category: 'advanced' },
+    { id: 'agent-creator', name: 'Agent Creator Dialog', category: 'advanced' },
+    { id: 'wowloop-nav', name: 'Wowloop SaaS Nav Item', category: 'advanced' },
   ];
 
   const filteredComponents = componentsIndex.filter((item) => {
@@ -269,16 +274,18 @@ export const DesignLibraryPage: React.FC = () => {
             Component Documentation & Installation Guide
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed max-w-2xl">
-            Universal Core UI Primitives, Kanban Drag & Drop, Calendar Month & Week views, Data Tables, Tabs, Form Fields, Selects, and Wowloop SaaS design tokens.
+            Universal Core UI Primitives, Advanced Components (Data Tables, Kanban, Calendar, Chat, Modals), Form Fields, Selects, and Wowloop SaaS design tokens.
           </p>
         </div>
 
-        {/* Component 0: Installation & Setup Guide */}
+        {/* ========================================================================= */}
+        {/* CATEGORY 1: INSTALLATION & SETUP */}
+        {/* ========================================================================= */}
         <ComponentDocSection
           id="install-guide"
           title="Installation & Quickstart Guide"
           description="How to install and import @wowsuite/design-system in any new React / Next.js / Vite company project."
-          category="Package Setup"
+          category="Installation & Setup"
           codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, KanbanBoard, CalendarView, SimpleTable, AdvanceTable, HorizontalTabs, VerticalTabs, ThemeProvider } from '@wowsuite/design-system';`}
         >
           <div className="space-y-4 max-w-2xl text-xs leading-relaxed">
@@ -304,7 +311,39 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 1: Buttons */}
+        {/* ========================================================================= */}
+        {/* CATEGORY 2: TOKENS & PALETTE */}
+        {/* ========================================================================= */}
+        <ComponentDocSection
+          id="tokens-palette"
+          title="Design Tokens & Color Palette"
+          description="Primary Vibrant (#009959), Secondary (#122DBD), Accent Orange, Light & Dark Canvas."
+          category="Tokens & Palette"
+          codeSnippet={`:root {\n  --color-primary-vibrant: #009959;\n  --color-secondary: #122DBD;\n  --color-canvas-dark: #0B0F19;\n}`}
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-bold">
+            <div className="p-4 rounded-xl bg-[#009959] text-white flex flex-col justify-between h-20 shadow-xs">
+              <span>Primary Vibrant</span>
+              <span className="font-mono text-[10px]">#009959</span>
+            </div>
+            <div className="p-4 rounded-xl bg-[#122DBD] text-white flex flex-col justify-between h-20 shadow-xs">
+              <span>Secondary Blue</span>
+              <span className="font-mono text-[10px]">#122DBD</span>
+            </div>
+            <div className="p-4 rounded-xl bg-[#FF8000] text-white flex flex-col justify-between h-20 shadow-xs">
+              <span>Accent Orange</span>
+              <span className="font-mono text-[10px]">#FF8000</span>
+            </div>
+            <div className="p-4 rounded-xl bg-[#0B0F19] text-white flex flex-col justify-between h-20 shadow-xs border border-slate-700">
+              <span>Dark Canvas</span>
+              <span className="font-mono text-[10px]">#0B0F19</span>
+            </div>
+          </div>
+        </ComponentDocSection>
+
+        {/* ========================================================================= */}
+        {/* CATEGORY 3: UI PRIMITIVES */}
+        {/* ========================================================================= */}
         <ComponentDocSection
           id="buttons"
           title="Button Variants & Actions"
@@ -321,51 +360,6 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 2: Kanban Board */}
-        <ComponentDocSection
-          id="kanban-board-demo"
-          title="Kanban Board (Interactive Drag & Drop)"
-          description="Multi-column task board supporting native drag-and-drop card movement across columns, priority indicators, tags, and assignee avatars."
-          category="Kanban & Calendar"
-          codeSnippet={`import { KanbanBoard } from '@wowsuite/design-system';\n\n<KanbanBoard onItemMove={(id, columnId) => console.log(id, columnId)} />`}
-        >
-          <KanbanBoard />
-        </ComponentDocSection>
-
-        {/* Component 3: Calendar View */}
-        <ComponentDocSection
-          id="calendar-view-demo"
-          title="Calendar View (Month & Week Views)"
-          description="Interactive calendar component with Month and Week view switchers, date navigation, and event badges."
-          category="Kanban & Calendar"
-          codeSnippet={`import { CalendarView } from '@wowsuite/design-system';\n\n<CalendarView />`}
-        >
-          <CalendarView />
-        </ComponentDocSection>
-
-        {/* Component 4: Simple Table */}
-        <ComponentDocSection
-          id="simple-table-demo"
-          title="Simple Table"
-          description="Lightweight, clean data table with custom column alignment, cell formatters, and optional zebra striping."
-          category="Data Tables"
-          codeSnippet={`import { SimpleTable } from '@wowsuite/design-system';\n\n<SimpleTable columns={columns} data={data} striped />`}
-        >
-          <SimpleTable columns={simpleColumns} data={sampleTableData.slice(0, 4)} striped />
-        </ComponentDocSection>
-
-        {/* Component 5: Advance Table */}
-        <ComponentDocSection
-          id="advance-table-demo"
-          title="Advance Table (Filter, Header Sort, & Pagination)"
-          description="Full-featured data table with global search input, header column sorting indicators, custom badge renderers, and pagination controls."
-          category="Data Tables"
-          codeSnippet={`import { AdvanceTable } from '@wowsuite/design-system';\n\n<AdvanceTable columns={advanceColumns} data={sampleTableData} defaultRowsPerPage={5} />`}
-        >
-          <AdvanceTable columns={advanceColumns} data={sampleTableData} defaultRowsPerPage={5} />
-        </ComponentDocSection>
-
-        {/* Component 6: Horizontal Tabs */}
         <ComponentDocSection
           id="horizontal-tabs-demo"
           title="Horizontal Tabs (Pills & Underline Variants)"
@@ -386,170 +380,18 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 7: Vertical Tabs */}
         <ComponentDocSection
           id="vertical-tabs-demo"
           title="Vertical Tabs (Sidebar & Settings Navigation)"
           description="Vertical tab list ideal for sidebar navigation drawers, modal settings, and profile preference screens."
           category="UI Primitives"
-          codeSnippet={`import { VerticalTabs } from '@wowsuite/design-system';\n\n<VerticalTabs items={verticalTabItems} activeId={verticalTab} onChange={setVerticalTab} />`}
+          codeSnippet={`import { VerticalTabs } from '@wowsuite/design-system';\n\n<VerticalTabs items={verticalTabItems} activeId={activeTab} onChange={setVerticalTab} />`}
         >
           <div className="max-w-md">
             <VerticalTabs items={verticalTabItems} activeId={verticalTab} onChange={setVerticalTab} />
           </div>
         </ComponentDocSection>
 
-        {/* Component 8: Standard Form Input */}
-        <ComponentDocSection
-          id="input-standard"
-          title="Standard Form Input (Label Above)"
-          description="Standard form input with uppercase label placed above the box, clean normal state (shadow-none) and focus shadow activation."
-          category="Form Fields & Selects"
-          codeSnippet={`import { Input } from '@wowsuite/design-system';\n\n<Input label="Company Name" placeholder="Acme Inc." requiredStar />`}
-        >
-          <div className="max-w-md">
-            <Input label="Company Name" placeholder="Acme Inc." requiredStar />
-          </div>
-        </ComponentDocSection>
-
-        {/* Component 9: Floating Label Input */}
-        <ComponentDocSection
-          id="input-floating"
-          title="Floating Label Input"
-          description="Modern floating label input where label transitions smoothly to top-left when focused or typed into."
-          category="Form Fields & Selects"
-          codeSnippet={`import { Input } from '@wowsuite/design-system';\n\n<Input floatingLabel="Monthly Revenue" />`}
-        >
-          <div className="max-w-md">
-            <Input floatingLabel="Monthly Revenue" />
-          </div>
-        </ComponentDocSection>
-
-        {/* Component 10: Textarea */}
-        <ComponentDocSection
-          id="textarea"
-          title="Textarea (Text Box Container)"
-          description="Multiline text box container with label, helper text, and focus shadow elevation."
-          category="Form Fields & Selects"
-          codeSnippet={`import { Textarea } from '@wowsuite/design-system';\n\n<Textarea label="System Instructions" placeholder="Describe instructions..." helperText="Max 1,000 characters." />`}
-        >
-          <div className="max-w-xl">
-            <Textarea
-              label="System Instructions (Prompt)"
-              placeholder="You are an AI specialized in customer retention, subscription funnels, and MRR metrics..."
-              helperText="Describe custom instructions for your AI agent."
-              rows={3}
-            />
-          </div>
-        </ComponentDocSection>
-
-        {/* Component 11: Select Dropdown */}
-        <ComponentDocSection
-          id="select-dropdown"
-          title="Select Dropdown (Searchable Single Select)"
-          description="Single select dropdown with search filter, clear button, and checkmark option indicators."
-          category="Form Fields & Selects"
-          codeSnippet={`import { Select } from '@wowsuite/design-system';\n\n<Select label="Model Engine" options={[{ label: 'GPT-4o', value: 'gpt-4o' }]} value={model} onChange={setModel} />`}
-        >
-          <div className="max-w-md">
-            <Select
-              label="Model Engine"
-              placeholder="Select an AI model..."
-              options={modelOptions}
-              value={selectedModel}
-              onChange={setSelectedModel}
-            />
-          </div>
-        </ComponentDocSection>
-
-        {/* Component 12: MultiSelect */}
-        <ComponentDocSection
-          id="multiselect"
-          title="MultiSelect (Searchable & Tag Chips)"
-          description="Multi-select dropdown rendering removable tag chips and live search filtering."
-          category="Form Fields & Selects"
-          codeSnippet={`import { MultiSelect } from '@wowsuite/design-system';\n\n<MultiSelect label="Active Tools" options={toolOptions} values={selectedTools} onChange={setSelectedTools} />`}
-        >
-          <div className="max-w-md">
-            <MultiSelect
-              label="Active Tools & Capabilities"
-              placeholder="Select capabilities..."
-              options={toolOptions}
-              values={selectedTools}
-              onChange={setSelectedTools}
-            />
-          </div>
-        </ComponentDocSection>
-
-        {/* Component 13: Slider */}
-        <ComponentDocSection
-          id="slider"
-          title="Slider (Range Track & Value Badge)"
-          description="Custom range slider control with dynamic track fill gradient and monospace value badge."
-          category="Form Fields & Selects"
-          codeSnippet={`import { Slider } from '@wowsuite/design-system';\n\n<Slider label="Model Temperature" min={0} max={1} step={0.1} value={temperature} onChange={setTemperature} />`}
-        >
-          <div className="max-w-md">
-            <Slider
-              label="Model Temperature (Creativity)"
-              min={0}
-              max={1}
-              step={0.1}
-              value={temperature}
-              onChange={setTemperature}
-            />
-          </div>
-        </ComponentDocSection>
-
-        {/* Component 14: Switch Toggle */}
-        <ComponentDocSection
-          id="switch-toggle"
-          title="Switch Toggle Control"
-          description="Interactive sliding toggle switches with active/inactive states for toggling binary options."
-          category="Form Fields & Selects"
-          codeSnippet={`import { Switch } from '@wowsuite/design-system';\n\n<Switch label="Auto-Scroll to Bottom" description="Automatically scroll down on stream" checked={autoScroll} onChange={setAutoScroll} />`}
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
-            <Switch
-              label="Auto-Scroll to Bottom"
-              description="Automatically scroll down on stream"
-              checked={isAutoScroll}
-              onChange={setIsAutoScroll}
-            />
-            <Switch
-              label="Send on Enter"
-              description="Press Enter to send message"
-              checked={isSendOnEnter}
-              onChange={setIsSendOnEnter}
-            />
-          </div>
-        </ComponentDocSection>
-
-        {/* Component 15: Checkbox */}
-        <ComponentDocSection
-          id="checkbox"
-          title="Checkbox Control"
-          description="Custom checkmark checkboxes with title labels and descriptions for selecting options."
-          category="Form Fields & Selects"
-          codeSnippet={`import { Checkbox } from '@wowsuite/design-system';\n\n<Checkbox label="Enable Web Search Tool" description="Allow AI to search live web data" checked={webSearch} onChange={setWebSearch} />`}
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
-            <Checkbox
-              label="Enable Web Search Tool"
-              description="Allow AI to search live web data"
-              checked={isWebSearch}
-              onChange={setIsWebSearch}
-            />
-            <Checkbox
-              label="Enable Retention Workflows"
-              description="Automate churn offers"
-              checked={isRetentionWorkflow}
-              onChange={setIsRetentionWorkflow}
-            />
-          </div>
-        </ComponentDocSection>
-
-        {/* Component 16: Notification Dropdown */}
         <ComponentDocSection
           id="notification-dropdown"
           title="Notification Dropdown Popover (2-Tab Layout)"
@@ -565,7 +407,6 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 17: Accordion */}
         <ComponentDocSection
           id="accordion"
           title="Accordion (Collapsible List)"
@@ -578,7 +419,6 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 18: Cards */}
         <ComponentDocSection
           id="cards"
           title="Card Surfaces & Shadow Elevation"
@@ -600,7 +440,6 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 19: Status Badges */}
         <ComponentDocSection
           id="badges"
           title="Status Badges"
@@ -617,7 +456,6 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 20: Alert Banners */}
         <ComponentDocSection
           id="alerts"
           title="Alert & Notification Banners"
@@ -643,12 +481,199 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 21: CodeBlock Container */}
+        {/* ========================================================================= */}
+        {/* CATEGORY 4: FORM FIELDS & SELECTS */}
+        {/* ========================================================================= */}
+        <ComponentDocSection
+          id="input-standard"
+          title="Standard Form Input (Label Above)"
+          description="Standard form input with uppercase label placed above the box, clean normal state (shadow-none) and focus shadow activation."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Input } from '@wowsuite/design-system';\n\n<Input label="Company Name" placeholder="Acme Inc." requiredStar />`}
+        >
+          <div className="max-w-md">
+            <Input label="Company Name" placeholder="Acme Inc." requiredStar />
+          </div>
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="input-floating"
+          title="Floating Label Input"
+          description="Modern floating label input where label transitions smoothly to top-left when focused or typed into."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Input } from '@wowsuite/design-system';\n\n<Input floatingLabel="Monthly Revenue" />`}
+        >
+          <div className="max-w-md">
+            <Input floatingLabel="Monthly Revenue" />
+          </div>
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="textarea"
+          title="Textarea (Text Box Container)"
+          description="Multiline text box container with label, helper text, and focus shadow elevation."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Textarea } from '@wowsuite/design-system';\n\n<Textarea label="System Instructions" placeholder="Describe instructions..." helperText="Max 1,000 characters." />`}
+        >
+          <div className="max-w-xl">
+            <Textarea
+              label="System Instructions (Prompt)"
+              placeholder="You are an AI specialized in customer retention, subscription funnels, and MRR metrics..."
+              helperText="Describe custom instructions for your AI agent."
+              rows={3}
+            />
+          </div>
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="select-dropdown"
+          title="Select Dropdown (Searchable Single Select)"
+          description="Single select dropdown with search filter, clear button, and checkmark option indicators."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Select } from '@wowsuite/design-system';\n\n<Select label="Model Engine" options={[{ label: 'GPT-4o', value: 'gpt-4o' }]} value={model} onChange={setModel} />`}
+        >
+          <div className="max-w-md">
+            <Select
+              label="Model Engine"
+              placeholder="Select an AI model..."
+              options={modelOptions}
+              value={selectedModel}
+              onChange={setSelectedModel}
+            />
+          </div>
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="multiselect"
+          title="MultiSelect (Searchable & Tag Chips)"
+          description="Multi-select dropdown rendering removable tag chips and live search filtering."
+          category="Form Fields & Selects"
+          codeSnippet={`import { MultiSelect } from '@wowsuite/design-system';\n\n<MultiSelect label="Active Tools" options={toolOptions} values={selectedTools} onChange={setSelectedTools} />`}
+        >
+          <div className="max-w-md">
+            <MultiSelect
+              label="Active Tools & Capabilities"
+              placeholder="Select capabilities..."
+              options={toolOptions}
+              values={selectedTools}
+              onChange={setSelectedTools}
+            />
+          </div>
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="slider"
+          title="Slider (Range Track & Value Badge)"
+          description="Custom range slider control with dynamic track fill gradient and monospace value badge."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Slider } from '@wowsuite/design-system';\n\n<Slider label="Model Temperature" min={0} max={1} step={0.1} value={temperature} onChange={setTemperature} />`}
+        >
+          <div className="max-w-md">
+            <Slider
+              label="Model Temperature (Creativity)"
+              min={0}
+              max={1}
+              step={0.1}
+              value={temperature}
+              onChange={setTemperature}
+            />
+          </div>
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="switch-toggle"
+          title="Switch Toggle Control"
+          description="Interactive sliding toggle switches with active/inactive states for toggling binary options."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Switch } from '@wowsuite/design-system';\n\n<Switch label="Auto-Scroll to Bottom" description="Automatically scroll down on stream" checked={autoScroll} onChange={setAutoScroll} />`}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+            <Switch
+              label="Auto-Scroll to Bottom"
+              description="Automatically scroll down on stream"
+              checked={isAutoScroll}
+              onChange={setIsAutoScroll}
+            />
+            <Switch
+              label="Send on Enter"
+              description="Press Enter to send message"
+              checked={isSendOnEnter}
+              onChange={setIsSendOnEnter}
+            />
+          </div>
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="checkbox"
+          title="Checkbox Control"
+          description="Custom checkmark checkboxes with title labels and descriptions for selecting options."
+          category="Form Fields & Selects"
+          codeSnippet={`import { Checkbox } from '@wowsuite/design-system';\n\n<Checkbox label="Enable Web Search Tool" description="Allow AI to search live web data" checked={webSearch} onChange={setWebSearch} />`}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl">
+            <Checkbox
+              label="Enable Web Search Tool"
+              description="Allow AI to search live web data"
+              checked={isWebSearch}
+              onChange={setIsWebSearch}
+            />
+            <Checkbox
+              label="Enable Retention Workflows"
+              description="Automate churn offers"
+              checked={isRetentionWorkflow}
+              onChange={setIsRetentionWorkflow}
+            />
+          </div>
+        </ComponentDocSection>
+
+        {/* ========================================================================= */}
+        {/* CATEGORY 5: ADVANCED COMPONENTS */}
+        {/* ========================================================================= */}
+        <ComponentDocSection
+          id="simple-table-demo"
+          title="Simple Table"
+          description="Lightweight, clean data table with custom column alignment, cell formatters, and optional zebra striping."
+          category="Advanced Components"
+          codeSnippet={`import { SimpleTable } from '@wowsuite/design-system';\n\n<SimpleTable columns={columns} data={data} striped />`}
+        >
+          <SimpleTable columns={simpleColumns} data={sampleTableData.slice(0, 4)} striped />
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="advance-table-demo"
+          title="Advance Table (Filter, Header Sort, & Pagination)"
+          description="Full-featured data table with global search input, header column sorting indicators, custom badge renderers, and pagination controls."
+          category="Advanced Components"
+          codeSnippet={`import { AdvanceTable } from '@wowsuite/design-system';\n\n<AdvanceTable columns={advanceColumns} data={sampleTableData} defaultRowsPerPage={5} />`}
+        >
+          <AdvanceTable columns={advanceColumns} data={sampleTableData} defaultRowsPerPage={5} />
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="kanban-board-demo"
+          title="Kanban Board (Interactive Drag & Drop)"
+          description="Multi-column task board supporting native drag-and-drop card movement across columns, priority indicators, tags, and assignee avatars."
+          category="Advanced Components"
+          codeSnippet={`import { KanbanBoard } from '@wowsuite/design-system';\n\n<KanbanBoard onItemMove={(id, columnId) => console.log(id, columnId)} />`}
+        >
+          <KanbanBoard />
+        </ComponentDocSection>
+
+        <ComponentDocSection
+          id="calendar-view-demo"
+          title="Calendar View (Month & Week Views)"
+          description="Interactive calendar component with Month and Week view switchers, date navigation, and event badges."
+          category="Advanced Components"
+          codeSnippet={`import { CalendarView } from '@wowsuite/design-system';\n\n<CalendarView />`}
+        >
+          <CalendarView />
+        </ComponentDocSection>
+
         <ComponentDocSection
           id="codeblock"
           title="Code Block Container"
           description="Syntax highlighted code container with language tag badge and copy button."
-          category="Chat Engine"
+          category="Advanced Components"
           codeSnippet={`import { CodeBlock } from '@wowsuite/design-system';\n\n<CodeBlock language="typescript" code="const wowloop = new WowloopSdk();" />`}
         >
           <CodeBlock
@@ -657,34 +682,31 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 22: Thinking Accordion */}
         <ComponentDocSection
           id="thinking"
           title="AI Thinking Process Accordion"
           description="Collapsible accordion for AI reasoning tokens with pulse icon."
-          category="Chat Engine"
+          category="Advanced Components"
           codeSnippet={`import { ThinkingProcessAccordion } from '@wowsuite/design-system';\n\n<ThinkingProcessAccordion thinkingText="1. Querying DB\\n2. Verifying metrics..." />`}
         >
           <ThinkingProcessAccordion thinkingText="1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics." />
         </ComponentDocSection>
 
-        {/* Component 23: Version Switcher */}
         <ComponentDocSection
           id="version-switcher"
           title="Message Version Switcher"
           description="Pagination control (1/3 < >) for cycling through prompt or AI response versions."
-          category="Chat Engine"
+          category="Advanced Components"
           codeSnippet={`import { MessageVersionSwitcher } from '@wowsuite/design-system';\n\n<MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />`}
         >
           <MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />
         </ComponentDocSection>
 
-        {/* Component 24: Attachment List */}
         <ComponentDocSection
           id="attachments"
           title="File Attachment Chips"
           description="Preview chips for uploaded image thumbnails and PDF documents."
-          category="Chat Engine"
+          category="Advanced Components"
           codeSnippet={`import { AttachmentList } from '@wowsuite/design-system';\n\n<AttachmentList files={[{ id: '1', name: 'MRR_Report.pdf', size: '240 KB', type: 'file' }]} onRemoveFile={() => {}} />`}
         >
           <AttachmentList
@@ -693,12 +715,11 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 25: Settings Dialog */}
         <ComponentDocSection
           id="settings-modal"
           title="Settings Dialog (Antigravity Style)"
           description="Full-height sidebar settings modal with auto-saved controls and top-right close button."
-          category="Modals & Dialogs"
+          category="Advanced Components"
           codeSnippet={`import { SettingsDialog } from '@wowsuite/design-system';\n\n<Button onClick={() => setIsSettingsOpen(true)}>Open Settings Modal</Button>`}
         >
           <div>
@@ -709,12 +730,11 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 26: Agent Creator Dialog */}
         <ComponentDocSection
           id="agent-creator"
           title="Agent Creator Dialog"
           description="Form modal to construct custom AI Assistants with system prompts and tool toggles."
-          category="Modals & Dialogs"
+          category="Advanced Components"
           codeSnippet={`import { AgentCreatorDialog } from '@wowsuite/design-system';\n\n<Button onClick={() => setIsAgentCreatorOpen(true)}>Open Agent Creator Modal</Button>`}
         >
           <div>
@@ -725,44 +745,15 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 27: Wowloop SaaS Nav Item */}
         <ComponentDocSection
           id="wowloop-nav"
           title="Wowloop SaaS Sidebar Item"
           description="Clean white card container with subtle border matching Wow Admin account card."
-          category="Wowloop SaaS"
+          category="Advanced Components"
           codeSnippet={`import { WowloopNavItem } from '@wowsuite/design-system';\n\n<WowloopNavItem isActive={true} />`}
         >
           <div className="max-w-xs">
             <WowloopNavItem isActive={true} />
-          </div>
-        </ComponentDocSection>
-
-        {/* Component 28: Design Tokens & Palette */}
-        <ComponentDocSection
-          id="tokens-palette"
-          title="Design Tokens & Color Palette"
-          description="Primary Vibrant (#009959), Secondary (#122DBD), Accent Orange, Light & Dark Canvas."
-          category="Tokens & Palette"
-          codeSnippet={`:root {\n  --color-primary-vibrant: #009959;\n  --color-secondary: #122DBD;\n  --color-canvas-dark: #0B0F19;\n}`}
-        >
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-bold">
-            <div className="p-4 rounded-xl bg-[#009959] text-white flex flex-col justify-between h-20 shadow-xs">
-              <span>Primary Vibrant</span>
-              <span className="font-mono text-[10px]">#009959</span>
-            </div>
-            <div className="p-4 rounded-xl bg-[#122DBD] text-white flex flex-col justify-between h-20 shadow-xs">
-              <span>Secondary Blue</span>
-              <span className="font-mono text-[10px]">#122DBD</span>
-            </div>
-            <div className="p-4 rounded-xl bg-[#FF8000] text-white flex flex-col justify-between h-20 shadow-xs">
-              <span>Accent Orange</span>
-              <span className="font-mono text-[10px]">#FF8000</span>
-            </div>
-            <div className="p-4 rounded-xl bg-[#0B0F19] text-white flex flex-col justify-between h-20 shadow-xs border border-slate-700">
-              <span>Dark Canvas</span>
-              <span className="font-mono text-[10px]">#0B0F19</span>
-            </div>
           </div>
         </ComponentDocSection>
       </main>
