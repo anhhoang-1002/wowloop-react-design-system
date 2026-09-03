@@ -35,6 +35,12 @@ export type { SwitchProps } from './components/ui/switch';
 export { Checkbox } from './components/ui/checkbox';
 export type { CheckboxProps } from './components/ui/checkbox';
 
+export { SimpleTable } from './components/ui/simple-table';
+export type { SimpleTableProps, SimpleTableColumn } from './components/ui/simple-table';
+
+export { AdvanceTable } from './components/ui/advance-table';
+export type { AdvanceTableProps, AdvanceTableColumn } from './components/ui/advance-table';
+
 export { HorizontalTabs } from './components/ui/horizontal-tabs';
 export type { HorizontalTabsProps, TabItem } from './components/ui/horizontal-tabs';
 

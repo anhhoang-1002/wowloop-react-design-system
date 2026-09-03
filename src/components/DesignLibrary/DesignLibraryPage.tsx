@@ -9,6 +9,8 @@ import { Select, SelectOption } from '../ui/select';
 import { MultiSelect, MultiSelectOption } from '../ui/multiselect';
 import { Switch } from '../ui/switch';
 import { Checkbox } from '../ui/checkbox';
+import { SimpleTable, SimpleTableColumn } from '../ui/simple-table';
+import { AdvanceTable, AdvanceTableColumn } from '../ui/advance-table';
 import { HorizontalTabs, TabItem } from '../ui/horizontal-tabs';
 import { VerticalTabs, VerticalTabItem } from '../ui/vertical-tabs';
 import { NotificationDropdown } from '../ui/notification-dropdown';
@@ -21,7 +23,87 @@ import { AttachmentList } from '../Chat/AttachmentList';
 import { WowloopNavItem } from '../Nav/WowloopNavItem';
 import { SettingsDialog } from '../Modals/SettingsDialog';
 import { AgentCreatorDialog } from '../Modals/AgentCreatorDialog';
-import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal, ToggleLeft, SlidersHorizontal, LayoutList, User, Zap } from 'lucide-react';
+import { Search, Layers, Sparkles, Sliders, MessageSquare, ShieldCheck, Palette, Bot, Download, CheckCircle2, AlertTriangle, Info, Terminal, ToggleLeft, Table as TableIcon, User, Zap } from 'lucide-react';
+
+// Static Demo Data
+const horizontalTabItems: TabItem[] = [
+  { id: 'overview', label: 'Overview', icon: <Layers size={14} /> },
+  { id: 'analytics', label: 'Analytics', icon: <Sparkles size={14} />, badge: '3' },
+  { id: 'settings', label: 'Settings', icon: <Sliders size={14} /> },
+];
+
+const verticalTabItems: VerticalTabItem[] = [
+  { id: 'general', label: 'General Preferences', description: 'Configure theme and default workspace settings.', icon: <Sliders size={15} /> },
+  { id: 'chat', label: 'Chat & Streaming', description: 'Auto-scroll, send on enter, and voice settings.', icon: <Zap size={15} /> },
+  { id: 'account', label: 'Account & Plan', description: 'Manage subscription status and billing email.', icon: <User size={15} />, badge: 'PRO' },
+  { id: 'wowloop', label: 'Wowloop SaaS Workflows', description: 'Manage retention webhooks and churn triggers.', icon: <ShieldCheck size={15} /> },
+];
+
+const modelOptions: SelectOption[] = [
+  { label: 'Wowloop AI (GPT-4o)', value: 'gpt-4o' },
+  { label: 'Claude 3.5 Sonnet', value: 'claude-3.5' },
+  { label: 'DeepSeek-R1 Reasoning', value: 'deepseek-r1' },
+  { label: 'Gemini 1.5 Pro', value: 'gemini-1.5' },
+];
+
+const toolOptions: MultiSelectOption[] = [
+  { label: 'Web Search', value: 'web-search' },
+  { label: 'Retention Tools', value: 'retention' },
+  { label: 'Code Interpreter', value: 'code-interpreter' },
+  { label: 'Shopify SDK', value: 'shopify-sdk' },
+];
+
+const sampleTableData = [
+  { id: 'SUB-101', customer: 'Acme Corp', plan: 'Enterprise', mrr: '$2,400', status: 'Active', churnRisk: 'Low' },
+  { id: 'SUB-102', customer: 'Stripe Inc', plan: 'Pro SaaS', mrr: '$1,200', status: 'Active', churnRisk: 'Low' },
+  { id: 'SUB-103', customer: 'Vercel Labs', plan: 'Enterprise', mrr: '$4,800', status: 'Active', churnRisk: 'Low' },
+  { id: 'SUB-104', customer: 'Linear Mobile', plan: 'Pro SaaS', mrr: '$950', status: 'Pending Cancel', churnRisk: 'High' },
+  { id: 'SUB-105', customer: 'Supabase Data', plan: 'Scale', mrr: '$3,100', status: 'Active', churnRisk: 'Low' },
+  { id: 'SUB-106', customer: 'Figma Design', plan: 'Enterprise', mrr: '$5,600', status: 'Active', churnRisk: 'Medium' },
+  { id: 'SUB-107', customer: 'Resend Email', plan: 'Pro SaaS', mrr: '$750', status: 'Active', churnRisk: 'Low' },
+];
+
+const simpleColumns: SimpleTableColumn[] = [
+  { key: 'id', header: 'Subscription ID' },
+  { key: 'customer', header: 'Customer' },
+  { key: 'plan', header: 'Plan Tier' },
+  { key: 'mrr', header: 'Monthly MRR', align: 'right' },
+];
+
+const advanceColumns: AdvanceTableColumn[] = [
+  { key: 'id', header: 'ID', sortable: true },
+  { key: 'customer', header: 'Customer Name', sortable: true },
+  { key: 'plan', header: 'Subscription Plan', sortable: true },
+  { key: 'mrr', header: 'MRR', sortable: true, align: 'right' },
+  {
+    key: 'status',
+    header: 'Status',
+    sortable: true,
+    align: 'center',
+    render: (val) => (
+      <Badge variant={val === 'Active' ? 'green' : 'blue'}>
+        {val}
+      </Badge>
+    ),
+  },
+  {
+    key: 'churnRisk',
+    header: 'Churn Risk',
+    sortable: true,
+    align: 'center',
+    render: (val) => (
+      <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
+        val === 'High'
+          ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20'
+          : val === 'Medium'
+          ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20'
+          : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
+      }`}>
+        {val} Risk
+      </span>
+    ),
+  },
+];
 
 export const DesignLibraryPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -44,37 +126,11 @@ export const DesignLibraryPage: React.FC = () => {
   const [horizontalTabUnderline, setHorizontalTabUnderline] = useState('overview');
   const [verticalTab, setVerticalTab] = useState('general');
 
-  const horizontalTabItems: TabItem[] = [
-    { id: 'overview', label: 'Overview', icon: <Layers size={14} /> },
-    { id: 'analytics', label: 'Analytics', icon: <Sparkles size={14} />, badge: '3' },
-    { id: 'settings', label: 'Settings', icon: <Sliders size={14} /> },
-  ];
-
-  const verticalTabItems: VerticalTabItem[] = [
-    { id: 'general', label: 'General Preferences', description: 'Configure theme and default workspace settings.', icon: <Sliders size={15} /> },
-    { id: 'chat', label: 'Chat & Streaming', description: 'Auto-scroll, send on enter, and voice settings.', icon: <Zap size={15} /> },
-    { id: 'account', label: 'Account & Plan', description: 'Manage subscription status and billing email.', icon: <User size={15} />, badge: 'PRO' },
-    { id: 'wowloop', label: 'Wowloop SaaS Workflows', description: 'Manage retention webhooks and churn triggers.', icon: <ShieldCheck size={15} /> },
-  ];
-
-  const modelOptions: SelectOption[] = [
-    { label: 'Wowloop AI (GPT-4o)', value: 'gpt-4o' },
-    { label: 'Claude 3.5 Sonnet', value: 'claude-3.5' },
-    { label: 'DeepSeek-R1 Reasoning', value: 'deepseek-r1' },
-    { label: 'Gemini 1.5 Pro', value: 'gemini-1.5' },
-  ];
-
-  const toolOptions: MultiSelectOption[] = [
-    { label: 'Web Search', value: 'web-search' },
-    { label: 'Retention Tools', value: 'retention' },
-    { label: 'Code Interpreter', value: 'code-interpreter' },
-    { label: 'Shopify SDK', value: 'shopify-sdk' },
-  ];
-
   const categories = [
     { id: 'all', name: 'All Components', icon: <Layers size={14} /> },
     { id: 'setup', name: 'Installation & Setup', icon: <Download size={14} /> },
     { id: 'primitives', name: 'UI Primitives', icon: <Sliders size={14} /> },
+    { id: 'tables', name: 'Data Tables', icon: <TableIcon size={14} /> },
     { id: 'fields', name: 'Form Fields & Selects', icon: <ToggleLeft size={14} /> },
     { id: 'chat', name: 'Chat Engine', icon: <MessageSquare size={14} /> },
     { id: 'modals', name: 'Modals & Dialogs', icon: <Bot size={14} /> },
@@ -85,6 +141,8 @@ export const DesignLibraryPage: React.FC = () => {
   const componentsIndex = [
     { id: 'install-guide', name: 'Installation & Quickstart', category: 'setup' },
     { id: 'buttons', name: 'Button Variants', category: 'primitives' },
+    { id: 'simple-table-demo', name: 'Simple Table', category: 'tables' },
+    { id: 'advance-table-demo', name: 'Advance Table (Filter, Sort, Pagination)', category: 'tables' },
     { id: 'horizontal-tabs-demo', name: 'Horizontal Tabs (Pills & Underline)', category: 'primitives' },
     { id: 'vertical-tabs-demo', name: 'Vertical Tabs (Sidebar Navigation)', category: 'primitives' },
     { id: 'input-standard', name: 'Standard Form Input', category: 'fields' },
@@ -206,7 +264,7 @@ export const DesignLibraryPage: React.FC = () => {
             Component Documentation & Installation Guide
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed max-w-2xl">
-            Universal Core UI Primitives, Horizontal & Vertical Tabs, Form Fields, Selects, Sliders, Notification Popovers (2-Tab), LibreChat AI stream components, and Wowloop SaaS design tokens.
+            Universal Core UI Primitives, Simple & Advance Data Tables, Horizontal & Vertical Tabs, Form Fields, Selects, Sliders, Notification Popovers, and Wowloop SaaS design tokens.
           </p>
         </div>
 
@@ -216,7 +274,7 @@ export const DesignLibraryPage: React.FC = () => {
           title="Installation & Quickstart Guide"
           description="How to install and import @wowsuite/design-system in any new React / Next.js / Vite company project."
           category="Package Setup"
-          codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, Input, Textarea, Select, HorizontalTabs, VerticalTabs, NotificationDropdown, Slider, Switch, Dialog, Accordion, ThemeProvider } from '@wowsuite/design-system';`}
+          codeSnippet={`# 1. Install NPM Package\nnpm install @wowsuite/design-system\n\n# 2. Import CSS Stylesheet in your root entry (App.tsx / _app.tsx / layout.tsx)\nimport '@wowsuite/design-system/dist/style.css';\n\n# 3. Import Core Components in any file\nimport { Button, Card, Input, Textarea, Select, SimpleTable, AdvanceTable, HorizontalTabs, VerticalTabs, NotificationDropdown, Slider, Switch, Dialog, Accordion, ThemeProvider } from '@wowsuite/design-system';`}
         >
           <div className="space-y-4 max-w-2xl text-xs leading-relaxed">
             <div className="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono flex items-center justify-between border border-slate-700">
@@ -258,7 +316,29 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 2: Horizontal Tabs (NEW) */}
+        {/* Component 2: Simple Table */}
+        <ComponentDocSection
+          id="simple-table-demo"
+          title="Simple Table"
+          description="Lightweight, clean data table with custom column alignment, cell formatters, and optional zebra striping."
+          category="Data Tables"
+          codeSnippet={`import { SimpleTable } from '@wowsuite/design-system';\n\n<SimpleTable columns={columns} data={data} striped />`}
+        >
+          <SimpleTable columns={simpleColumns} data={sampleTableData.slice(0, 4)} striped />
+        </ComponentDocSection>
+
+        {/* Component 3: Advance Table */}
+        <ComponentDocSection
+          id="advance-table-demo"
+          title="Advance Table (Filter, Header Sort, & Pagination)"
+          description="Full-featured data table with global search input, header column sorting indicators, custom badge renderers, and pagination controls."
+          category="Data Tables"
+          codeSnippet={`import { AdvanceTable } from '@wowsuite/design-system';\n\n<AdvanceTable columns={advanceColumns} data={sampleTableData} defaultRowsPerPage={5} />`}
+        >
+          <AdvanceTable columns={advanceColumns} data={sampleTableData} defaultRowsPerPage={5} />
+        </ComponentDocSection>
+
+        {/* Component 4: Horizontal Tabs */}
         <ComponentDocSection
           id="horizontal-tabs-demo"
           title="Horizontal Tabs (Pills & Underline Variants)"
@@ -279,7 +359,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 3: Vertical Tabs (NEW) */}
+        {/* Component 5: Vertical Tabs */}
         <ComponentDocSection
           id="vertical-tabs-demo"
           title="Vertical Tabs (Sidebar & Settings Navigation)"
@@ -292,7 +372,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 4: Standard Form Input */}
+        {/* Component 6: Standard Form Input */}
         <ComponentDocSection
           id="input-standard"
           title="Standard Form Input (Label Above)"
@@ -305,7 +385,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 5: Floating Label Input */}
+        {/* Component 7: Floating Label Input */}
         <ComponentDocSection
           id="input-floating"
           title="Floating Label Input"
@@ -318,7 +398,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 6: Textarea */}
+        {/* Component 8: Textarea */}
         <ComponentDocSection
           id="textarea"
           title="Textarea (Text Box Container)"
@@ -336,7 +416,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 7: Select Dropdown */}
+        {/* Component 9: Select Dropdown */}
         <ComponentDocSection
           id="select-dropdown"
           title="Select Dropdown (Searchable Single Select)"
@@ -355,7 +435,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 8: MultiSelect */}
+        {/* Component 10: MultiSelect */}
         <ComponentDocSection
           id="multiselect"
           title="MultiSelect (Searchable & Tag Chips)"
@@ -374,7 +454,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 9: Slider */}
+        {/* Component 11: Slider */}
         <ComponentDocSection
           id="slider"
           title="Slider (Range Track & Value Badge)"
@@ -394,7 +474,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 10: Switch Toggle */}
+        {/* Component 12: Switch Toggle */}
         <ComponentDocSection
           id="switch-toggle"
           title="Switch Toggle Control"
@@ -418,7 +498,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 11: Checkbox */}
+        {/* Component 13: Checkbox */}
         <ComponentDocSection
           id="checkbox"
           title="Checkbox Control"
@@ -442,7 +522,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 12: Notification Dropdown */}
+        {/* Component 14: Notification Dropdown */}
         <ComponentDocSection
           id="notification-dropdown"
           title="Notification Dropdown Popover (2-Tab Layout)"
@@ -458,7 +538,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 13: Accordion */}
+        {/* Component 15: Accordion */}
         <ComponentDocSection
           id="accordion"
           title="Accordion (Collapsible List)"
@@ -471,7 +551,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 14: Cards */}
+        {/* Component 16: Cards */}
         <ComponentDocSection
           id="cards"
           title="Card Surfaces & Shadow Elevation"
@@ -493,7 +573,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 15: Status Badges */}
+        {/* Component 17: Status Badges */}
         <ComponentDocSection
           id="badges"
           title="Status Badges"
@@ -510,7 +590,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 16: Alert Banners */}
+        {/* Component 18: Alert Banners */}
         <ComponentDocSection
           id="alerts"
           title="Alert & Notification Banners"
@@ -536,7 +616,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 17: CodeBlock Container */}
+        {/* Component 19: CodeBlock Container */}
         <ComponentDocSection
           id="codeblock"
           title="Code Block Container"
@@ -550,7 +630,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 18: Thinking Accordion */}
+        {/* Component 20: Thinking Accordion */}
         <ComponentDocSection
           id="thinking"
           title="AI Thinking Process Accordion"
@@ -561,7 +641,7 @@ export const DesignLibraryPage: React.FC = () => {
           <ThinkingProcessAccordion thinkingText="1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics." />
         </ComponentDocSection>
 
-        {/* Component 19: Version Switcher */}
+        {/* Component 21: Version Switcher */}
         <ComponentDocSection
           id="version-switcher"
           title="Message Version Switcher"
@@ -572,7 +652,7 @@ export const DesignLibraryPage: React.FC = () => {
           <MessageVersionSwitcher currentVersion={1} totalVersions={3} onPrevious={() => {}} onNext={() => {}} />
         </ComponentDocSection>
 
-        {/* Component 20: Attachment List */}
+        {/* Component 22: Attachment List */}
         <ComponentDocSection
           id="attachments"
           title="File Attachment Chips"
@@ -586,7 +666,7 @@ export const DesignLibraryPage: React.FC = () => {
           />
         </ComponentDocSection>
 
-        {/* Component 21: Settings Dialog */}
+        {/* Component 23: Settings Dialog */}
         <ComponentDocSection
           id="settings-modal"
           title="Settings Dialog (Antigravity Style)"
@@ -602,7 +682,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 22: Agent Creator Dialog */}
+        {/* Component 24: Agent Creator Dialog */}
         <ComponentDocSection
           id="agent-creator"
           title="Agent Creator Dialog"
@@ -618,7 +698,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 23: Wowloop SaaS Nav Item */}
+        {/* Component 25: Wowloop SaaS Nav Item */}
         <ComponentDocSection
           id="wowloop-nav"
           title="Wowloop SaaS Sidebar Item"
@@ -631,7 +711,7 @@ export const DesignLibraryPage: React.FC = () => {
           </div>
         </ComponentDocSection>
 
-        {/* Component 24: Design Tokens & Palette */}
+        {/* Component 26: Design Tokens & Palette */}
         <ComponentDocSection
           id="tokens-palette"
           title="Design Tokens & Color Palette"
