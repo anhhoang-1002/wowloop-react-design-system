@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Bot, Copy, Check, RotateCw, ThumbsUp, ThumbsDown, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Bot, Copy, Check, RotateCw, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { Badge } from '../ui/badge';
 
@@ -17,6 +17,7 @@ export interface MessageVersionSwitcherProps {
   onPrevious?: () => void;
   onNext?: () => void;
   versions?: MessageVersion[];
+  variant?: 'simple' | 'advanced';
   className?: string;
 }
 
@@ -50,9 +51,9 @@ export const MessageVersionSwitcher: React.FC<MessageVersionSwitcherProps> = ({
   onPrevious: propOnPrevious,
   onNext: propOnNext,
   versions = defaultVersions,
+  variant = 'advanced',
   className,
 }) => {
-  // Internal state for interactive demo when controlled externally or internally
   const [internalVersion, setInternalVersion] = useState(1);
   const [copied, setCopied] = useState(false);
 
@@ -85,25 +86,25 @@ export const MessageVersionSwitcher: React.FC<MessageVersionSwitcherProps> = ({
     }
   };
 
-  // If used strictly as a standalone pill control
-  if (propCurrentVersion !== undefined && propTotalVersions !== undefined && !versions) {
-    if (propTotalVersions <= 1) return null;
+  // Simple Minimalist Variant for Inline Chat Stream Controls (< 1/3 >)
+  if (variant === 'simple') {
+    if (total <= 1) return null;
     return (
       <div className={cn("inline-flex items-center gap-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold px-2 py-0.5 rounded-lg border border-slate-200 dark:border-slate-700 select-none", className)}>
         <button
           onClick={handlePrev}
-          disabled={propCurrentVersion <= 1}
+          disabled={activeVersionNumber <= 1}
           className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-30 disabled:pointer-events-none transition-colors"
           title="Previous Version"
         >
           <ChevronLeft size={14} />
         </button>
         <span className="font-mono text-[11px] px-1">
-          {propCurrentVersion}/{propTotalVersions}
+          {activeVersionNumber}/{total}
         </span>
         <button
           onClick={handleNext}
-          disabled={propCurrentVersion >= propTotalVersions}
+          disabled={activeVersionNumber >= total}
           className="p-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-700 disabled:opacity-30 disabled:pointer-events-none transition-colors"
           title="Next Version"
         >
@@ -113,7 +114,7 @@ export const MessageVersionSwitcher: React.FC<MessageVersionSwitcherProps> = ({
     );
   }
 
-  // Full Interactive Card Message with Version Switcher
+  // Advanced Full Interactive Card Message
   return (
     <div className={cn("w-full max-w-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 shadow-xs select-none space-y-3 transition-all", className)}>
       {/* Header Info */}

@@ -17,6 +17,7 @@ export interface ThinkingProcessAccordionProps {
   durationSeconds?: number;
   steps?: ProcessStep[];
   defaultExpanded?: boolean;
+  variant?: 'simple' | 'advanced';
   className?: string;
 }
 
@@ -51,7 +52,8 @@ export const ThinkingProcessAccordion: React.FC<ThinkingProcessAccordionProps> =
   thinkingText = '1. Querying subscriber database (3,420 records)\n2. Verifying 30-day retention curve and LTV growth metrics.',
   durationSeconds = 2.4,
   steps = defaultProcessSteps,
-  defaultExpanded = true,
+  defaultExpanded = false,
+  variant = 'advanced',
   className,
 }) => {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
@@ -70,6 +72,34 @@ export const ThinkingProcessAccordion: React.FC<ThinkingProcessAccordionProps> =
     }
   };
 
+  // Simple Minimalist Variant for Inline Chat Stream
+  if (variant === 'simple') {
+    return (
+      <div className={cn("border border-slate-200/80 dark:border-slate-700/80 rounded-xl bg-slate-50/80 dark:bg-slate-800/60 overflow-hidden my-2 select-none", className)}>
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-full flex items-center justify-between px-3.5 py-2 text-left text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <Brain size={15} className="text-secondary dark:text-blue-400 animate-pulse" />
+            <span>Thought for {durationSeconds}s</span>
+          </div>
+          <ChevronDown
+            size={15}
+            className={cn("transition-transform duration-200 text-slate-400", isExpanded && "rotate-180")}
+          />
+        </button>
+
+        {isExpanded && (
+          <div className="px-4 py-3 border-t border-slate-200/80 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-mono whitespace-pre-wrap bg-white/50 dark:bg-slate-900/40">
+            {thinkingText}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Advanced Full Grid Variant
   return (
     <div className={cn("border border-slate-200/80 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden shadow-xs select-none transition-all my-3", className)}>
       {/* Accordion Header */}

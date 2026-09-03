@@ -45,9 +45,9 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
 
           {/* Message Content Container */}
           <div className={`max-w-2xl flex-1 space-y-2 ${msg.sender === 'user' ? 'flex flex-col items-end' : 'items-start'}`}>
-            {/* Thinking Accordion */}
+            {/* Minimal Thinking Accordion for Chat Stream */}
             {msg.sender === 'assistant' && msg.thinkingText && (
-              <ThinkingProcessAccordion thinkingText={msg.thinkingText} />
+              <ThinkingProcessAccordion thinkingText={msg.thinkingText} variant="simple" />
             )}
 
             {/* Message Text Rendering: User has clean white box with dark text; AI text has no white box/border */}
@@ -105,7 +105,7 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
               </Card>
             )}
 
-            {/* Assistant Action Bar & Version Switcher */}
+            {/* Assistant Action Bar & Minimal Version Switcher */}
             {msg.sender === 'assistant' && (
               <div className="flex items-center justify-between text-slate-400 dark:text-slate-500 text-xs pt-1 w-full">
                 <div className="flex items-center gap-2">
@@ -128,13 +128,14 @@ export const LibreChatMessages: React.FC<LibreChatMessagesProps> = ({ messages }
                   </button>
                 </div>
 
-                {/* Version Switcher */}
+                {/* Minimal Version Switcher (< 1/3 >) */}
                 {msg.versionInfo && (
                   <MessageVersionSwitcher
                     currentVersion={msg.versionInfo.current}
                     totalVersions={msg.versionInfo.total}
                     onPrevious={() => {}}
                     onNext={() => {}}
+                    variant="simple"
                   />
                 )}
               </div>

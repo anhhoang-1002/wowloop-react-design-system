@@ -699,22 +699,45 @@ export const DesignLibraryPage: React.FC = () => {
 
         <ComponentDocSection
           id="thinking"
-          title="AI Process Grid Accordion"
-          description="Interactive step-by-step grid accordion for AI reasoning steps, duration metrics, verified badges, and raw logs view."
+          title="AI Reasoning Accordion (Simple Bar & Advanced Grid)"
+          description="Collapsible reasoning component supporting both a compact inline chat bar (simple) and a multi-card step grid (advanced)."
           category="Advanced Components"
-          codeSnippet={`import { ThinkingProcessAccordion } from '@wowsuite/design-system';\n\n<ThinkingProcessAccordion durationSeconds={2.4} />`}
+          codeSnippet={`import { ThinkingProcessAccordion } from '@wowsuite/design-system';\n\n// 1. Simple Bar (Inline Chat UI)\n<ThinkingProcessAccordion variant="simple" durationSeconds={2.4} />\n\n// 2. Advanced Step Grid\n<ThinkingProcessAccordion variant="advanced" durationSeconds={2.4} />`}
         >
-          <ThinkingProcessAccordion />
+          <div className="space-y-4">
+            <div>
+              <div className="text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wider">Variant: Simple (Inline Chat Stream Bar)</div>
+              <ThinkingProcessAccordion variant="simple" durationSeconds={2.4} />
+            </div>
+
+            <div>
+              <div className="text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wider">Variant: Advanced (AI Process Step Grid)</div>
+              <ThinkingProcessAccordion variant="advanced" durationSeconds={2.4} />
+            </div>
+          </div>
         </ComponentDocSection>
 
         <ComponentDocSection
           id="version-switcher"
-          title="AI Message Card with Version Switcher"
-          description="Interactive AI response card container with integrated version pagination controls (< 1/3 >) for switching between response variations."
+          title="Message Version Switcher (Simple Pill & Advanced Card)"
+          description="Version pagination component supporting both an inline chat pill (< 1/3 >) and a full response card with dynamic pagination."
           category="Advanced Components"
-          codeSnippet={`import { MessageVersionSwitcher } from '@wowsuite/design-system';\n\n<MessageVersionSwitcher />`}
+          codeSnippet={`import { MessageVersionSwitcher } from '@wowsuite/design-system';\n\n// 1. Simple Pill (Inline Chat Stream)\n<MessageVersionSwitcher variant="simple" currentVersion={1} totalVersions={3} />\n\n// 2. Advanced Card (Interactive Response Card)\n<MessageVersionSwitcher variant="advanced" />`}
         >
-          <MessageVersionSwitcher />
+          <div className="space-y-6">
+            <div>
+              <div className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Variant: Simple (Inline Chat Control)</div>
+              <div className="flex items-center gap-2">
+                <MessageVersionSwitcher variant="simple" currentVersion={1} totalVersions={3} />
+                <span className="text-xs text-slate-500 font-medium">← Compact pagination pill for chat stream</span>
+              </div>
+            </div>
+
+            <div>
+              <div className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Variant: Advanced (Interactive Card Message)</div>
+              <MessageVersionSwitcher variant="advanced" />
+            </div>
+          </div>
         </ComponentDocSection>
 
         <ComponentDocSection
