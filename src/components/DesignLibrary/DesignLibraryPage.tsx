@@ -188,9 +188,9 @@ export const DesignLibraryPage: React.FC = () => {
   ];
 
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] bg-canvas dark:bg-[#0B0F19] text-foreground dark:text-slate-100 transition-colors">
+    <div className="flex min-h-[calc(100vh-3.5rem)] bg-white dark:bg-[#0B0F19] text-foreground dark:text-slate-100 transition-colors">
       {/* Sticky Left Catalog Sidebar */}
-      <aside className="w-64 border-r border-border dark:border-slate-800 bg-surface dark:bg-slate-900 p-4 sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto shrink-0 select-none">
+      <aside className="w-64 border-r border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900 p-4 sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto shrink-0 select-none">
         <div className="space-y-4">
           <div>
             <h2 className="text-sm font-extrabold text-slate-900 dark:text-slate-100 tracking-wide uppercase">
